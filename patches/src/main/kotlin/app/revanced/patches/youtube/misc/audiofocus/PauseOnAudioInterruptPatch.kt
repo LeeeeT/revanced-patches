@@ -26,12 +26,7 @@ val pauseOnAudioInterruptPatch = bytecodePatch(
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -62,7 +57,7 @@ val pauseOnAudioInterruptPatch = bytecodePatch(
         audioFocusChangeListenerMethod.addInstructions(
             0,
             """
-                invoke-static { p1 }, $EXTENSION_CLASS_DESCRIPTOR->overrideAudioFocusChange(I)I
+                invoke-static/range { p1 .. p1 }, $EXTENSION_CLASS_DESCRIPTOR->overrideAudioFocusChange(I)I
                 move-result p1
             """,
         )

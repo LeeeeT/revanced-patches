@@ -1,5 +1,7 @@
 package app.revanced.patches.youtube.layout.buttons.overlay
 
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.patcher.extensions.*
 import app.revanced.patcher.patch.bytecodePatch
 import app.revanced.patches.all.misc.resources.addResources
@@ -7,8 +9,6 @@ import app.revanced.patches.all.misc.resources.addResourcesPatch
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_20_28_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.getLayoutConstructorMethodMatch
@@ -33,17 +33,12 @@ val hidePlayerOverlayButtonsPatch = bytecodePatch(
         settingsPatch,
         addResourcesPatch,
         resourceMappingPatch, // Used for finding methods.
-        versionCheckPatch,
+        booleanFeatureFlagHookPatch,
     )
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -86,16 +81,11 @@ val hidePlayerOverlayButtonsPatch = bytecodePatch(
             """,
         )
 
-        if (is_20_28_or_greater) {
-            arrayOf(
-                castButtonPlayerFeatureFlagMethodMatch,
-                castButtonActionFeatureFlagMethodMatch, // Cast button in the feed.
-            ).forEach { match ->
-                match.method.insertLiteralOverride(
-                    match[0],
-                    "$EXTENSION_CLASS_DESCRIPTOR->getCastButtonOverrideV2(Z)Z",
-                )
-            }
+        arrayOf(
+            CAST_BUTTON_PLAYER_FEATURE_FLAG,
+            CAST_BUTTON_ACTION_FEATURE_FLAG,
+        ).forEach { flag ->
+            overrideBooleanFeatureFlag(flag, "$EXTENSION_CLASS_DESCRIPTOR->getCastButtonOverrideV2(Z)Z")
         }
 
         // endregion
@@ -139,7 +129,6 @@ val hidePlayerOverlayButtonsPatch = bytecodePatch(
         }
 
         // endregion
-
 
         // region Hide collapse button.
 
@@ -194,17 +183,12 @@ val hidePlayerOverlayButtonsPatch = bytecodePatch(
 
         inflateControlsGroupLayoutStubMethodMatch.let {
             it.method.apply {
-                val insertIndex = it[-1] + 1
-                val freeRegister = findFreeRegister(insertIndex)
+                val moveResultIndex = it[-1]
+                val layoutRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
 
-                addInstructions(
-                    insertIndex,
-                    """
-                        # Move the inflated layout to a temporary register.
-                        # The result of the inflate method is by default not moved to a register after the method is called.
-                        move-result-object v$freeRegister
-                        invoke-static { v$freeRegister }, $EXTENSION_CLASS_DESCRIPTOR->hidePlayerControlButtonsBackground(Landroid/view/View;)V
-                    """,
+                addInstruction(
+                    moveResultIndex + 1,
+                    "invoke-static { v$layoutRegister }, $EXTENSION_CLASS_DESCRIPTOR->hidePlayerControlButtonsBackground(Landroid/view/View;)V",
                 )
             }
         }

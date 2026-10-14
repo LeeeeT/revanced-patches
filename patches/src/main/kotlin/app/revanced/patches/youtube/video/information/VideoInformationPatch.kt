@@ -9,10 +9,6 @@ import app.revanced.patcher.firstClassDef
 import app.revanced.patcher.immutableClassDef
 import app.revanced.patcher.patch.bytecodePatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_20_19_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_20_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_49_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.shared.videoQualityChangedMethodMatch
 import app.revanced.patches.youtube.video.playerresponse.Hook
 import app.revanced.patches.youtube.video.playerresponse.addPlayerResponseMethodHook
@@ -23,6 +19,7 @@ import app.revanced.patches.youtube.video.videoid.hookVideoId
 import app.revanced.patches.youtube.video.videoid.videoIdPatch
 import app.revanced.util.addInstructionsAtControlFlowLabel
 import app.revanced.util.addStaticFieldToExtension
+import app.revanced.util.findInstructionIndicesReversedOrThrow
 import app.revanced.util.getReference
 import app.revanced.util.indexOfFirstInstructionOrThrow
 import app.revanced.patcher.patch.PatchException
@@ -95,7 +92,6 @@ val videoInformationPatch = bytecodePatch(
         sharedExtensionPatch,
         videoIdPatch,
         playerResponseMethodHookPatch,
-        versionCheckPatch,
     )
 
     apply {
@@ -143,7 +139,7 @@ val videoInformationPatch = bytecodePatch(
             val videoLengthMethodMatch = immutableClassDef.videoLengthMethodMatch
 
             videoLengthMethodMatch.method.apply {
-                val videoLengthRegisterIndex = videoLengthMethodMatch[-1] - 2
+                val videoLengthRegisterIndex = videoLengthMethodMatch[-2]
                 val videoLengthRegister =
                     getInstruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
                 val dummyRegisterForLong =
@@ -210,24 +206,19 @@ val videoInformationPatch = bytecodePatch(
                 indexOfFirstInstructionOrThrow(Opcode.IF_EQZ) - 1
             ).reference as FieldReference
 
-            if (is_20_49_or_greater) {
-                // Only one class implements the interface. Patcher currently does not have a
-                // 'first' accessor for looking up classes, so do it ourselves to verify
-                // we're using the expected class type.
-                var fieldReferenceType: ClassDef? = null
-                classDefs.forEach { classDef ->
-                    if (classDef.interfaces.contains(setPlaybackSpeedContainerClassFieldReference.type)) {
-                        if (fieldReferenceType != null) {
-                            throw PatchException("Found more than one playback speed interface: $classDef")
-                        }
-                        fieldReferenceType = classDef
+            // Only one class implements the interface. Patcher currently does not have a
+            // 'first' accessor for looking up classes, so do it ourselves to verify
+            // we're using the expected class type.
+            var fieldReferenceType: ClassDef? = null
+            classDefs.forEach { classDef ->
+                if (classDef.interfaces.contains(setPlaybackSpeedContainerClassFieldReference.type)) {
+                    if (fieldReferenceType != null) {
+                        throw PatchException("Found more than one playback speed interface: $classDef")
                     }
+                    fieldReferenceType = classDef
                 }
-                setPlaybackSpeedContainerClassFieldReferenceClassType = fieldReferenceType!!
-            } else {
-                setPlaybackSpeedContainerClassFieldReferenceClassType =
-                    classDefs[setPlaybackSpeedContainerClassFieldReference.type]!!
             }
+            setPlaybackSpeedContainerClassFieldReferenceClassType = fieldReferenceType!!
 
             setPlaybackSpeedClassFieldReference = getInstruction<ReferenceInstruction>(
                 indexOfFirstInstructionOrThrow(speedSelectionValueInstructionIndex) {
@@ -264,7 +255,7 @@ val videoInformationPatch = bytecodePatch(
                             # For some reason, in YouTube 19.44.39 this value is sometimes null.
                             if-eqz v0, :ignore
                             
-                            # Required cast for 20.49+
+                            # Required cast.
                             check-cast v0, $setPlaybackSpeedContainerClassFieldReferenceClassType
 
                             # Get the field from its class.
@@ -283,16 +274,18 @@ val videoInformationPatch = bytecodePatch(
             )
         }
 
-        playbackSpeedClassMethod.apply {
-            val index = indexOfFirstInstructionOrThrow(Opcode.RETURN_OBJECT)
-            val register = getInstruction<OneRegisterInstruction>(index).registerA
+        onPlaybackSpeedItemClickParentMethod.apply {
             val playbackSpeedClass = this.returnType
 
             // Set playback speed class.
-            addInstructionsAtControlFlowLabel(
-                index,
-                "sput-object v$register, $EXTENSION_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass",
-            )
+            findInstructionIndicesReversedOrThrow(Opcode.RETURN_OBJECT).forEach { index ->
+                val register = getInstruction<OneRegisterInstruction>(index).registerA
+
+                addInstructionsAtControlFlowLabel(
+                    index,
+                    "sput-object v$register, $EXTENSION_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass",
+                )
+            }
 
             val smaliInstructions =
                 """
@@ -325,11 +318,11 @@ val videoInformationPatch = bytecodePatch(
         }
 
         val videoQualityClassType : String
-        (if (is_20_19_or_greater) videoQualityMethod else videoQualityLegacyMethod).apply {
+        videoQualityMethod.apply {
             videoQualityClassType = immutableClassDef.type
 
             // Fix bad data used by YouTube.
-            val nameRegister = if (is_20_20_or_greater) "p3" else "p2"
+            val nameRegister = "p3"
             addInstructions(
                 0,
                 """

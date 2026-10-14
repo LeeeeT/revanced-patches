@@ -16,8 +16,6 @@ import app.revanced.patches.shared.misc.settings.preference.ListPreference
 import app.revanced.patches.youtube.layout.player.fullscreen.openVideosFullscreenHookPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.navigation.navigationBarHookPatch
-import app.revanced.patches.youtube.misc.playservice.is_21_07_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.mainActivityOnCreateMethod
@@ -46,18 +44,12 @@ val openShortsInRegularPlayerPatch = bytecodePatch(
         addResourcesPatch,
         openVideosFullscreenHookPatch,
         navigationBarHookPatch,
-        versionCheckPatch,
         resourceMappingPatch,
     )
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -74,7 +66,6 @@ val openShortsInRegularPlayerPatch = bytecodePatch(
             "invoke-static/range { p0 .. p0 }, $EXTENSION_CLASS_DESCRIPTOR->" +
                     "setMainActivity(Landroid/app/Activity;)V",
         )
-
 
         val playbackStartVideoIdMethod = playbackStartDescriptorToStringMethodMatch.let {
             navigate(it.method).to(it[1]).original()
@@ -101,101 +92,25 @@ val openShortsInRegularPlayerPatch = bytecodePatch(
         // Without this change this issue can be difficult to reproduce, but seems to occur
         // most often with 'open video in regular player' and not open in fullscreen player.
         exitVideoPlayerMethod.apply {
-            // TODO: Check if this logic works for older app targets as well.
-            if (is_21_07_or_greater) {
-                findInstructionIndicesReversedOrThrow {
-                    val methodReference = methodReference
-                    methodReference?.name == "finish" && methodReference.parameterTypes.isEmpty()
-                }.forEach { index ->
-                    val returnIndex = indexOfFirstInstructionOrThrow(
-                        index, Opcode.RETURN_VOID
-                    )
+            findInstructionIndicesReversedOrThrow {
+                val methodReference = methodReference
+                methodReference?.name == "finish" && methodReference.parameterTypes.isEmpty()
+            }.forEach { index ->
+                // Exclude the registers of the finish call that follows the inserted code.
+                val freeRegister = findFreeRegister(index, getInstruction(index).registersUsed)
 
-                    if (returnIndex == this.implementation!!.instructions.lastIndex) {
-                        val freeRegister = findFreeRegister(index)
-
-                        // Jumps to last index
-                        addInstructionsAtControlFlowLabel(
-                            index,
-                            """
-                                invoke-static { }, ${EXTENSION_CLASS_DESCRIPTOR}->overrideBackPressToExit()Z
-                                move-result v$freeRegister      
-                                if-eqz v$freeRegister, :doNotCallActivityFinish
-                                return-void   
-                                :doNotCallActivityFinish
-                                nop      
-                            """
-                        )
-                    } else {
-                        // Must check free register after the return index.
-                        val freeRegister = findFreeRegister(returnIndex + 1)
-
-                        addInstructionsAtControlFlowLabel(
-                            index,
-                            """
-                                invoke-static { }, ${EXTENSION_CLASS_DESCRIPTOR}->overrideBackPressToExit()Z
-                                move-result v$freeRegister      
-                                if-eqz v$freeRegister, :doNotCallActivityFinish
-                            """, ExternalLabel(
-                                "doNotCallActivityFinish",
-                                getInstruction(returnIndex + 1)
-                            )
-                        )
-                    }
-                }
-                return@apply
-            }
-
-
-            // Method call for Activity.finish()
-            val finishIndexFirst = indexOfFirstInstructionOrThrow {
-                val reference = getReference<MethodReference>()
-                reference?.name == "finish"
-            }
-
-            // Second Activity.finish() call. Has been present since 19.x but started
-            // to interfere with back to exit fullscreen around 20.47.
-            val finishIndexSecond = indexOfFirstInstruction(finishIndexFirst + 1) {
-                val reference = getReference<MethodReference>()
-                reference?.name == "finish"
-            }
-            val getBooleanFieldIndex = indexOfFirstInstructionReversedOrThrow(finishIndexSecond) {
-                opcode == Opcode.IGET_BOOLEAN
-            }
-            val booleanRegister =
-                getInstruction<TwoRegisterInstruction>(getBooleanFieldIndex).registerA
-
-            addInstructions(
-                getBooleanFieldIndex + 1,
-                """
-                    invoke-static { v$booleanRegister }, ${EXTENSION_CLASS_DESCRIPTOR}->overrideBackPressToExit(Z)Z    
-                    move-result v$booleanRegister
-                """
-            )
-
-            // Surround first activity.finish() and return-void with conditional check.
-            val returnVoidIndex = indexOfFirstInstructionOrThrow(
-                finishIndexFirst, Opcode.RETURN_VOID
-            )
-            // Find free register using index after return void (new control flow path added below).
-            val freeRegister = findFreeRegister(
-                returnVoidIndex + 1,
-                // Exclude all registers used by only instruction we will skip over.
-                getInstruction(finishIndexFirst).registersUsed
-            )
-
-            addInstructionsAtControlFlowLabel(
-                finishIndexFirst,
-                """
-                    invoke-static { }, $EXTENSION_CLASS_DESCRIPTOR->overrideBackPressToExit()Z
-                    move-result v$freeRegister
-                    if-eqz v$freeRegister, :doNotCallActivityFinish
-                """,
-                ExternalLabel(
-                    "doNotCallActivityFinish",
-                    getInstruction(returnVoidIndex + 1)
+                addInstructionsAtControlFlowLabel(
+                    index,
+                    """
+                        invoke-static { }, ${EXTENSION_CLASS_DESCRIPTOR}->overrideBackPressToExit()Z
+                        move-result v$freeRegister
+                        if-nez v$freeRegister, :finish
+                        return-void
+                        :finish
+                        nop
+                    """,
                 )
-            )
+            }
         }
     }
 }

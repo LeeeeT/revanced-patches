@@ -690,9 +690,6 @@ Ayusin ang volume sa pamamagitan ng pag-swipe nang patayo sa kanang bahagi ng sc
             <string name="revanced_swipe_overlay_style_entry_5">Pabilog na overlay (minimal)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Patayong overlay</string>
             <string name="revanced_swipe_overlay_style_entry_7">Patayong overlay (minimal)</string>
-            <string name="revanced_swipe_change_video_title">I-enable ang swipe para magpalit ng mga video</string>
-            <string name="revanced_swipe_change_video_summary_on">Ang pag-swipe sa full screen mode ay magpapalit sa susunod/nakaraang video</string>
-            <string name="revanced_swipe_change_video_summary_off">Ang pag-swipe sa full screen ay hindi magpapalit sa susunod/nakaraang video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Huwag paganahin ang mga auto caption</string>
@@ -942,9 +939,6 @@ Upang ipakita ang menu ng Audio track, baguhin ang 'Spoof video streams' sa 'And
             <string name="revanced_hide_seekbar_thumbnail_title">Itago ang seekbar ng mga thumbnail ng video</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Ang seekbar ng mga thumbnail ng video ay nakatago</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Ang seekbar ng mga thumbnail ng video ay ipinapakita</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Paganahin ang fullscreen large seekbar</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Malaki ang laki ng fullscreen seekbar</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Normal ang laki ng fullscreen seekbar</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts Manlalaro</string>
@@ -1441,11 +1435,6 @@ Kung mamaya ay patayin, inirerekumenda na i-clear ang data ng app upang maiwasan
 Limitasyon: Maaaring hindi gumana ang paggamit ng back button sa toolbar"</string>
             <string name="revanced_change_start_page_always_summary_off">Binago ang panimulang pahina sa pagbukas lang ng app</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Huwag paganahin ang pagpapatuloy na manlalaro ng Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Hindi magpapatuloy ang Shorts player sa pagsisimula ng app</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Magpapatuloy ang manlalaro ng shorts sa pagsisimula ng app</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Buksan ang Shorts gamit ang</string>
         </patch>
@@ -1467,37 +1456,12 @@ Limitasyon: Maaaring hindi gumana ang paggamit ng back button sa toolbar"</strin
             <string name="revanced_miniplayer_type_entry_5">Moderno 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderno 3</string>
             <string name="revanced_miniplayer_type_entry_7">Makabagong 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Huwag paganahin ang bilog na mga sulok</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Parihaba ang mga sulok</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Bilugan ang mga sulok</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Paganahin ang pag-resize gamit ang double-tap at pinch</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Ang pagkilos ng double-tap at pinch upang baguhin ang laki ay pinagana
-
-• Double tap upang dagdagan ang laki ng \"miniplayer\"
-• Double tap muli upang ibalik ang orihinal na laki"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Hindi pinagana ang pagkilos ng double-tap at pag-resize gamit ang pinch</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Huwag paganahin ang pagkaladkad at paghulog</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Hindi pinagana ang drag and drop</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Ang drag and drop ay pinagana
-
-Ang \"miniplayer\" ay maaaring i-drag sa anumang sulok ng screen"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Huwag paganahin ang pahalang na kilos ng pagkaladkad</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Hindi pinagana ang pahalang na drag gesture</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Ang horizontal drag gesture ay pinagana
-
-Ang \"miniplayer\" ay maaaring i-drag palabas ng screen sa kaliwa o kanan"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Itago ang mga button ng overlay</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Nakatago ang mga button ng overlay</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Ipinapakita ang mga button ng overlay</string>
             <string name="revanced_miniplayer_hide_subtext_title">Itago ang mga subtext</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Nakatago ang mga subtext</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Ipinapakita ang mga subtext</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Itago ang mga pindutan ng paglaktaw pasulong at pabalik</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Lumaktaw pasulong at pabalik ay nakatago</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Lumaktaw pasulong at pabalik ay ipinapakita</string>
-            <string name="revanced_miniplayer_width_dip_title">Paunang laki</string>
-            <string name="revanced_miniplayer_width_dip_summary">Paunang laki sa screen, sa pixels</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Ang laki ng pixel ay dapat nasa pagitan ng %1$s at %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Opacity ng overlay</string>
             <string name="revanced_miniplayer_opacity_summary">Ang halaga ng opacity sa pagitan ng 0-100, kung saan ang 0 ay transparent</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Ang opacity ng miniplayer overlay ay dapat nasa pagitan ng 0-100</string>

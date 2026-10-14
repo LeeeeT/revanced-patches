@@ -10,11 +10,4 @@ public class HideSeekbarPatch {
     public static boolean hideSeekbar() {
         return Settings.HIDE_SEEKBAR.get();
     }
-
-    /**
-     * Injection point.
-     */
-    public static boolean useFullscreenLargeSeekbar(boolean original) {
-        return Settings.FULLSCREEN_LARGE_SEEKBAR.get();
-    }
 }

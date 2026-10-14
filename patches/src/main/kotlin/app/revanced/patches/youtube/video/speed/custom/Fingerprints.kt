@@ -24,14 +24,6 @@ internal val BytecodePatchContext.showOldPlaybackSpeedMenuExtensionMethod by get
     name("showOldPlaybackSpeedMenu")
 }
 
-internal val BytecodePatchContext.serverSideMaxSpeedFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        45719140L(),
-    )
-}
-
 internal val BytecodePatchContext.speedArrayGeneratorMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
     returnType("[L")
@@ -60,26 +52,6 @@ internal val BytecodePatchContext.speedLimiterMethod by gettingFirstMethodDeclar
     )
 }
 
-/**
- * 20.33 and lower.
- */
-internal val BytecodePatchContext.speedLimiterLegacyMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    parameterTypes("F")
-    opcodes(
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT,
-        Opcode.IF_EQZ,
-        Opcode.CONST_HIGH16,
-        Opcode.GOTO,
-        Opcode.CONST_HIGH16,
-        Opcode.CONST_HIGH16,
-        Opcode.INVOKE_STATIC,
-    )
-}
-
-
 internal fun BytecodePatchContext.getTapAndHoldSpeedMethodMatch() = firstMethodComposite {
     name("run")
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
@@ -104,3 +76,5 @@ internal fun BytecodePatchContext.getTapAndHoldSpeedMethodMatch() = firstMethodC
         2.0f.toRawBits().toLong()()
     )
 }
+
+internal const val SERVER_SIDE_MAX_SPEED_FEATURE_FLAG = 45719140L

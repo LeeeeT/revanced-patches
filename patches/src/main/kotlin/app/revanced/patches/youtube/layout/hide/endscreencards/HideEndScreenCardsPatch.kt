@@ -12,8 +12,6 @@ import app.revanced.patches.shared.misc.mapping.ResourceType
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_43_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -58,17 +56,11 @@ val hideEndScreenCardsPatch = bytecodePatch(
     dependsOn(
         sharedExtensionPatch,
         hideEndScreenCardsResourcePatch,
-        versionCheckPatch,
     )
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -90,18 +82,16 @@ val hideEndScreenCardsPatch = bytecodePatch(
             }
         }
 
-        if (is_19_43_or_greater) {
-            showEndscreenCardsMethod.addInstructionsWithLabels(
-                0,
-                """
-                    invoke-static {}, $EXTENSION_CLASS_DESCRIPTOR->hideEndScreenCards()Z
-                    move-result v0
-                    if-eqz v0, :show
-                    return-void
-                    :show
-                    nop
-                """,
-            )
-        }
+        showEndscreenCardsMethod.addInstructionsWithLabels(
+            0,
+            """
+                invoke-static {}, $EXTENSION_CLASS_DESCRIPTOR->hideEndScreenCards()Z
+                move-result v0
+                if-eqz v0, :show
+                return-void
+                :show
+                nop
+            """,
+        )
     }
 }

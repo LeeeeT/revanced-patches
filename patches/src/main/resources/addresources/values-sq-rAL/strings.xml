@@ -695,9 +695,6 @@ Përshtate shkëlqimin duke rrëshqitur vertikalisht në anën e majtë të ekra
             <string name="revanced_swipe_overlay_style_entry_5">Mbivendosje rrethore (minimale)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Mbivendosje vertikale</string>
             <string name="revanced_swipe_overlay_style_entry_7">Mbivendosje vertikale (minimale)</string>
-            <string name="revanced_swipe_change_video_title">Aktivizoni lëshimin për të ndryshuar videot</string>
-            <string name="revanced_swipe_change_video_summary_on">Lëvizja në modalitetin në ekran të plotë do të ndryshojë në videon e ardhshme/të mëparshme</string>
-            <string name="revanced_swipe_change_video_summary_off">Lëvizja në modalitetin në ekran të plotë nuk do të ndryshojë në videon e ardhshme/të mëparshme</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Çaktivizo titrat automatikë</string>
@@ -947,9 +944,6 @@ Për të shfaqur menynë e gjurmës audio, ndryshoje 'Falsifiko transmetimet vid
             <string name="revanced_hide_seekbar_thumbnail_title">Fshih shiritin e kërkimit të minikopjeve të videos</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Shiriti i kërkimit të minikopjeve të videos është fshehur</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Shiriti i kërkimit të minikopjeve të videos është shfaqur</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Aktivizo shkallën e kërkimit të madhe në ekran të plotë</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Shkalla e kërkimit në ekran të plotë është e madhësisë së madhe</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Shkalla e kërkimit në ekran të plotë është e madhësisë normale</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Lojtari i Shorts</string>
@@ -1446,11 +1440,6 @@ Nëse më vonë është çaktivizuar, është e rekomanduar të fshiheni të dh�
 Kufizimi: Përdorimi i butonit të kthimit në shiritin e veglave mund të mos funksionojë"</string>
             <string name="revanced_change_start_page_always_summary_off">Faqja e fillimit ndryshohet vetëm kur nis aplikacioni</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Fik rifillon lojtarin Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Lojtari Shorts nuk do të rifillojë në fillimin e aplikacionit</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Lojtari Shorts do të rifillojë në fillimin e aplikacionit</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Hap Shorts me</string>
             <string name="revanced_shorts_player_type_shorts">Lojtari i Shorts</string>
@@ -1471,37 +1460,12 @@ Kufizimi: Përdorimi i butonit të kthimit në shiritin e veglave mund të mos f
             <string name="revanced_miniplayer_type_entry_0">I çaktivizuar</string>
             <string name="revanced_miniplayer_type_entry_1">Paragjykja</string>
             <string name="revanced_miniplayer_type_entry_3">Tabletë</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Çaktivizo qoshet e rrumbullakosura</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Qoshet janë katrore</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Qoshet janë të rrumbullakosura</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Aktivizo dy-prekje dhe shtrëngim për të ridimensionuar</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Veprimi i dyfishtë shtypjeje dhe shtrëngimi për të ridimensionuar është aktivizuar
-
-• Dyfishtë shtyp për të rritur madhësinë e miniplayer-it
-• Dyfishtë shtyp përsëri për të rivendosur madhësinë origjinale"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Veprimi i dy-prekjeve dhe shtrëngimi për të ridimensionuar është i çaktivizuar</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Çaktivizo zvarritjen dhe lëshimin</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Tërheqja dhe lëshimi është e çaktivizuar</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Tërheqja dhe lëshimi është aktivizuar
-
-Miniplayer mund të tërhiqet në çdo qoshe të ekranit"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Çaktivizo gjestin horizontal të zvarritjes</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Gjestet e tërheqjes horizontale janë të çaktivizuara</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Lëvizja horizontale me tërheqje është aktivizuar
-
-Miniplayer mund të tërhiqet jashtë ekranit në të majtë ose në të djathtë"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Fshih butonat e mbivendosjes</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Butonat e mbivendosjes janë të fshehur</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Butonat e mbivendosjes janë të dukshëm</string>
             <string name="revanced_miniplayer_hide_subtext_title">Fsheh nëntekstet</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Nëntekstet janë të fshehura</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Nëntekstet janë të dukshme</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Fsheh butonat e kalimit përpara dhe mbrapa</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Kalimi përpara dhe mbrapa janë të fshehur</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Kalimi përpara dhe mbrapa janë të dukshëm</string>
-            <string name="revanced_miniplayer_width_dip_title">Madhësia fillestare</string>
-            <string name="revanced_miniplayer_width_dip_summary">Madhësia fillestare në ekran, në piksel</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Madhësia e pikseleve duhet të jetë midis %1$s dhe %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Paqartësia e mbivendosjes</string>
             <string name="revanced_miniplayer_opacity_summary">Vlera e paqartësisë midis 0-100, ku 0 është transparente</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Paqartësia e mbivendosjes së \"miniplayer\" duhet të jetë midis 0-100</string>

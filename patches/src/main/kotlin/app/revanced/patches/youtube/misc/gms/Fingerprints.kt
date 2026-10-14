@@ -23,7 +23,7 @@ internal val BytecodePatchContext.specificNetworkErrorViewControllerMethodMatch 
 internal val BytecodePatchContext.loadingFrameLayoutControllerMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("V")
-    parameterTypes("L")
+    parameterTypes("Z")
     instructions(
         ResourceType.DRAWABLE("ic_offline_no_content_upside_down"),
         ResourceType.STRING("offline_no_content_body_text_not_offline_eligible"),

@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.layout.theme
 
-
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.PatchException
@@ -24,12 +23,11 @@ import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.shared.misc.settings.preference.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.seekbarColorPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_47_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_02_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_21_06_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
+import app.revanced.util.findElementByAttributeValueOrThrow
 import app.revanced.util.forEachChildElement
 import app.revanced.util.insertLiteralOverride
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -123,13 +121,13 @@ val themePatch = baseThemePatch(
                     }
                 }
 
-                // Fix the splash screen dark mode background color.
-                // In 19.32+ the dark mode splash screen is white and fades to black.
+                // Change the dark mode splash screen background color.
                 document("res/values-night/styles.xml").use { document ->
-                    // Create a night mode specific override for the splash screen background.
-                    val style = document.createElement("style")
-                    style.setAttribute("name", "Theme.YouTube.Home")
-                    style.setAttribute("parent", "@style/Base.V27.Theme.YouTube.Home")
+                    // Use the existing night mode specific style of the splash screen.
+                    val style = document.childNodes.findElementByAttributeValueOrThrow(
+                        "name",
+                        "Theme.YouTube.Home",
+                    )
 
                     // Fix status and navigation bar showing white on some Android devices,
                     // such as SDK 28 Android 10 medium tablet.
@@ -146,10 +144,6 @@ val themePatch = baseThemePatch(
                         styleItem.textContent = value
                         style.appendChild(styleItem)
                     }
-
-                    val resourcesNode =
-                        document.getElementsByTagName("resources").item(0) as Element
-                    resourcesNode.appendChild(style)
                 }
             }
         }
@@ -157,32 +151,29 @@ val themePatch = baseThemePatch(
             sharedExtensionPatch,
             settingsPatch,
             addResourcesPatch,
+            booleanFeatureFlagHookPatch,
             seekbarColorPatch,
-            versionCheckPatch,
             baseThemeResourcePatch(
                 lightColorReplacement = { lightThemeBackgroundColor!! },
                 getDarkColorNames = {
-                    THEME_DEFAULT_DARK_COLOR_NAMES + if (is_21_06_or_greater)
-                        setOf(
-                            // yt_ref_color_constants_baseline_black_black0
-                            "yt_sys_color_baseline_dark_menu_background",
-                            // yt_ref_color_constants_baseline_black_black1
-                            "yt_sys_color_baseline_dark_static_black",
-                            "yt_sys_color_baseline_dark_raised_background",
-                            // yt_ref_color_constants_baseline_black_black3
-                            "yt_sys_color_baseline_dark_base_background",
-                            "yt_sys_color_baseline_dark_static_black",
-                            "yt_sys_color_baseline_light_inverted_background",
-                            "yt_sys_color_baseline_light_static_black",
-                        ) else emptySet()
+                    THEME_DEFAULT_DARK_COLOR_NAMES + setOf(
+                        // yt_ref_color_constants_baseline_black_black0
+                        "yt_sys_color_baseline_dark_menu_background",
+                        // yt_ref_color_constants_baseline_black_black1
+                        "yt_sys_color_baseline_dark_static_black",
+                        "yt_sys_color_baseline_dark_raised_background",
+                        // yt_ref_color_constants_baseline_black_black3
+                        "yt_sys_color_baseline_dark_base_background",
+                        "yt_sys_color_baseline_dark_static_black",
+                        "yt_sys_color_baseline_light_inverted_background",
+                        "yt_sys_color_baseline_light_static_black",
+                    )
                 },
                 getLightColorNames = {
-                    THEME_DEFAULT_LIGHT_COLOR_NAMES + if (is_21_06_or_greater)
-                        setOf(
-                            "yt_sys_color_baseline_light_base_background",
-                            "yt_sys_color_baseline_light_raised_background"
-                        )
-                    else emptySet()
+                    THEME_DEFAULT_LIGHT_COLOR_NAMES + setOf(
+                        "yt_sys_color_baseline_light_base_background",
+                        "yt_sys_color_baseline_light_raised_background",
+                    )
                 }
             ),
             themeResourcePatch,
@@ -190,13 +181,8 @@ val themePatch = baseThemePatch(
 
         compatibleWith(
             "com.google.android.youtube"(
-                "20.14.43",
-                "20.21.37",
-                "20.26.46",
-                "20.31.42",
-                "20.37.48",
-                "20.40.45"
-            ),
+            "21.41.525-SECONDARY",
+        ),
         )
     },
 
@@ -230,56 +216,49 @@ val themePatch = baseThemePatch(
             ),
         )
 
-        if (is_19_47_or_greater) {
-            PreferenceScreen.GENERAL.addPreferences(
-                ListPreference("revanced_splash_screen_animation_style"),
-            )
-        }
+        PreferenceScreen.GENERAL.addPreferences(
+            ListPreference("revanced_splash_screen_animation_style"),
+        )
 
-        useGradientLoadingScreenMethodMatch.method.insertLiteralOverride(
-            useGradientLoadingScreenMethodMatch[0],
+        overrideBooleanFeatureFlag(
+            GRADIENT_LOADING_SCREEN_FEATURE_FLAG,
             "$EXTENSION_CLASS_DESCRIPTOR->gradientLoadingScreenEnabled(Z)Z",
         )
 
-        if (is_19_47_or_greater) {
-            // Lottie splash screen exists in earlier versions, but it may not be always on.
-            splashScreenStyleMethodMatch.method.insertLiteralOverride(
-                splashScreenStyleMethodMatch[0],
-                "$EXTENSION_CLASS_DESCRIPTOR->getLoadingScreenType(I)I",
-            )
-        }
+        splashScreenStyleMethodMatch.method.insertLiteralOverride(
+            splashScreenStyleMethodMatch[0],
+            "$EXTENSION_CLASS_DESCRIPTOR->getLoadingScreenType(I)I",
+        )
 
         showSplashScreen1MethodMatch.let {
             it.method.apply {
-                val index = it[-1]
+                val index = it[1]
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                 addInstructions(
                     index + 1,
                     """
-                        invoke-static { v$register }, ${EXTENSION_CLASS_DESCRIPTOR}->showSplashScreen(Z)Z
+                        invoke-static { v$register }, ${EXTENSION_CLASS_DESCRIPTOR}->showSplashScreen(I)I
                         move-result v$register
                     """
                 )
             }
         }
 
-        if (is_20_02_or_greater) {
-            showSplashScreen2MethodMatch.let {
-                val insertIndex = it[1]
-                it.method.apply {
-                    val insertInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
-                    val registerA = insertInstruction.registerA
-                    val registerB = insertInstruction.registerB
+        showSplashScreen2MethodMatch.let {
+            val insertIndex = it[1]
+            it.method.apply {
+                val insertInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
+                val registerA = insertInstruction.registerA
+                val registerB = insertInstruction.registerB
 
-                    addInstructions(
-                        insertIndex,
-                        """
-                            invoke-static { v$registerA, v$registerB }, ${EXTENSION_CLASS_DESCRIPTOR}->showSplashScreen(II)I
-                            move-result v$registerA
-                        """
-                    )
-                }
+                addInstructions(
+                    insertIndex,
+                    """
+                        invoke-static { v$registerA, v$registerB }, ${EXTENSION_CLASS_DESCRIPTOR}->showSplashScreen(II)I
+                        move-result v$registerA
+                    """
+                )
             }
         }
     },

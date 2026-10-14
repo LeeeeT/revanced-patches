@@ -711,9 +711,6 @@ Ajuste o volume deslizando verticalmente no lado direito da tela"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Sobreposição circular (mínima)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Sobreposição vertical</string>
             <string name="revanced_swipe_overlay_style_entry_7">Sobreposição vertical (mínima)</string>
-            <string name="revanced_swipe_change_video_title">Ativar deslizar para mudar de vídeo</string>
-            <string name="revanced_swipe_change_video_summary_on">Deslizar no modo de ecrã inteiro mudará para o vídeo seguinte/anterior</string>
-            <string name="revanced_swipe_change_video_summary_off">Deslizar no modo de ecrã inteiro não mudará para o vídeo seguinte/anterior</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Desativar legendas automáticas</string>
@@ -963,9 +960,6 @@ Para mostrar o menu da faixa de áudio, altere \"Falsificar fluxos de vídeo\" p
             <string name="revanced_hide_seekbar_thumbnail_title">Ocultar barra de busca de miniaturas de vídeo</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Barra de busca de miniaturas de vídeo está oculta</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Barra de busca de miniaturas de vídeo está visível</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Ativar barra de busca grande em ecrã inteiro</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">A barra de busca em ecrã inteiro tem tamanho grande</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">A barra de busca em ecrã inteiro tem tamanho normal</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Reprodutor de Shorts</string>
@@ -1471,11 +1465,6 @@ Nếu sau này tắt, bạn nên xóa dữ liệu ứng dụng để tránh lỗ
 Limitação: Usar o botão voltar na barra de ferramentas pode não funcionar"</string>
             <string name="revanced_change_start_page_always_summary_off">A página inicial é alterada apenas na inicialização do aplicativo</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Desativar a retomada do player do Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Desativar a retomada do player do Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts que o reprodutor continuará na inicialização do aplicativo</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Abrir Â Shorts com</string>
             <string name="revanced_shorts_player_type_shorts">Reprodutor de Shorts</string>
@@ -1502,42 +1491,12 @@ Limitação: Usar o botão voltar na barra de ferramentas pode não funcionar"</
             <string name="revanced_miniplayer_type_entry_5">Moderno 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderno 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderno 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Desativar cantos arredondados</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Os cantos estão quadrados</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Bordas são arredondadas</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Ativar toque duplo e pinch para redimensionar</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Hành động chạm hai lần và thu phóng bằng cử chỉ được bật
-
-• Chạm hai lần để tăng kích thước miniplayer
-• Chạm hai lần nữa để khôi phục kích thước ban đầu"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Ação de toque duplo e pinçar para redimensionar está desativado</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Desativar arrastar e soltar</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Arrastar e soltar está desativado</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Kéo và thả được bật
-
-Miniplayer có thể được kéo đến bất kỳ góc nào của màn hình"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Desativar gesto de arrastar horizontal</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Gestos de arrastar horizontais desativados</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Cử chỉ kéo ngang được bật
-
-Miniplayer có thể được kéo ra khỏi màn hình sang trái hoặc phải"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Ocultar botões de sobreposição</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Os botões de sobreposição estão ocultos</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Os botões de sobreposição são mostrados</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Ocultar botões de expandir e fechar</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Botões estão ocultos
-
-Deslize para expandir ou fechar"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Botões de expandir e fechar são visíveis</string>
             <string name="revanced_miniplayer_hide_subtext_title">Ocultar subtextos</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Subtextos estão ocultos</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Subtextos são exibidos</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Ocultar botões pular para frente e para trás</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Pular para frente e para trás estão escondidos</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Pular para frente e para trás são mostrados</string>
-            <string name="revanced_miniplayer_width_dip_title">Tamanho inicial</string>
-            <string name="revanced_miniplayer_width_dip_summary">Inicial sobre o tamanho da ecrã, em píxeis</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">O tamanho do pixel deve estar entre %1$s e %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Opacidade da sobreposição</string>
             <string name="revanced_miniplayer_opacity_summary">Valor de opacidade entre 0-100, onde 0 é transparente</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Opacidade da sobreposição de minijogador deve estar entre 0-100</string>

@@ -5,32 +5,15 @@ import app.revanced.patcher.patch.BytecodePatchContext
 import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
- * 20.36 and lower.
+ * Opens a link in the default browser.
  */
-internal val BytecodePatchContext.abUriParserLegacyMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Ljava/lang/Object;")
-    parameterTypes("Ljava/lang/Object;")
+internal val BytecodePatchContext.openLinkInBrowserMethod by gettingFirstMethodDeclaratively {
+    accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
+    returnType("Z")
+    parameterTypes("Landroid/content/Context;", "Landroid/net/Uri;")
     instructions(
-        "Found entityKey=`"(),
-        "that does not contain a PlaylistVideoEntityId"(String::contains),
-        method { toString() == "Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;" },
-    )
-}
-
-/**
- * 20.37+
- */
-internal val BytecodePatchContext.abUriParserMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Ljava/lang/Object;")
-    parameterTypes("Ljava/lang/Object;")
-    instructions(
-        // Method is a switch statement of unrelated code,
-        // and there's no strings or anything unique to match to.
-        method { toString() == "Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;" },
-        method { toString() == "Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;" },
-        method { toString() == "Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;" },
-        method { toString() == "Ljava/util/List;->get(I)Ljava/lang/Object;" },
+        "android.intent.action.VIEW"(),
+        "text/html"(),
+        method { toString() == "Landroid/content/Intent;->setDataAndType(Landroid/net/Uri;Ljava/lang/String;)Landroid/content/Intent;" },
     )
 }

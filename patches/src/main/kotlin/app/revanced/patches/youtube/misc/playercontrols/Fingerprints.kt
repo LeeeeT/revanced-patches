@@ -31,7 +31,13 @@ internal val BytecodePatchContext.youtubeControlsOverlayMethod by gettingFirstIm
 internal val ClassDef.motionEventMethodMatch by ClassDefComposing.composingFirstMethod {
     returnType("V")
     parameterTypes("Landroid/view/MotionEvent;")
-    instructions(method("setTranslationY"))
+    instructions(
+        // Hides the overlay controls.
+        allOf(
+            Opcode.INVOKE_INTERFACE(),
+            method { returnType == "V" && parameterTypes.map { it.toString() } == listOf("I", "Z") },
+        ),
+    )
 }
 
 internal val BytecodePatchContext.playerControlsExtensionHookListenersExistMethod by gettingFirstMethodDeclaratively {
@@ -76,9 +82,9 @@ internal val BytecodePatchContext.overlayViewInflateMethodMatch by composingFirs
     returnType("V")
     parameterTypes("Landroid/view/View;")
     instructions(
-        ResourceType.ID("heatseeker_viewstub"),
         ResourceType.ID("fullscreen_button"),
-        Opcode.CHECK_CAST(),
+        afterAtMost(3, Opcode.CHECK_CAST()),
+        ResourceType.ID("heatseeker_viewstub"),
     )
 }
 
@@ -92,37 +98,8 @@ internal fun ClassDef.getControlsOverlayVisibilityMethod() = firstMethodDeclarat
     parameterTypes("Z", "Z")
 }
 
-internal val BytecodePatchContext.playerBottomControlsExploderFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45643739L())
-}
+internal const val PLAYER_BOTTOM_CONTROLS_EXPLODER_FEATURE_FLAG = 45643739L
 
-internal val BytecodePatchContext.playerTopControlsExperimentalLayoutFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("I")
-    parameterTypes()
-    instructions(45629424L())
-}
+internal const val PLAYER_CONTROLS_LARGE_OVERLAY_BUTTONS_FEATURE_FLAG = 45709810L
 
-internal val BytecodePatchContext.playerControlsLargeOverlayButtonsFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45709810L())
-}
-
-internal val BytecodePatchContext.playerControlsFullscreenLargeButtonsFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45686474L())
-}
-
-internal val BytecodePatchContext.playerControlsButtonStrokeFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45713296L())
-}
+internal const val PLAYER_CONTROLS_BUTTON_STROKE_FEATURE_FLAG = 45713296L

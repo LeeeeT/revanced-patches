@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import app.revanced.extension.shared.Logger;
-import app.revanced.extension.youtube.patches.VersionCheckPatch;
 import app.revanced.extension.youtube.settings.Settings;
 import app.revanced.extension.youtube.shared.EngagementPanel;
 import app.revanced.extension.youtube.shared.NavigationBar;
@@ -90,9 +89,6 @@ public final class ShortsFilter extends Filter {
     private final StringFilterGroup suggestedAction;
     private final ByteArrayFilterGroupList suggestedActionsBuffer = new ByteArrayFilterGroupList();
 
-    private final StringFilterGroup shortsActionBar;
-    private final StringFilterGroup videoActionButton;
-    private final ByteArrayFilterGroupList videoActionButtonBuffer = new ByteArrayFilterGroupList();
 
     public ShortsFilter() {
         //
@@ -246,12 +242,6 @@ public final class ShortsFilter extends Filter {
                 "shorts_disclosures.e"
         );
 
-        shortsActionBar = new StringFilterGroup(
-                null,
-                "shorts_action_bar.e",
-                "reel_action_bar.e"
-        );
-
         reelCarousel = new StringFilterGroup(
                 null,
                 "reel_carousel.e"
@@ -295,16 +285,6 @@ public final class ShortsFilter extends Filter {
                 "yt_outline_template_add_"
         );
 
-        videoActionButton = new StringFilterGroup(
-                null,
-                // Can be any of:
-                // button.eml
-                // shorts_video_action_button.eml
-                // reel_action_button.eml
-                // reel_pivot_button.eml
-                "button.e"
-        );
-
         suggestedAction = new StringFilterGroup(
                 null,
                 "suggested_action.e"
@@ -320,30 +300,6 @@ public final class ShortsFilter extends Filter {
         // Legacy hiding of Shorts action buttons. Because of 20.31+ buffer changes
         // it's currently not possible to hide these using buffer filtering.
         // See alternative hiding strategy in hideActionButtons().
-        if (!VersionCheckPatch.IS_20_22_OR_GREATER) {
-            addPathCallbacks(shortsActionBar);
-
-            //
-            // All other action buttons.
-            //
-            videoActionButtonBuffer.addAll(
-                    new ByteArrayFilterGroup(
-                            Settings.HIDE_SHORTS_COMMENTS_BUTTON,
-                            "reel_comment_button",
-                            "youtube_shorts_comment_outline"
-                    ),
-                    new ByteArrayFilterGroup(
-                            Settings.HIDE_SHORTS_SHARE_BUTTON,
-                            "reel_share_button",
-                            "youtube_shorts_share_outline"
-                    ),
-                    new ByteArrayFilterGroup(
-                            Settings.HIDE_SHORTS_REMIX_BUTTON,
-                            "reel_remix_button",
-                            "youtube_shorts_remix_outline"
-                    )
-            );
-        }
 
         //
         // Suggested actions.
@@ -486,13 +442,6 @@ public final class ShortsFilter extends Filter {
                 }
 
                 return shouldHideShortsFeedItems();
-            }
-
-            // Video action buttons (comment, share, remix) have the same path.
-            // Like and dislike are separate path filters and don't require buffer searching.
-            if (matchedGroup == shortsActionBar) {
-                return videoActionButton.check(path).isFiltered()
-                        && videoActionButtonBuffer.check(buffer).isFiltered();
             }
 
             if (matchedGroup == suggestedAction) {

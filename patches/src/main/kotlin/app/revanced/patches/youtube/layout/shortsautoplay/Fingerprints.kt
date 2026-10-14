@@ -4,7 +4,6 @@ import app.revanced.patcher.*
 import app.revanced.patcher.patch.BytecodePatchContext
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.ClassDef
 
 internal val BytecodePatchContext.reelEnumConstructorMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.STATIC, AccessFlags.CONSTRUCTOR)
@@ -13,48 +12,33 @@ internal val BytecodePatchContext.reelEnumConstructorMethodMatch by composingFir
         "REEL_LOOP_BEHAVIOR_SINGLE_PLAY"(),
         "REEL_LOOP_BEHAVIOR_REPEAT"(),
         "REEL_LOOP_BEHAVIOR_END_SCREEN"(),
+        "REEL_LOOP_BEHAVIOR_AUTO_ADVANCE"(),
         Opcode.RETURN_VOID(),
     )
 }
 
-internal val BytecodePatchContext.reelPlaybackRepeatParentMethod by gettingFirstImmutableMethodDeclaratively {
-    returnType("V")
+/**
+ * Resolves the loop behavior of a Short from the player response and the reel watch endpoint.
+ * All Shorts player code uses this method to decide what happens when a Short ends.
+ *
+ * @param reelEnumClass The loop behavior enum class found with [reelEnumConstructorMethodMatch].
+ */
+internal fun BytecodePatchContext.getReelLoopBehaviorMethod(reelEnumClass: String) = firstMethodDeclaratively {
+    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
+    returnType(reelEnumClass)
+    parameterTypes("L", "L")
     instructions(
-        "Reels[%s] Playback Time: %d ms"(),
+        // Loop behavior is looked up from the ordinal in the proto.
+        method { definingClass == reelEnumClass && returnType == reelEnumClass && parameterTypes == listOf("I") },
     )
 }
 
 /**
- * Matches class found in [reelPlaybackRepeatParentMethod].
+ * Enables the auto advance loop behavior of the Shorts player.
  */
-context(_: BytecodePatchContext)
-internal fun ClassDef.getReelPlaybackRepeatMethod() = firstMethodDeclaratively {
-    returnType("V")
-    parameterTypes("L")
-    instructions(method { toString() == "Lcom/google/common/util/concurrent/ListenableFuture;->isDone()Z" })
-}
+internal const val SHORTS_AUTO_ADVANCE_FEATURE_FLAG = 45831829L
 
-internal val BytecodePatchContext.reelPlaybackMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    parameterTypes("J")
-    returnType("V")
-
-    val methodParametersPrefix = listOf("I", "L", "L")
-    instructions(
-        field { definingClass == "Ljava/util/concurrent/TimeUnit;" && name == "MILLISECONDS" },
-        afterAtMost(
-            15,
-            method {
-                name == "<init>" &&
-                    parameterTypes.zip(methodParametersPrefix).all { (a, b) -> a.startsWith(b) }
-            },
-        ),
-        afterAtMost(
-            5,
-            allOf(
-                Opcode.INVOKE_VIRTUAL(),
-                method { returnType == "I" && parameterTypes.count() == 1 && parameterTypes.first().startsWith("L") },
-            ),
-        ),
-    )
-}
+/**
+ * Enables the auto advance loop behavior of individual Shorts in the Shorts sequence.
+ */
+internal const val SHORTS_SEQUENCE_AUTO_ADVANCE_FEATURE_FLAG = 45813015L

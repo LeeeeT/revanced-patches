@@ -19,14 +19,7 @@ internal val BytecodePatchContext.createPivotBarMethodMatch by composingFirstMet
     )
 }
 
-internal val BytecodePatchContext.animatedNavigationTabsFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        45680008L(),
-    )
-}
-
+internal const val ANIMATED_NAVIGATION_TABS_FEATURE_FLAG = 45680008L
 
 internal val BytecodePatchContext.pivotBarStyleMethodMatch by composingFirstMethod {
     definingClass("/PivotBar;")
@@ -49,45 +42,17 @@ internal val BytecodePatchContext.pivotBarChangedMethodMatch by composingFirstMe
     )
 }
 
-internal val BytecodePatchContext.translucentNavigationStatusBarFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        45400535L(), // Translucent status bar feature flag.
-    )
-}
+internal const val TRANSLUCENT_STATUS_BAR_FEATURE_FLAG = 45400535L
 
 /**
  * YouTube nav buttons.
  */
-internal val BytecodePatchContext.translucentNavigationButtonsFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    instructions(
-        45630927L(), // Translucent navigation bar buttons feature flag.
-    )
-}
+internal const val TRANSLUCENT_NAVIGATION_BUTTONS_FEATURE_FLAG = 45630927L
 
 /**
  * Device on screen back/home/recent buttons.
  */
-internal val BytecodePatchContext.translucentNavigationButtonsSystemFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        45632194L(), // Translucent system buttons feature flag.
-    )
-}
-
-internal val BytecodePatchContext.setWordmarkHeaderMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    parameterTypes("Landroid/widget/ImageView;")
-    instructions(
-        ResourceType.ATTR("ytPremiumWordmarkHeader"),
-        ResourceType.ATTR("ytWordmarkHeader")
-    )
-}
+internal const val TRANSLUCENT_NAVIGATION_BUTTONS_SYSTEM_FEATURE_FLAG = 45632194L
 
 internal val BytecodePatchContext.wideSearchbarLayoutMethod by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)

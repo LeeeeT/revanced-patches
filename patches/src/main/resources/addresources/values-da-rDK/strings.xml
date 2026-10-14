@@ -697,9 +697,6 @@ Juster lydstyrken ved at swipe lodret i højre side af skærmen"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Cirkulært overlay (minimal)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Vertikalt overlay</string>
             <string name="revanced_swipe_overlay_style_entry_7">Vertikalt overlay (minimal)</string>
-            <string name="revanced_swipe_change_video_title">Aktivér swipe for at skifte videoer</string>
-            <string name="revanced_swipe_change_video_summary_on">Strygning i fuldskærmstilstand vil ændre til den næste/forrige video</string>
-            <string name="revanced_swipe_change_video_summary_off">Strygning i fuldskærmstilstand vil ikke ændre til den næste/forrige video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Deaktivér auto-billedtekster</string>
@@ -949,9 +946,6 @@ For at vise audiospormenuen, skift 'Maskér videostreams' til 'Android No SDK'"<
             <string name="revanced_hide_seekbar_thumbnail_title">Skjul video-miniaturebilledernes søgelinje</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Video-miniaturebilledernes søgelinje er skjult</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Video-miniaturebilledernes søgelinje vises</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Aktiver stor søgelinje i fuldskærm</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Fuldskærms søgelinje er stor</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Fuldskærms søgelinje har normal størrelse</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts-afspiller</string>
@@ -1448,11 +1442,6 @@ Hvis det senere slås fra, anbefales det at rydde app-dataene for at forhindre U
 Begrænsning: Brug af tilbage-knappen på værktøjslinjen fungerer muligvis ikke"</string>
             <string name="revanced_change_start_page_always_summary_off">Startsiden ændres kun ved appstart</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Deaktivér genoptagelse af Shorts spiller</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts-afspilleren genoptages ikke ved app-start</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Kortspilleren vil genoptage ved app-opstart</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Åbne Shorts med</string>
             <string name="revanced_shorts_player_type_shorts">Shorts-afspiller</string>
@@ -1477,37 +1466,12 @@ Begrænsning: Brug af tilbage-knappen på værktøjslinjen fungerer muligvis ikk
             <string name="revanced_miniplayer_type_entry_5">Moderne 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderne 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderne 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Deaktiver afrundede hjørner</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Hjørner er firkantede</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Hjørner er afrundede</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Aktiver dobbelttryk og klemme for at ændre størrelse</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Dobbelttrykshandling og knib for at ændre størrelse er aktiveret
-
-● Dobbelttryk for at øge miniafspillerstørrelsen
-● Dobbelttryk igen for at gendanne den oprindelige størrelse"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Dobbelttryk handling og klemme for at ændre størrelse er deaktiveret</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Deaktiver træk og slip</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Træk og slip er deaktiveret</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Træk og slip er aktiveret
-
-Miniafspiller kan trækkes til et hvilket som helst hjørne af skærmen"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Deaktiver vandret trækbevægelse</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Vandret trækbevægelse deaktiveret</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Vandret træk-bevægelse aktiveret
-
-Miniafspiller kan trækkes ud over skærmen til venstre eller højre"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Skjul overlay-knapper</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Overlay-knapper er skjult</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Overlay-knapper vises</string>
             <string name="revanced_miniplayer_hide_subtext_title">Skjul undertekster</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Undertekster er skjult</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Undertekster er vist</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Skjul overspring fremad og tilbage knapper</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Spring frem og tilbage er skjult</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Spring frem og tilbage vises</string>
-            <string name="revanced_miniplayer_width_dip_title">Oprindelig størrelse</string>
-            <string name="revanced_miniplayer_width_dip_summary">Indledende på skærmstørrelse, i pixels</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Pixel størrelse skal være mellem %1$s og %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Overlay uigennemsigtighed</string>
             <string name="revanced_miniplayer_opacity_summary">Gennemsigtighedsværdi mellem 0-100, hvor 0 er gennemsigtig</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Miniplayer overlay gennemsigtighed skal være mellem 0-100</string>

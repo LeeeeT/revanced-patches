@@ -705,9 +705,6 @@ A hangerő a képernyő jobb oldalán függőlegesen húzva állítható be"</st
             <string name="revanced_swipe_overlay_style_entry_5">Körkörös fedvény (minimalista)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Függőleges fedvény</string>
             <string name="revanced_swipe_overlay_style_entry_7">Függőleges fedvény (minimalista)</string>
-            <string name="revanced_swipe_change_video_title">Engedélyezze az ujjbegyújtással történő videóváltást</string>
-            <string name="revanced_swipe_change_video_summary_on">Teljes képernyős módban történő ujjbegyújtás megváltoztatja a következő/előző videóra</string>
-            <string name="revanced_swipe_change_video_summary_off">Teljes képernyős módban történő ujjbegyújtás nem változtatja meg a következő/előző videóra</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Automatikus feliratok letiltása</string>
@@ -957,9 +954,6 @@ A hangsáv menü megjelenítéséhez módosítsa a(z) \"Videóstreamek meghamis�
             <string name="revanced_hide_seekbar_thumbnail_title">Videó miniatűrök keresősávjának elrejtése</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">A videó miniatűrök keresősávja elrejtve</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">A videó miniatűrök keresősávja megjelenítve</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Teljes képernyős nagy folyamatsáv engedélyezése</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">A teljes képernyős folyamatsáv nagy méretű</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">A teljes képernyős folyamatsáv normál méretű</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts lejátszó</string>
@@ -1457,11 +1451,6 @@ Ha később kikapcsolja, akkor ajánlott az alkalmazás adatait törölni, hogy 
             <string name="revanced_change_start_page_always_summary_on">"A kezdőlap mindig módosítva van\n\nKorlátozás: A visszalépés gomb a eszköztáron nem biztos, hogy működik"</string>
             <string name="revanced_change_start_page_always_summary_off">A kezdőoldal csak az alkalmazás indításakor változik meg</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">A Shorts lejátszás folytatásának kikapcsolása</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">A Shorts lejátszás nem indul el az alkalmazás indításakor</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">A Shorts lejátszás folytatódik az alkalmazás indításakor</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shorts megnyitása ezzel:</string>
             <string name="revanced_shorts_player_type_shorts">Shorts lejátszó</string>
@@ -1484,37 +1473,12 @@ Ha később kikapcsolja, akkor ajánlott az alkalmazás adatait törölni, hogy 
             <string name="revanced_miniplayer_type_entry_1">Alapértelmezett</string>
             <string name="revanced_miniplayer_type_entry_2">Minimális</string>
             <string name="revanced_miniplayer_type_entry_3">Táblagép</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Lekerekített sarkok letiltása</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">A sarkok négyzet alakúak</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">A sarkok lekerekítettek</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Az átméretezéshez engedélyezze a dupla koppintást és az összehúzást</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"A dupla koppintásos művelet és a csippentés a méretezéshez engedélyezve van
-
-• Dupla koppintás a miniatűr képernyő méretének növeléséhez
-• Dupla koppintás az eredeti méret visszaállításához"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">A dupla koppintás művelet és az átméretezéshez csípés le van tiltva</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Fogd és vidd letiltása</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">A Fogd és vidd letiltva</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"A húzás és elengedés engedélyezve van
-
-A miniatűr képernyőt a képernyő bármely sarkába húzhatja"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Vízszintes húzás letiltása</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">A vízszintes húzómozdulat letiltva</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"A vízszintes húzás gesztus engedélyezve van
-
-A miniatűr képernyőt a képernyő bal vagy jobb szélére húzhatja"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Fedőgomb elrejtése</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">A fedőgombok rejtve vannak</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">A fedőgombok láthatók</string>
             <string name="revanced_miniplayer_hide_subtext_title">Alszövegek elrejtése</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Az alfeliratok el vannak rejtve</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Az alfeliratok meg vannak jelenítve</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Az előre és vissza ugrás gombok elrejtése</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Az előre és hátra ugrás el van rejtve</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Az előre és hátra ugrás meg van jelenítve</string>
-            <string name="revanced_miniplayer_width_dip_title">Kezdeti méret</string>
-            <string name="revanced_miniplayer_width_dip_summary">Kezdeti méret a képernyőn, pixelben</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">A képpont méretének %1$s és %2$s között kell lennie</string>
             <string name="revanced_miniplayer_opacity_title">Átfedés átlátszósága</string>
             <string name="revanced_miniplayer_opacity_summary">Az átlátszatlanság értéke 0 és 100 között van, ahol a 0 átlátszó</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">A minilejátszó fedvény átlátszatlanságának 0 és 100 között kell lennie</string>

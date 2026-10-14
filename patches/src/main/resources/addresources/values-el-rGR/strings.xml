@@ -713,9 +713,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Κυκλική διάταξη (μινιμαλιστική)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Κάθετη διάταξη</string>
             <string name="revanced_swipe_overlay_style_entry_7">Κάθετη διάταξη (μινιμαλιστική)</string>
-            <string name="revanced_swipe_change_video_title">Χειρονομία εναλλαγής βίντεο στην πλήρη οθόνη</string>
-            <string name="revanced_swipe_change_video_summary_on">Σάρωση αριστερά/δεξιά κατά τη λειτουργία πλήρους οθόνης για αλλαγή σε επόμενο/προηγούμενο βίντεο</string>
-            <string name="revanced_swipe_change_video_summary_off">Η χειρονομία αλλαγής βίντεο κατά τη λειτουργία πλήρους οθόνης είναι ανενεργή</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Απενεργοποίηση αυτόματων υπότιτλων</string>
@@ -965,9 +962,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">Γραμμή προόδου στις μικρογραφίες βίντεο</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Κρυμμένη</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Εμφανίζεται</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Ενεργοποίηση μεγάλης γραμμής προόδου πλήρους οθόνης</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Η γραμμή προόδου στη λειτουργία πλήρους οθόνης έχει μεγάλο μέγεθος</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Η γραμμή προόδου στη λειτουργία πλήρους οθόνης έχει κανονικό μέγεθος</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Οθόνη αναπαραγωγής Shorts</string>
@@ -1472,11 +1466,6 @@ Second \"item\" text"</string>
 Περιορισμός: Η χρήση του κουμπιού επιστροφής στη γραμμή εργαλείων ενδέχεται να μην λειτουργεί"</string>
             <string name="revanced_change_start_page_always_summary_off">Η αρχική σελίδα αλλάζει μόνο κατά την εκκίνηση της εφαρμογής</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Απενεργοποίηση συνέχισης των Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Η αναπαραγωγή Shorts δε θα συνεχίζεται κατά την εκκίνηση της εφαρμογής</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Η αναπαραγωγή Shorts θα συνεχίζεται κατά την εκκίνηση της εφαρμογής</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Άνοιγμα Shorts με</string>
             <string name="revanced_shorts_player_type_shorts">Οθόνη αναπαραγωγής Shorts</string>
@@ -1503,42 +1492,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">Μοντέρνος 2</string>
             <string name="revanced_miniplayer_type_entry_6">Μοντέρνος 3</string>
             <string name="revanced_miniplayer_type_entry_7">Μοντέρνος 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Απενεργοποίηση στρογγυλεμένων γωνιών</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Οι γωνίες είναι τετράγωνες</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Οι γωνίες είναι στρογγυλεμένες</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Διπλό πάτημα &amp; τσίμπημα για αλλαγή μεγέθους</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Η λειτουργία διπλού πατήματος και τσιμπήματος για αλλαγή μεγέθους είναι ενεργοποιημένη
-
-• Πατήστε δύο φορές για να αυξήσετε το μέγεθος της ελαχιστοποιημένης οθόνης
-• Πατήστε ξανά δύο φορές για επαναφορά στο αρχικό της μέγεθος"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Η λειτουργία διπλού πατήματος και τσιμπήματος για αλλαγή μεγέθους είναι απενεργοποιημένη</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Απενεργοποίηση λειτουργίας μεταφοράς και απόθεσης</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Η λειτουργία μεταφοράς και απόθεσης είναι απενεργοποιημένη</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Η λειτουργία μεταφοράς και απόθεσης είναι ενεργοποιημένη
-
-Η ελαχιστοποιημένη οθόνη αναπαραγωγής μπορεί να μετακινηθεί σε οποιαδήποτε γωνία της οθόνης"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Απενεργοποίηση χειρονομίας οριζόντιας σύρσης</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Η χειρονομία οριζόντιας σύρσης είναι απενεργοποιημένη</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Η χειρονομία οριζόντιας σύρσης είναι ενεργοποιημένη
-
-Η ελαχιστοποιημένη οθόνη μπορεί να συρθεί εκτός οθόνης προς τα αριστερά ή δεξιά"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Κουμπιά επικάλυψης οθόνης αναπαραγωγής</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Κρυμμένα</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Εμφανίζονται</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Κουμπιά επέκτασης και κλεισίματος</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Κρυμμένα.
-
-Σύρετε την ελαχιστοποιημένη οθόνη αναπαραγωγής για επέκταση ή κλείσιμο του βίντεο."</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Εμφανίζονται.</string>
             <string name="revanced_miniplayer_hide_subtext_title">Κείμενα οθόνης αναπαραγωγής</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Κρυμμένα</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Εμφανίζονται</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Κουμπιά παράλειψης και επιστροφής</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Κρυμμένα</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Εμφανίζονται</string>
-            <string name="revanced_miniplayer_width_dip_title">Αρχικό μέγεθος</string>
-            <string name="revanced_miniplayer_width_dip_summary">Αρχικό μέγεθος οθόνης, σε pixel</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Τα pixel πρέπει να είναι μεταξύ %1$s και %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Αδιαφάνεια φόντου παρασκηνίου</string>
             <string name="revanced_miniplayer_opacity_summary">Τιμή αδιαφάνειας μεταξύ 0-100, όπου το 0 είναι διαφανές</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Η αδιαφάνεια φόντου οθόνης αναπαραγωγής πρέπει να είναι μεταξύ 0-100</string>

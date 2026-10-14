@@ -13,8 +13,10 @@ internal val BytecodePatchContext.createVideoPlayerSeekbarMethod by gettingFirst
     instructions("timed_markers_width"())
 }
 
-
-internal val BytecodePatchContext.onPlaybackSpeedItemClickParentMethod by gettingFirstImmutableMethodDeclaratively {
+/**
+ * Static factory of the legacy playback speed menu fragment.
+ */
+internal val BytecodePatchContext.onPlaybackSpeedItemClickParentMethod by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
     returnType("L")
     parameterTypes("L", "Ljava/lang/String;")
@@ -41,11 +43,11 @@ internal fun ClassDef.getOnPlaybackSpeedItemClickMethod() = firstMethodDeclarati
     parameterTypes("L", "L", "I", "J")
 }
 
-internal val BytecodePatchContext.playerControllerSetTimeReferenceMethodMatch by
-composingFirstMethod("Media progress reported outside media playback: ") {
-    opcodes(
-        Opcode.INVOKE_DIRECT_RANGE,
-        Opcode.IGET_OBJECT,
+internal val BytecodePatchContext.playerControllerSetTimeReferenceMethodMatch by composingFirstMethod {
+    instructions(
+        allOf(Opcode.INVOKE_DIRECT_RANGE(), method { name == "<init>" }),
+        after(Opcode.IGET_OBJECT()),
+        "Media progress reported outside media playback: "(String::startsWith),
     )
 }
 
@@ -74,12 +76,13 @@ internal val ClassDef.videoLengthMethodMatch by ClassDefComposing.composingFirst
         Opcode.IF_LEZ,
         Opcode.IGET_OBJECT,
         Opcode.CHECK_CAST,
+        Opcode.IGET_BOOLEAN,
+        Opcode.IF_NEZ,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_WIDE,
         Opcode.GOTO,
         Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_WIDE,
-        Opcode.CONST_4,
+        Opcode.MOVE_RESULT_WIDE, // Video length.
         Opcode.INVOKE_VIRTUAL,
     )
 }
@@ -173,30 +176,6 @@ internal val ClassDef.playbackSpeedMenuSpeedChangedMethodMatch by ClassDefCompos
     parameterTypes("L")
     instructions(allOf(Opcode.IGET(), field { type == "F" }))
 }
-
-internal val BytecodePatchContext.playbackSpeedClassMethod by gettingFirstMethodDeclaratively(
-    "PLAYBACK_RATE_MENU_BOTTOM_SHEET_FRAGMENT",
-) {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
-    returnType("L")
-    parameterTypes("L")
-    opcodes(Opcode.RETURN_OBJECT)
-}
-
-/**
- * YouTube 20.19 and lower.
- */
-internal val BytecodePatchContext.videoQualityLegacyMethod by gettingFirstMethodDeclaratively {
-    definingClass("Lcom/google/android/libraries/youtube/innertube/model/media/VideoQuality;")
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    parameterTypes(
-        "I", // Resolution.
-        "Ljava/lang/String;", // Human readable resolution: "480p", "1080p Premium", etc
-        "Z",
-        "L",
-    )
-}
-
 
 internal val BytecodePatchContext.playbackStartDescriptorToStringMethodMatch by composingFirstMethod {
     name("toString")

@@ -328,9 +328,6 @@ MicroG க்கான பேட்டரி மேம்படுத்தல�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">முழுத்திரை பெரிய சீக்பாரை இயக்கு</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">முழுத்திரை சீக்பார் பெரிய அளவுடையது</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">முழுத்திரை சீக்பார் சாதாரண அளவுடையது</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">சேனல் பக்கத்தில் Shorts-ஐ மறை</string>
@@ -395,7 +392,6 @@ YouTube அமைப்புகளில் தானியங்கு ப்�
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

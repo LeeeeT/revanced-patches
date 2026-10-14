@@ -711,9 +711,6 @@ Vui lòng kiểm tra lại tên gói và đảm bảo ứng dụng đã được
             <string name="revanced_swipe_overlay_style_entry_5">Lớp phủ tròn (tối giản)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Lớp phủ dọc</string>
             <string name="revanced_swipe_overlay_style_entry_7">Lớp phủ dọc (tối giản)</string>
-            <string name="revanced_swipe_change_video_title">Bật vuốt để chuyển video</string>
-            <string name="revanced_swipe_change_video_summary_on">Vuốt trong chế độ toàn màn hình sẽ chuyển sang video tiếp theo/trước đó</string>
-            <string name="revanced_swipe_change_video_summary_off">Vuốt trong chế độ toàn màn hình sẽ không chuyển sang video tiếp theo/trước đó</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Tắt phụ đề tự động</string>
@@ -963,9 +960,6 @@ Vui lòng kiểm tra lại tên gói và đảm bảo ứng dụng đã được
             <string name="revanced_hide_seekbar_thumbnail_title">Ẩn thanh tiến trình trong hình thu nhỏ</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Thanh tiến trình trong hình thu nhỏ video đã xem đã bị ẩn</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Thanh tiến trình trong hình thu nhỏ video đã xem được hiển thị</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Bật thanh tua lớn toàn màn hình</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Thanh tua toàn màn hình có kích thước lớn</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Thanh tua toàn màn hình có kích thước bình thường</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Trình phát Shorts</string>
@@ -1470,11 +1464,6 @@ Nếu tắt đi sau đó, bạn nên xóa dữ liệu ứng dụng để tránh 
 Hạn chế: Nút quay lại trên thanh công cụ có thể không hoạt động"</string>
             <string name="revanced_change_start_page_always_summary_off">Trang bắt đầu chỉ được thay đổi khi khởi động ứng dụng</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Tắt tiếp tục trình phát Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Trinh phát Shorts sẽ không tiếp tục khi ứng dụng khởi chạy</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Trinh phát Shorts sẽ tiếp tục khi ứng dụng khởi chạy</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Mở Shorts bằng</string>
             <string name="revanced_shorts_player_type_shorts">Trình phát Shorts</string>
@@ -1501,42 +1490,12 @@ Hạn chế: Nút quay lại trên thanh công cụ có thể không hoạt đ�
             <string name="revanced_miniplayer_type_entry_5">Hiện đại 2</string>
             <string name="revanced_miniplayer_type_entry_6">Hiện đại 3</string>
             <string name="revanced_miniplayer_type_entry_7">Hiện đại 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Tắt bo tròn góc</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Góc vuông</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Góc được bo tròn</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Bật chạm hai lần và chụm để thay đổi kích thước</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Thao tác chạm hai lần và chụm để thay đổi kích thước đã bật
-
-• Chạm hai lần để tăng kích thước trình phát thu nhỏ
-• Chạm hai lần nữa để khôi phục kích thước ban đầu"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Thao tác chạm hai lần và chụm để thay đổi kích thước đã tắt</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Tắt kéo và thả</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Kéo và thả đã tắt</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Kéo và thả đã được bật
-
-Trình phát thu nhỏ có thể được kéo đến bất kỳ góc nào của màn hình"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Tắt cử chỉ kéo ngang</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Cử chỉ kéo ngang đã tắt</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Cử chỉ kéo ngang đã được bật
-
-Trình phát thu nhỏ có thể được kéo ra mép màn hình sang bên trái hoặc phải"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Ẩn nút lớp phủ</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Các nút lớp phủ đã bị ẩn</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Các nút lớp phủ được hiển thị</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Ẩn các nút mở rộng và đóng</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Các nút đã bị ẩn
-
-Vuốt để mở rộng hoặc đóng"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Các nút mở rộng và đóng được hiển thị</string>
             <string name="revanced_miniplayer_hide_subtext_title">Ẩn văn bản phụ</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Văn bản phụ đã bị ẩn</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Văn bản phụ được hiển thị</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Ẩn các nút tua nhanh và tua lại</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Các nút tua nhanh và tua lại đã bị ẩn</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Các nút tua nhanh và tua lại được hiển thị</string>
-            <string name="revanced_miniplayer_width_dip_title">Kích thước ban đầu</string>
-            <string name="revanced_miniplayer_width_dip_summary">Kích thước ban đầu trên màn hình, bằng pixel</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Pixel phải nằm giữa %1$s và %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Độ mờ lớp phủ</string>
             <string name="revanced_miniplayer_opacity_summary">Giá trị độ mờ của lớp phủ trình phát trong khoảng từ 0 đến 100, trong đó 0 là trong suốt</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Độ mờ lớp phủ phải nằm trong khoảng từ 0-100</string>

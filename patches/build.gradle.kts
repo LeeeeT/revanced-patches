@@ -2,12 +2,12 @@ group = "app.revanced"
 
 patches {
     about {
-        name = "ReVanced Patches"
-        description = "Patches for ReVanced"
-        source = "git@github.com:revanced/revanced-patches.git"
-        author = "ReVanced"
-        contact = "patches@revanced.app"
-        website = "https://revanced.app"
+        name = "ReVanced Patches for YouTube 21.41.525"
+        description = "ReVanced Patches ported to YouTube 21.41.525"
+        source = "git@github.com:LeeeeT/revanced-patches.git"
+        author = "LeeeeT"
+        contact = "me@leeeet.dev"
+        website = "https://github.com/LeeeeT/revanced-patches"
         license = "GNU General Public License v3.0"
     }
 }

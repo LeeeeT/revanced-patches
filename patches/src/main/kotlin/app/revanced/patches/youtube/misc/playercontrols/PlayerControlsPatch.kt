@@ -10,7 +10,8 @@ import app.revanced.patcher.patch.resourcePatch
 import app.revanced.patcher.util.Document
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.*
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.util.*
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -37,12 +38,9 @@ lateinit var addBottomControl: (String) -> Unit
 
 internal val playerControlsResourcePatch = resourcePatch {
     /**
-     * The element to the left of the element being added.
+     * The element to the right of the element being added.
      */
-    /**
-     * The element to the left of the element being added.
-     */
-    var bottomLastLeftOf = "@id/fullscreen_button"
+    var bottomLastLeftOf = "@id/mute_toggle_button"
 
     lateinit var bottomTargetDocument: Document
 
@@ -52,12 +50,12 @@ internal val playerControlsResourcePatch = resourcePatch {
         bottomTargetDocument = document("res/layout/$targetResourceName")
 
         val bottomTargetElement: Node = bottomTargetDocument.getElementsByTagName(
-            "android.support.constraint.ConstraintLayout",
+            "androidx.constraintlayout.widget.ConstraintLayout",
         ).item(0)
 
         val bottomTargetDocumentChildNodes = bottomTargetDocument.childNodes
         var bottomInsertBeforeNode: Node = bottomTargetDocumentChildNodes.findElementByAttributeValueOrThrow(
-            "android:inflatedId",
+            "android:id",
             bottomLastLeftOf,
         )
 
@@ -107,7 +105,7 @@ internal val playerControlsResourcePatch = resourcePatch {
             )
 
             val sourceElements = sourceDocument.getElementsByTagName(
-                "android.support.constraint.ConstraintLayout",
+                "androidx.constraintlayout.widget.ConstraintLayout",
             ).item(0).childNodes
 
             // Copy the patch layout XML into the target layout file.
@@ -226,10 +224,10 @@ val playerControlsPatch = bytecodePatch(
 ) {
     dependsOn(
         playerControlsResourcePatch,
+        booleanFeatureFlagHookPatch,
         sharedExtensionPatch,
         resourceMappingPatch, // Used to find methods.
         playerControlsOverlayVisibilityPatch,
-        versionCheckPatch,
     )
 
     apply {
@@ -255,7 +253,7 @@ val playerControlsPatch = bytecodePatch(
         // Hook the fullscreen close button. Used to fix visibility
         // when seeking and other situations.
         overlayViewInflateMethodMatch.method.apply {
-            val index = overlayViewInflateMethodMatch[-1]
+            val index = overlayViewInflateMethodMatch[1]
             val register = getInstruction<OneRegisterInstruction>(index).registerA
 
             addInstruction(
@@ -277,35 +275,10 @@ val playerControlsPatch = bytecodePatch(
         // that uses layout file youtube_video_exploder_controls_bottom_ui_container.xml
         // The change to support this is simple and only requires adding buttons to both layout files,
         // but for now force this different layout off since it's still an experimental test.
-        if (is_19_35_or_greater) {
-            playerBottomControlsExploderFeatureFlagMethod.returnLate(false)
-        }
-
-        // A/B test of different top overlay controls. Two different layouts can be used:
-        // youtube_cf_navigation_improvement_controls_layout.xml
-        // youtube_cf_minimal_impact_controls_layout.xml
-        //
-        // Flag was removed in 20.19+
-        if (is_19_25_or_greater && !is_20_19_or_greater) {
-            playerTopControlsExperimentalLayoutFeatureFlagMethod.apply {
-                val index = indexOfFirstInstructionOrThrow(Opcode.MOVE_RESULT_OBJECT)
-                val register = getInstruction<OneRegisterInstruction>(index).registerA
-
-                addInstruction(index + 1, "const-string v$register, \"default\"")
-            }
-        }
+        overrideBooleanFeatureFlag(PLAYER_BOTTOM_CONTROLS_EXPLODER_FEATURE_FLAG, false)
 
         // Turn off a/b tests of ugly player buttons that don't match the style of custom player buttons.
-        if (is_20_20_or_greater) {
-            playerControlsFullscreenLargeButtonsFeatureFlagMethod.returnLate(false)
-
-            if (is_20_28_or_greater) {
-                playerControlsLargeOverlayButtonsFeatureFlagMethod.returnLate(false)
-            }
-
-            if (is_20_30_or_greater) {
-                playerControlsButtonStrokeFeatureFlagMethod.returnLate(false)
-            }
-        }
+        overrideBooleanFeatureFlag(PLAYER_CONTROLS_LARGE_OVERLAY_BUTTONS_FEATURE_FLAG, false)
+        overrideBooleanFeatureFlag(PLAYER_CONTROLS_BUTTON_STROKE_FEATURE_FLAG, false)
     }
 }

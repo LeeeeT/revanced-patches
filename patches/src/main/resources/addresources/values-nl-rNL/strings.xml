@@ -711,9 +711,6 @@ Pas het volume aan door verticaal over de rechterkant van het scherm te vegen"</
             <string name="revanced_swipe_overlay_style_entry_5">Circulaire overlay (minimaal)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Verticale overlay</string>
             <string name="revanced_swipe_overlay_style_entry_7">Verticale overlay (minimaal)</string>
-            <string name="revanced_swipe_change_video_title">Schakel vegen in om te wisselen tussen video\'s</string>
-            <string name="revanced_swipe_change_video_summary_on">Vegen in de modus volledig scherm weergegeven, verandert naar de volgende/vorige video</string>
-            <string name="revanced_swipe_change_video_summary_off">Vegen in de modus volledig scherm weergegeven, verandert niet naar de volgende/vorige video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Automatische ondertitels uitschakelen</string>
@@ -963,9 +960,6 @@ Om het Audiotracks-menu weer te geven, wijzig 'Videostreams spoofen' naar 'Andro
             <string name="revanced_hide_seekbar_thumbnail_title">Zoekbalk videominiaturen verbergen</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Zoekbalk videominiaturen is verborgen</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Zoekbalk videominiaturen is getoond</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Schakel grote zoekbalk op volledig scherm in</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Zoekbalk op volledig scherm is groot formaat</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Zoekbalk op volledig scherm is normaal formaat</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts-speler</string>
@@ -1469,11 +1463,6 @@ Als het later wordt uitgeschakeld, wordt aanbevolen om de app-gegevens te wissen
             <string name="revanced_change_start_page_always_summary_on">"De startpagina wordt altijd gewijzigd\n\nBeperking: Het gebruik van de terugknop op de werkbalk werkt mogelijk niet"</string>
             <string name="revanced_change_start_page_always_summary_off">Startpagina wordt alleen gewijzigd bij het opstarten van de app</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Schakel het hervatten van Shorts-speler uit</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts-speler wordt niet hervat bij het opstarten van de app</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts-speler wordt hervat bij het opstarten van de app</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shorts openen met</string>
             <string name="revanced_shorts_player_type_shorts">Shorts-speler</string>
@@ -1500,42 +1489,12 @@ Als het later wordt uitgeschakeld, wordt aanbevolen om de app-gegevens te wissen
             <string name="revanced_miniplayer_type_entry_5">Miniplayer type 2</string>
             <string name="revanced_miniplayer_type_entry_6">Miniplayer type 3</string>
             <string name="revanced_miniplayer_type_entry_7">Miniplayer type 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Afgeronde hoeken uitschakelen</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Hoeken zijn vierkant</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Hoeken zijn afgerond</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Schakel dubbeltikken en knijpen om te verkleinen in</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Dubbeltikactie en knijpen om te verkleinen is ingeschakeld
-
-• Dubbeltik om de miniplayer-grootte te vergroten
-• Dubbeltik opnieuw om de oorspronkelijke grootte te herstellen"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Dubbeltikken en knijpen om te verkleinen is uitgeschakeld</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Slepen en neerzetten uitschakelen</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Slepen en neerzetten is uitgeschakeld</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Sleep-en-neerzetten is ingeschakeld
-
-De miniplayer kan naar elke hoek van het scherm worden gesleept"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Horizontale sleepbeweging uitschakelen</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Horizontaal sleepgebaar uitgeschakeld</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Horizontale sleepbeweging ingeschakeld
-
-De miniplayer kan naar links of rechts van het scherm worden gesleept"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Overlayknoppen verbergen</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Overlayknoppen zijn verborgen</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Overlayknoppen worden weergegeven</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Verberg knoppen voor uitvouwen en sluiten</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Knoppen zijn verborgen
-
-Veeg om uit te vouwen of te sluiten"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Uitvouwen en sluiten knoppen worden weergegeven</string>
             <string name="revanced_miniplayer_hide_subtext_title">Verberg subteksten</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Subteksten zijn verborgen</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Subteksten zijn zichtbaar</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Verberg knoppen voor door- en terugspoelen</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Door- en terugspoelen zijn verborgen</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Door- en terugspoelen zijn zichtbaar</string>
-            <string name="revanced_miniplayer_width_dip_title">Beginmaat</string>
-            <string name="revanced_miniplayer_width_dip_summary">Beginmaat op het scherm, in pixels</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Pixelgrootte moet tussen %1$s en %2$s zijn</string>
             <string name="revanced_miniplayer_opacity_title">Dekking van de overlay</string>
             <string name="revanced_miniplayer_opacity_summary">De waarde van de dekking moet tussen 0-100 liggen, waarbij 0 transparant is</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Minispeler overlay transparantie moet tussen de 0-100 zijn</string>

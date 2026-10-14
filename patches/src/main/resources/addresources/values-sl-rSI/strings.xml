@@ -707,9 +707,6 @@ Prilagodite glasnost s potegom navpično na desni strani zaslona"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Krožni prekrivni element (minimalno)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Navpični prekrivni element</string>
             <string name="revanced_swipe_overlay_style_entry_7">Navpični prekrivni element (minimalno)</string>
-            <string name="revanced_swipe_change_video_title">Omogoči menjavanje videoposnetkov z drsenjem</string>
-            <string name="revanced_swipe_change_video_summary_on">Drsenje v celozaslonskem načinu bo prešlo na naslednji/prejšnji videoposnetek.</string>
-            <string name="revanced_swipe_change_video_summary_off">Drsenje v celozaslonskem načinu ne bo prešlo na naslednji/prejšnji videoposnetek.</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Onemogoči samodejne podnapise</string>
@@ -959,9 +956,6 @@ Prilagodite glasnost s potegom navpično na desni strani zaslona"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">Skrij iskalno vrstico sličic videa</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Iskalna vrstica sličic videa je skrita</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Iskalna vrstica sličic videa je prikazana</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Omogoči veliko iskalno vrstico v celozaslonskem načinu</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Iskalna vrstica v celozaslonskem načinu je velika</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Iskalna vrstica v celozaslonskem načinu je normalne velikosti</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Predvajalnik Shorts</string>
@@ -1466,11 +1460,6 @@ To bo spremenilo videz in funkcije aplikacije, vendar se lahko pojavijo neznani 
 Omejitev: uporaba gumba za nazaj v orodni vrstici morda ne bo delovala"</string>
             <string name="revanced_change_start_page_always_summary_off">Začetna stran se spremeni samo ob zagonu aplikacije</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Onemogoči nadaljevanje predvajalnika Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Predvajalnik Shorts se ne bo nadaljeval ob zagonu aplikacije</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Predvajalnik Shorts se bo nadaljeval ob zagonu aplikacije</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Odpri Shorts z</string>
             <string name="revanced_shorts_player_type_shorts">Predvajalnik Shorts</string>
@@ -1497,42 +1486,12 @@ Omejitev: uporaba gumba za nazaj v orodni vrstici morda ne bo delovala"</string>
             <string name="revanced_miniplayer_type_entry_5">Sodobno 2</string>
             <string name="revanced_miniplayer_type_entry_6">Sodobno 3</string>
             <string name="revanced_miniplayer_type_entry_7">Sodobno 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Onemogoči zaobljene vogale</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Robovi so kvadratni</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Robovi so zaobljeni</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Omogoči dvojni dotik in stiskanje za spreminjanje velikosti</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Dvojni dotik in ščipanje za spremembo velikosti sta omogočena
-
-• Dvakrat tapnite, da povečate velikost minipredvajalnika
-• Znova dvakrat tapnite, da obnovite prvotno velikost"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Dvojni dotik in stiskanje za spreminjanje velikosti je onemogočeno</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Onemogoči vlečenje in spuščanje</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Povleci in spusti je onemogočeno</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Povleci in spusti so omogočeni
-
-Minipredvajalnik lahko povlečete v kateri koli kot zaslona"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Onemogoči vodoravno potezo vlečenja</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Vodoravna kretnja vlečenja je onemogočena</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Omogočena je kretnja vodoravnega vlečenja
-
-Minipredvajalnik lahko povlečete z zaslona na levo ali desno"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Skrij prekrivne gumbe</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Prekrivni gumbi so skriti</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Prekrivni gumbi so prikazani</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Skrij gumbe za razširitev in zapiranje</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Gumbi so skriti
-
-Podrsnite za razširitev ali zapiranje"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Prikazana sta gumba za razširitev in zapiranje</string>
             <string name="revanced_miniplayer_hide_subtext_title">Skrij podnaslove</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Podnaslovi so skriti</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Podnaslovi so prikazani</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Skrij gumbe za preskok naprej in nazaj</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Preskok naprej in nazaj je skrit</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Preskok naprej in nazaj je prikazan</string>
-            <string name="revanced_miniplayer_width_dip_title">Začetna velikost</string>
-            <string name="revanced_miniplayer_width_dip_summary">Začetna velikost na zaslonu, v slikovnih pikah</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Velikost v slikovnih pikah mora biti med %1$s in %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Prosojnost prekrivanja</string>
             <string name="revanced_miniplayer_opacity_summary">Vrednost prosojnosti med 0-100, kjer je 0 prozorno</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Prosojnost prekrivanja mini predvajalnika mora biti med 0-100</string>

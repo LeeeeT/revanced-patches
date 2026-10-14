@@ -23,21 +23,17 @@ internal val BytecodePatchContext.removeLikeMethod by gettingFirstMethodDeclarat
     instructions("like/removelike"())
 }
 
-internal val BytecodePatchContext.rollingNumberMeasureAnimatedTextMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
-    returnType("Lj\$/util/Optional;")
-    parameterTypes("L", "Ljava/lang/String;", "L")
-    opcodes(
-        Opcode.IGET, // First instruction of method.
-        Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.CONST_HIGH16,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT,
-        Opcode.CONST_4,
-        Opcode.AGET,
-        Opcode.CONST_4,
-        Opcode.CONST_4, // Measured text width.
+/**
+ * Matches to class found in [rollingNumberMeasureStaticLabelParentMethod].
+ */
+internal val ClassDef.rollingNumberMeasureAnimatedTextMethodMatch by ClassDefComposing.composingFirstMethod {
+    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
+    returnType("F")
+    parameterTypes("Ljava/lang/String;")
+    instructions(
+        method { definingClass == "Ljava/lang/Character;" && name == "isDigit" },
+        method { definingClass == "Landroid/text/TextPaint;" && name == "measureText" },
+        Opcode.RETURN(), // Measured text width.
     )
 }
 
@@ -123,14 +119,6 @@ internal fun ClassDef.getTextComponentLookupMethod() = firstMethodDeclaratively 
     instructions("…"())
 }
 
-internal val BytecodePatchContext.textComponentFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45675738L())
-}
-
-
 internal val BytecodePatchContext.lithoSpannableStringCreationMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PROTECTED, AccessFlags.FINAL)
     returnType("V")
@@ -155,3 +143,5 @@ internal val BytecodePatchContext.lithoSpannableStringCreationMethodMatch by com
         }
     )
 }
+
+internal const val TEXT_COMPONENT_FEATURE_FLAG = 45675738L

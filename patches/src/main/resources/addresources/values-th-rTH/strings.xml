@@ -707,9 +707,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">โอเวอร์เลย์แบบวงกลม (มินิมอล)</string>
             <string name="revanced_swipe_overlay_style_entry_6">โอเวอร์เลย์แนวตั้ง</string>
             <string name="revanced_swipe_overlay_style_entry_7">โอเวอร์เลย์แนวตั้ง (มินิมอล)</string>
-            <string name="revanced_swipe_change_video_title">เปิดใช้การปัดเพื่อเปลี่ยนวิดีโอ</string>
-            <string name="revanced_swipe_change_video_summary_on">การปัดในโหมดเต็มหน้าจอจะเปลี่ยนไปเป็นวิดีโอถัดไป/ก่อนหน้า</string>
-            <string name="revanced_swipe_change_video_summary_off">การปัดในโหมดเต็มหน้าจอจะไม่เปลี่ยนเป็นวิดีโอถัดไป/ก่อนหน้า</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">ปิดใช้งานคำบรรยายอัตโนมัติ</string>
@@ -959,9 +956,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">ซ่อนแถบเลื่อนภาพขนาดย่อของวิดีโอ</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">แถบเลื่อนภาพขนาดย่อของวิดีโอถูกซ่อนอยู่</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">แถบเลื่อนภาพขนาดย่อของวิดีโอแสดงอยู่</string>
-            <string name="revanced_fullscreen_large_seekbar_title">เปิดใช้งานแถบเลื่อนขนาดใหญ่แบบเต็มหน้าจอ</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">แถบเลื่อนแบบเต็มหน้าจอมีขนาดใหญ่</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">แถบเลื่อนแบบเต็มหน้าจอมีขนาดปกติ</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts Player</string>
@@ -1467,11 +1461,6 @@ User id ของคุณเหมือนกับรหัสผ่าน �
 ข้อจำกัด: การใช้ปุ่มย้อนกลับบนแถบเครื่องมืออาจใช้ไม่ได้"</string>
             <string name="revanced_change_start_page_always_summary_off">หน้าเริ่มต้นจะเปลี่ยนเมื่อเริ่มแอปเท่านั้น</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">ปิดใช้งานการกลับมาทำงานต่อของเครื่องเล่น Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">เครื่องเล่น Shorts จะไม่กลับมาทำงานต่อเมื่อเริ่มต้นแอป</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">เครื่องเล่น Shorts จะกลับมาทำงานต่อเมื่อเริ่มต้นแอป</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">เปิด \"Shorts\" ด้วย</string>
             <string name="revanced_shorts_player_type_shorts">Shorts Player</string>
@@ -1498,42 +1487,12 @@ User id ของคุณเหมือนกับรหัสผ่าน �
             <string name="revanced_miniplayer_type_entry_5">ทันสมัย 2</string>
             <string name="revanced_miniplayer_type_entry_6">ทันสมัย 3</string>
             <string name="revanced_miniplayer_type_entry_7">ทันสมัย 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">ปิดใช้งานมุมโค้งมน</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">มุมเป็นสี่เหลี่ยม</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">มุมโค้งมน</string>
-            <string name="revanced_miniplayer_double_tap_action_title">เปิดใช้งานการแตะสองครั้งและการบีบเพื่อปรับขนาด</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"การกระทำแตะสองครั้ง และการบีบเพื่อปรับขนาด เปิดใช้งาน
-
-• แตะสองครั้งเพื่อเพิ่มขนาด miniplayer
-• แตะสองครั้งอีกครั้งเพื่อคืนค่าขนาดเดิม"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">การแตะสองครั้งและการบีบเพื่อปรับขนาดปิดใช้งานแล้ว</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">ปิดใช้งานการลากและวาง</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">การลากและวางปิดใช้งานแล้ว</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"ลากและวาง เปิดใช้งาน
-
-สามารถลาก miniplayer ไปยังมุมใดๆ ของหน้าจอ"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">ปิดใช้งานท่าทางการลากแนวนอน</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">ท่าทางการลากแบบแนวนอนปิดใช้งานแล้ว</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"ท่าทางลากแนวนอน เปิดใช้งาน
-
-สามารถลาก miniplayer ออกจากหน้าจอไปทางซ้ายหรือขวา"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">ซ่อนปุ่มโอเวอร์เลย์</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">ปุ่มโอเวอร์เลย์ถูกซ่อน</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">ปุ่มโอเวอร์เลย์ถูกแสดง</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">ซ่อนปุ่มขยายและปุ่มปิด</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"ปุ่มถูกซ่อน
-
-ปัดเพื่อขยายหรือปิด"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">ปุ่มขยายและปุ่มปิดแสดงอยู่</string>
             <string name="revanced_miniplayer_hide_subtext_title">ซ่อนข้อความย่อย</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">ข้อความย่อยถูกซ่อน</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">ข้อความย่อยแสดงอยู่</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">ซ่อนปุ่มข้ามไปข้างหน้าและข้างหลัง</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">ข้ามไปข้างหน้าและข้างหลังถูกซ่อน</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">ข้ามไปข้างหน้าและข้างหลังแสดงอยู่</string>
-            <string name="revanced_miniplayer_width_dip_title">ขนาดเริ่มต้น</string>
-            <string name="revanced_miniplayer_width_dip_summary">ขนาดเริ่มต้นบนหน้าจอ เป็นพิกเซล</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">ขนาดพิกเซลต้องอยู่ระหว่าง %1$s ถึง %2$s</string>
             <string name="revanced_miniplayer_opacity_title">ความทึบแสงของโอเวอร์เลย์</string>
             <string name="revanced_miniplayer_opacity_summary">ค่าความทึบแสงระหว่าง 0-100 โดย 0 คือโปร่งใส</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">ความทึบแสงของโอเวอร์เลย์เครื่องเล่นย่อขนาดต้องอยู่ระหว่าง 0-100</string>

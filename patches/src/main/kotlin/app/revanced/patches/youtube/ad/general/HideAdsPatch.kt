@@ -23,11 +23,10 @@ import app.revanced.patches.youtube.misc.engagement.addEngagementPanelIdHook
 import app.revanced.patches.youtube.misc.engagement.engagementPanelHookPatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fixBackToExitGesturePatch
 import app.revanced.patches.youtube.misc.litho.filter.lithoFilterPatch
-import app.revanced.patches.youtube.misc.playservice.is_20_14_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.util.addInstructionsAtControlFlowLabel
+import app.revanced.util.cloneMutableAndPreserveParameters
 import app.revanced.util.findFreeRegister
 import app.revanced.util.forEachInstructionAsSequence
 import app.revanced.util.indexOfFirstInstructionReversedOrThrow
@@ -84,17 +83,11 @@ val hideAdsPatch = bytecodePatch(
         hideAdsResourcePatch,
         verticalScrollPatch,
         fixBackToExitGesturePatch,
-        versionCheckPatch
     )
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -102,10 +95,11 @@ val hideAdsPatch = bytecodePatch(
         // Hide fullscreen ad
 
         lithoDialogBuilderMethodMatch.let {
-            it.method.apply {
-                // Find the class name of the custom dialog
-                val dialogClass = getInstruction(it[0]).methodReference!!.definingClass
+            // Find the class name of the custom dialog
+            val dialogClass = it.method.getInstruction(it[0]).methodReference!!.definingClass
 
+            // The original code reuses the parameter registers, so preserve the parameters.
+            it.method.cloneMutableAndPreserveParameters().apply {
                 // The dialog can be closed after dialog.show(),
                 // and it is better to close the dialog after the layout of the dialog has changed
                 val insertIndex = indexOfFirstInstructionReversedOrThrow {
@@ -153,20 +147,24 @@ val hideAdsPatch = bytecodePatch(
 
         // Hide player overlay view. This can be hidden with a regular litho filter
         // but an empty space remains.
-        if (is_20_14_or_greater) {
-            playerOverlayTimelyShelfMethod.addInstructionsWithLabels(
-                0,
-                """
-                    invoke-static {}, ${EXTENSION_CLASS_DESCRIPTOR}->hideAds()Z
-                    move-result v0
-                    if-eqz v0, :show
-                    return-void
-                    :show
-                    nop
-                """
-            )
-        }
+        playerOverlayTimelyShelfMethodMatch.let {
+            it.method.apply {
+                val index = it[-1]
+                val register = getInstruction<TwoRegisterInstruction>(index).registerA
 
+                addInstructionsAtControlFlowLabel(
+                    index,
+                    """
+                        invoke-static {}, ${EXTENSION_CLASS_DESCRIPTOR}->hideAds()Z
+                        move-result v$register
+                        if-eqz v$register, :show
+                        return-void
+                        :show
+                        nop
+                    """,
+                )
+            }
+        }
 
         // Hide end screen store banner.
 

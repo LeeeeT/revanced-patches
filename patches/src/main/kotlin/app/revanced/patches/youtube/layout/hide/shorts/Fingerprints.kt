@@ -34,7 +34,6 @@ internal val BytecodePatchContext.shortsBottomBarContainerMethodMatch by composi
     )
 }
 
-
 context(_: BytecodePatchContext)
 internal fun ClassDef.getRenderBottomNavigationBarMethodMatch() = firstMethodDeclaratively {
     returnType("V")
@@ -50,42 +49,6 @@ internal fun ClassDef.getRenderBottomNavigationBarMethodMatch() = firstMethodDec
         Opcode.MOVE_EXCEPTION(),
         Opcode.MONITOR_EXIT(),
         Opcode.THROW()
-    )
-}
-
-/**
- * Less than 19.41.
- */
-internal val BytecodePatchContext.legacyRenderBottomNavigationBarLegacyParentMethod by gettingFirstImmutableMethodDeclaratively {
-    parameterTypes(
-        "I",
-        "I",
-        "L",
-        "L",
-        "J",
-        "L",
-    )
-    instructions(
-        "aa"(),
-    )
-}
-
-/**
- * 19.41 - 20.44
- */
-internal val BytecodePatchContext.renderBottomNavigationBarLegacy1941ParentMethod by gettingFirstImmutableMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    parameterTypes(
-        "I",
-        "I",
-        "L", // ReelWatchEndpointOuterClass
-        "L",
-        "J",
-        "Ljava/lang/String;",
-        "L",
-    )
-    instructions(
-        "aa"(),
     )
 }
 
@@ -106,12 +69,15 @@ internal val BytecodePatchContext.renderBottomNavigationBarParentMethod by getti
 }
 
 internal val ClassDef.setPivotBarVisibilityMethodMatch by ClassDefComposing.composingFirstMethod {
-    accessFlags(AccessFlags.PRIVATE, AccessFlags.FINAL)
+    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("V")
     parameterTypes("Z")
-    opcodes(
-        Opcode.CHECK_CAST,
-        Opcode.IF_EQZ,
+    instructions(
+        allOf(
+            Opcode.CHECK_CAST(),
+            type("Lcom/google/android/libraries/youtube/rendering/ui/pivotbar/PivotBar;"),
+        ),
+        after(Opcode.IF_EQZ()),
     )
 }
 
@@ -122,20 +88,6 @@ internal val BytecodePatchContext.setPivotBarVisibilityParentMethod by gettingFi
     )
 }
 
-internal val BytecodePatchContext.shortsExperimentalPlayerFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(
-        45677719L(),
-    )
-}
+internal const val SHORTS_EXPERIMENTAL_PLAYER_FEATURE_FLAG = 45677719L
 
-internal val BytecodePatchContext.renderNextUIFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(
-        45649743L(),
-    )
-}
+internal const val RENDER_NEXT_UI_FEATURE_FLAG = 45649743L

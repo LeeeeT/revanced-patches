@@ -324,9 +324,6 @@ Imikhawulo:
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">Vumela ibha yokusesha enkulu yesikrini esigcwele</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Ibha yokusesha yesikrini esigcwele inosayizi omkhulu</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Ibha yokusesha yesikrini esigcwele inosayizi ojwayelekile</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">Fihla Shorts ekhasini lesiteshi</string>
@@ -391,7 +388,6 @@ Isevele ikhona"</string>
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

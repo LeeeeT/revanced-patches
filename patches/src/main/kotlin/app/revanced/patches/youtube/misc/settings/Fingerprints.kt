@@ -21,11 +21,6 @@ internal val BytecodePatchContext.setThemeMethod by gettingFirstMethodDeclarativ
     instructions(ResourceType.STRING("app_theme_appearance_dark"))
 }
 
-internal val BytecodePatchContext.cairoFragmentConfigMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        45532100L(),
-        afterAtMost(10, Opcode.MOVE_RESULT()),
-    )
-}
+internal const val CAIRO_SETTINGS_FRAGMENT_FEATURE_FLAG = 45532100L
+
+internal const val BOLD_ICONS_FEATURE_FLAG = 45685201L

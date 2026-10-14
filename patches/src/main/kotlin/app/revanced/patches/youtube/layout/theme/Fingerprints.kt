@@ -5,21 +5,14 @@ import app.revanced.patcher.patch.BytecodePatchContext
 import app.revanced.patches.youtube.shared.YOUTUBE_MAIN_ACTIVITY_CLASS_TYPE
 import com.android.tools.smali.dexlib2.Opcode
 
-internal val BytecodePatchContext.useGradientLoadingScreenMethodMatch by composingFirstMethod {
-    instructions(45412406L())
-}
+internal const val GRADIENT_LOADING_SCREEN_FEATURE_FLAG = 45412406L
 
 internal val BytecodePatchContext.splashScreenStyleMethodMatch by composingFirstMethod {
     definingClass(YOUTUBE_MAIN_ACTIVITY_CLASS_TYPE)
     name("onCreate")
     returnType("V")
     parameterTypes("Landroid/os/Bundle;")
-    instructions(
-        anyOf(
-            1074339245L(), // 20.30+
-            269032877L(), // 20.29 and lower.
-        ),
-    )
+    instructions(1074339245L())
 }
 
 
@@ -32,28 +25,19 @@ internal val BytecodePatchContext.showSplashScreen1MethodMatch by composingFirst
     returnType("V")
     parameterTypes("Landroid/os/Bundle;")
     instructions(
-        anyOf(Opcode.CONST_4(), Opcode.CONST_16()),
+        allOf(
+            Opcode.INVOKE_VIRTUAL(),
+            method { returnType == "I" && parameterTypes.size == 1 && parameterTypes[0] == "I" },
+        ),
+        after(Opcode.MOVE_RESULT()), // Splash screen state.
+        after(Opcode.IF_NEZ()),
         afterAtMost(
-            20,
+            15,
             method {
-                returnType == "V" &&
-                        parameterTypes.size == 2 &&
-                        parameterTypes[0].startsWith("L") &&
-                        parameterTypes[1] == "Ljava/lang/Runnable;"
-
-
+                returnType == "I" &&
+                    parameterTypes.map { it.toString() } == listOf("Landroid/content/Intent;", "Z", "I")
             },
         ),
-        afterAtMost(10, Opcode.APUT_OBJECT()),
-        afterAtMost(
-            5,
-            method { returnType == "V" && parameterTypes.size == 1 && parameterTypes[0].startsWith("[L") },
-        ),
-        after(Opcode.IGET_OBJECT()),
-        after(method { returnType == "I" && parameterTypes.isEmpty() }),
-        after(Opcode.MOVE_RESULT()),
-        after(method { returnType == "Z" && parameterTypes.size == 1 && parameterTypes[0] == "I" }),
-        after(Opcode.MOVE_RESULT()),
     )
 }
 

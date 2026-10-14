@@ -711,9 +711,6 @@ Säädä äänenvoimakkuutta pyyhkäisemällä pystysuoraan näytön oikealta pu
             <string name="revanced_swipe_overlay_style_entry_5">Pyöreä peittokuva (minimaalinen)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Pystysuuntainen peittokuva</string>
             <string name="revanced_swipe_overlay_style_entry_7">Pystysuuntainen peittokuva (minimaalinen)</string>
-            <string name="revanced_swipe_change_video_title">Ota videon vaihto pyyhkäisemällä käyttöön</string>
-            <string name="revanced_swipe_change_video_summary_on">Pyyhkäisemällä kokoruututilassa siirrytään seuraavaan/edelliseen videoon</string>
-            <string name="revanced_swipe_change_video_summary_off">Pyyhkäisemällä kokoruututilassa ei siirrytä seuraavaan/edelliseen videoon</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Poista automaattiset tekstitykset käytöstä</string>
@@ -963,9 +960,6 @@ Näyttääksesi ääniraitavalikon, muuta \"Videostriimien naamioiminen\" -asetu
             <string name="revanced_hide_seekbar_thumbnail_title">Piilota videoiden pikkukuvien etenemispalkki</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Videoiden pikkukuvien etenemispalkki piilotetaan</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Videoiden pikkukuvien etenemispalkki näytetään</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Ota käyttöön koko näytön suuri etenemispalkki</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Koko näytön etenemispalkki on suuri</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Koko näytön etenemispalkki on normaalin kokoinen</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts-soitin</string>
@@ -1471,11 +1465,6 @@ Jos tämä poistetaan myöhemmin käytöstä, on suositeltavaa tyhjentää sovel
 Rajoitus: Työkalupalkin takaisin-painikkeen käyttäminen ei välttämättä toimi"</string>
             <string name="revanced_change_start_page_always_summary_off">Aloitussivu vaihdetaan vain sovelluksen käynnistyessä</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Poista Shorts-soittimen jatkaminen käytöstä</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts-soitin ei jatka sovelluksen käynnistyessä</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts-soitin jatkaa sovelluksen käynnistyessä</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shortsien avaustapa</string>
             <string name="revanced_shorts_player_type_shorts">Shorts-soitin</string>
@@ -1502,42 +1491,12 @@ Rajoitus: Työkalupalkin takaisin-painikkeen käyttäminen ei välttämättä to
             <string name="revanced_miniplayer_type_entry_5">Moderni 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderni 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderni 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Poista pyöristetyt kulmat käytöstä</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Kulmat ovat suorakulmaisia</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Kulmat on pyöristetty</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Ota kaksoisnapautus ja koon muuttaminen nipistämällä käyttöön</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Kaksoisnapautustoiminto ja koon muuttaminen nipistämällä ovat käytössä
-
-• Kaksoisnapauta suurentaaksesi minisoittimen kokoa
-• Kaksoisnapauta uudelleen alkuperäisen koon palauttamiseksi"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Kaksoisnapautustoiminto ja koon muuttaminen nipistämällä eivät olet käytössä</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Poista vedä ja pudota käytöstä</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Vedä ja pudota ei ole käytössä</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Vedä ja pudota on käytössä
-
-Minisoitin voidaan vetää mihin tahansa näytön kulmaan"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Poista vaakasuuntainen vetoele käytöstä</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Vaakasuuntainen vetoele ei ole käytössä</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Vaakasuuntainen vetoele on käytössä
-
-Minisoitin voidaan vetää pois näytöltä vasemmalle tai oikealle"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Piilota peittokuvan painikkeet</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Peittokuvan painikkeet piilotetaan</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Peittokuvan painikkeet näytetään</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Piilota laajenna- ja sulje-painikkeet</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Painikkeet on piilotettu
-
-Pyyhkäise laajentaaksesi tai sulkeaksesi"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Laajenna- ja sulje-painikkeet näytetään</string>
             <string name="revanced_miniplayer_hide_subtext_title">Piilota alatekstit</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Alatekstit piilotetaan</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Alatekstit näytetään</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Piilota eteenpäin- ja taaksepäin-painikkeet</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Eteenpäin ja taaksepäin on piilotettu</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Eteenpäin ja taaksepäin näytetään</string>
-            <string name="revanced_miniplayer_width_dip_title">Aloituskoko</string>
-            <string name="revanced_miniplayer_width_dip_summary">Alkuperäinen näyttökoko pikseleinä</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Pikselikoon tulee olla %1$s ja %2$s välillä</string>
             <string name="revanced_miniplayer_opacity_title">Peittokuvan läpinäkymättömyys</string>
             <string name="revanced_miniplayer_opacity_summary">Läpinäkymättömyysarvo välillä 0–100, jossa 0 on läpinäkyvä</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Minisoittimen peittokuvan läpinäkymättömyyden tulee olla 0–100 välillä</string>

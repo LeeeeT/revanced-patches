@@ -330,9 +330,6 @@ MicroG కోసం బ్యాటరీ ఆప్టిమైజేషన్�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">పూర్తి స్క్రీన్ పెద్ద సీక్‌బార్‌ను ప్రారంభించు.</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">పూర్తి స్క్రీన్ సీక్‌బార్ పెద్ద పరిమాణంలో ఉంది.</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">పూర్తి స్క్రీన్ సీక్‌బార్ సాధారణ పరిమాణంలో ఉంది.</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">ఛానెల్ పేజీలో Shorts ను దాచు.</string>
@@ -397,7 +394,6 @@ YouTube సెట్టింగ్‌లలో ఆటోప్లే మార�
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

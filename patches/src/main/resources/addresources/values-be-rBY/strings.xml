@@ -705,9 +705,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Кругавая накладка (мінімальная)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Вертыкальная накладка</string>
             <string name="revanced_swipe_overlay_style_entry_7">Вертыкальная накладка (мінімальная)</string>
-            <string name="revanced_swipe_change_video_title">Уключыць зьмену відэа праз правядзенне пальцам</string>
-            <string name="revanced_swipe_change_video_summary_on">Правядзенне пальцам у рэжыме поўнага экрана зьменіць відэа на наступнае/папярэдняе</string>
-            <string name="revanced_swipe_change_video_summary_off">Правядзенне пальцам у рэжыме поўнага экрана не зьменіць відэа на наступнае/папярэдняе</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Адключыць аўтаматычныя цітры</string>
@@ -957,9 +954,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">Схаваць панэль прагрэсу з эскізамі відэа</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Панэль прагрэсу з эскізамі відэа схавана</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Панэль прагрэсу з эскізамі відэа паказана</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Уключыць поўнаэкранную вялікую панэль пошуку</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Поўнаэкранная панэль пошуку вялікага памеру</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Поўнаэкранная панэль пошуку нармальнага памеру</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Прайгравальнік Shorts</string>
@@ -1461,11 +1455,6 @@ Second \"item\" text"</string>
 Абмежаванне: выкарыстанне кнопкі «Назад» на панэлі інструментаў можа не працаваць"</string>
             <string name="revanced_change_start_page_always_summary_off">Стартавая старонка змяняецца толькі пры запуску праграмы</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Адключыць аднаўленне прайгравання Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Прайгравальнік Shorts не аднаўляецца пры запуску праграмы</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Прайгравальнік Shorts адновіцца пры запуску праграмы</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Адкрыць Shorts з</string>
             <string name="revanced_shorts_player_type_shorts">Прайгравальнік Shorts</string>
@@ -1492,37 +1481,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">Сучасны 2</string>
             <string name="revanced_miniplayer_type_entry_6">Сучасны 3</string>
             <string name="revanced_miniplayer_type_entry_7">Сучасны 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Адключыць закругленыя вуглы</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Углы квадратные</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Углы закруглены</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Включить двойное нажатие и масштабирование с помощьющипка</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Уключана дзеянне «подвойнае націсканне» і «шчыпкі для змены памеру»
-
-• Подвойнае націсканне, каб павялічыць памер міні-прайгравальніка
-• Подвойнае націсканне яшчэ раз, каб аднавіць першапачатковы памер"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Двойное нажатие и scalewithpinch отключены</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Адключыць перацягванне</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Перетаскивание отключено</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Уключана перацягванне і кіданне
-
-Міні-прайгравальнік можна перацягнуць у любы куток экрана"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Адключыць гарызантальны жэст перацягвання</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Горизонтальный жест перетаскивания отключен</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Уключаны жэст гарызантальнага перацягвання
-
-Міні-прайгравальнік можна перацягнуць за межы экрана ўлева ці ўправа"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Схаваць кнопкі накладання</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Кнопкі накладання схаваныя</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Кнопкі накладання паказаны</string>
             <string name="revanced_miniplayer_hide_subtext_title">Схаваць падтэксты</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Падтэксты схаваныя</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Паказваюцца падтэксты</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Схаваць кнопкі пераходу наперад і назад</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Пераход наперад і назад схаваны</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Паказваецца пераход наперад і назад</string>
-            <string name="revanced_miniplayer_width_dip_title">Размер по умолчанию</string>
-            <string name="revanced_miniplayer_width_dip_summary">Начальная размер на экране в пикселях</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Размер пикселя должен быть в пределах %1$s и %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Непразрыстасць накладання</string>
             <string name="revanced_miniplayer_opacity_summary">Значэнне непразрыстасці паміж 0-100, дзе 0 - празрысты</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Непразрыстасць накладання міні-плэера павінна быць ад 0 да 100</string>

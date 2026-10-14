@@ -1,5 +1,7 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike
 
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.fieldReference
 import app.revanced.patcher.extensions.getInstruction
@@ -18,7 +20,6 @@ import app.revanced.patches.shared.misc.litho.filter.addLithoFilter
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.litho.filter.lithoFilterPatch
 import app.revanced.patches.youtube.misc.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.misc.playservice.*
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.conversionContextToStringMethod
@@ -31,6 +32,7 @@ import app.revanced.util.cloneMutableAndPreserveParameters
 import app.revanced.util.findFreeRegister
 import app.revanced.util.indexOfFirstInstructionOrThrow
 import app.revanced.util.insertLiteralOverride
+import app.revanced.util.numberOfParameterRegistersLogical
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -51,21 +53,16 @@ val returnYouTubeDislikePatch = bytecodePatch(
     dependsOn(
         settingsPatch,
         sharedExtensionPatch,
+        booleanFeatureFlagHookPatch,
         addResourcesPatch,
         lithoFilterPatch,
         videoIdPatch,
         playerTypeHookPatch,
-        versionCheckPatch,
     )
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -129,16 +126,14 @@ val returnYouTubeDislikePatch = bytecodePatch(
         val conversionContextClass = conversionContextToStringMethod.immutableClassDef
         val textComponentConversionContextField =
             textComponentConstructorMethod.immutableClassDef.fields.find {
-                it.type == conversionContextClass.type ||
-                        // 20.41+ uses superclass field type.
-                        it.type == conversionContextClass.superclass
+                // Field type is the superclass of the conversion context.
+                it.type == conversionContextClass.type || it.type == conversionContextClass.superclass
             } ?: throw PatchException("Could not find conversion context field")
 
         val conversionContextPathBuilderField = conversionContextToStringMethod.immutableClassDef
             .fields.single { field -> field.type == "Ljava/lang/StringBuilder;" }
 
-        // Old pre 20.40 and lower hook.
-        // 21.05 clobbers p0 (this) register.
+        // The method clobbers p0 (this) register.
         // Add additional registers so all parameters including p0 are free to use anywhere in the method.
         textComponentConstructorMethod.immutableClassDef
             .getTextComponentLookupMethod()
@@ -149,32 +144,17 @@ val returnYouTubeDislikePatch = bytecodePatch(
                 val insertIndex: Int
                 val charSequenceRegister: Int
 
-                if (is_19_33_or_greater && !is_20_10_or_greater) {
-                    val index = indexOfFirstInstructionOrThrow {
-                        (opcode == Opcode.INVOKE_STATIC || opcode == Opcode.INVOKE_STATIC_RANGE) &&
-                                methodReference?.returnType == textDataClassType
-                    }
-
-                    insertIndex = indexOfFirstInstructionOrThrow(index) {
-                        opcode == Opcode.INVOKE_VIRTUAL &&
-                                methodReference?.parameterTypes?.firstOrNull() == "Ljava/lang/CharSequence;"
-                    }
-
-                    charSequenceRegister =
-                        getInstruction<FiveRegisterInstruction>(insertIndex).registerD
-                } else {
-                    insertIndex = indexOfFirstInstructionOrThrow {
-                        opcode == Opcode.NEW_INSTANCE &&
-                                typeReference?.type == textDataClassType
-                    }
-
-                    val charSequenceIndex = indexOfFirstInstructionOrThrow(insertIndex) {
-                        opcode == Opcode.IPUT_OBJECT &&
-                                fieldReference?.type == "Ljava/lang/CharSequence;"
-                    }
-                    charSequenceRegister =
-                        getInstruction<TwoRegisterInstruction>(charSequenceIndex).registerA
+                insertIndex = indexOfFirstInstructionOrThrow {
+                    opcode == Opcode.NEW_INSTANCE &&
+                            typeReference?.type == textDataClassType
                 }
+
+                val charSequenceIndex = indexOfFirstInstructionOrThrow(insertIndex) {
+                    opcode == Opcode.IPUT_OBJECT &&
+                            fieldReference?.type == "Ljava/lang/CharSequence;"
+                }
+                charSequenceRegister =
+                    getInstruction<TwoRegisterInstruction>(charSequenceIndex).registerA
 
                 val conversionContext = findFreeRegister(insertIndex, charSequenceRegister)
 
@@ -194,37 +174,36 @@ val returnYouTubeDislikePatch = bytecodePatch(
             }
 
         // Hook new litho text creation code.
-        if (is_20_07_or_greater) {
-            textComponentFeatureFlagMethodMatch.let {
-                it.method.insertLiteralOverride(
-                    it[0],
-                    "$EXTENSION_CLASS_DESCRIPTOR->useNewLithoTextCreation(Z)Z"
+        overrideBooleanFeatureFlag(
+            TEXT_COMPONENT_FEATURE_FLAG,
+            "$EXTENSION_CLASS_DESCRIPTOR->useNewLithoTextCreation(Z)Z",
+        )
+
+        lithoSpannableStringCreationMethodMatch.let {
+            val conversionContextField = it.immutableClassDef.type +
+                    "->" + textComponentConversionContextField.name +
+                    ":" + textComponentConversionContextField.type
+
+            // The original code reuses p0, so preserve the parameters.
+            // Cloning adds instructions at the start that shift the match indices.
+            val insertIndex = it[1] + it.method.numberOfParameterRegistersLogical
+
+            it.method.cloneMutableAndPreserveParameters().apply {
+                val charSequenceRegister =
+                    getInstruction<FiveRegisterInstruction>(insertIndex).registerD
+                val conversionContextPathRegister =
+                    findFreeRegister(insertIndex, charSequenceRegister)
+
+                addInstructions(
+                    insertIndex,
+                    """
+                        move-object/from16 v$conversionContextPathRegister, p0
+                        iget-object v$conversionContextPathRegister, v$conversionContextPathRegister, $conversionContextField
+                        iget-object v$conversionContextPathRegister, v$conversionContextPathRegister, $conversionContextPathBuilderField
+                        invoke-static { v$conversionContextPathRegister, v$charSequenceRegister }, $EXTENSION_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        move-result-object v$charSequenceRegister
+                    """
                 )
-            }
-
-            lithoSpannableStringCreationMethodMatch.let {
-                val conversionContextField = it.immutableClassDef.type +
-                        "->" + textComponentConversionContextField.name +
-                        ":" + textComponentConversionContextField.type
-
-                it.method.apply {
-                    val insertIndex = it[1]
-                    val charSequenceRegister =
-                        getInstruction<FiveRegisterInstruction>(insertIndex).registerD
-                    val conversionContextPathRegister =
-                        findFreeRegister(insertIndex, charSequenceRegister)
-
-                    addInstructions(
-                        insertIndex,
-                        """
-                            move-object/from16 v$conversionContextPathRegister, p0
-                            iget-object v$conversionContextPathRegister, v$conversionContextPathRegister, $conversionContextField
-                            iget-object v$conversionContextPathRegister, v$conversionContextPathRegister, $conversionContextPathBuilderField
-                            invoke-static { v$conversionContextPathRegister, v$charSequenceRegister }, $EXTENSION_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
-                            move-result-object v$charSequenceRegister
-                        """
-                    )
-                }
             }
         }
 
@@ -270,17 +249,15 @@ val returnYouTubeDislikePatch = bytecodePatch(
 
         // Rolling Number text views use the measured width of the raw string for layout.
         // Modify the measure text calculation to include the left drawable separator if needed.
-        rollingNumberMeasureAnimatedTextMethodMatch.let {
-            // Additional check to verify the opcodes are at the start of the method
-            if (it[0] != 0) throw PatchException("Unexpected opcode location")
-            val endIndex = it[-1]
+        rollingNumberMeasureStaticLabelParentMethod.immutableClassDef.rollingNumberMeasureAnimatedTextMethodMatch.let {
+            val returnIndex = it[-1]
 
             it.method.apply {
                 val measuredTextWidthRegister =
-                    getInstruction<OneRegisterInstruction>(endIndex).registerA
+                    getInstruction<OneRegisterInstruction>(returnIndex).registerA
 
-                addInstructions(
-                    endIndex + 1,
+                addInstructionsAtControlFlowLabel(
+                    returnIndex,
                     """
                         invoke-static { p1, v$measuredTextWidthRegister }, $EXTENSION_CLASS_DESCRIPTOR->onRollingNumberMeasured(Ljava/lang/String;F)F
                         move-result v$measuredTextWidthRegister

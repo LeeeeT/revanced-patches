@@ -3,8 +3,6 @@ package app.revanced.patches.youtube.video.audio
 import app.revanced.patcher.patch.BytecodePatchContext
 import app.revanced.patches.shared.misc.audio.forceOriginalAudioPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_20_07_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.mainActivityOnCreateMethod
@@ -15,21 +13,15 @@ val forceOriginalAudioPatch = forceOriginalAudioPatch(
         dependsOn(
             sharedExtensionPatch,
             settingsPatch,
-            versionCheckPatch,
         )
 
         compatibleWith(
             "com.google.android.youtube"(
-                "20.14.43",
-                "20.21.37",
-                "20.26.46",
-                "20.31.42",
-                "20.37.48",
-                "20.40.45"
-            ),
+            "21.41.525-SECONDARY",
+        ),
         )
     },
-    fixUseLocalizedAudioTrackFlag = { is_20_07_or_greater },
+    fixUseLocalizedAudioTrackFlag = { false },
     getMainActivityOnCreateMethod = BytecodePatchContext::mainActivityOnCreateMethod::get,
     subclassExtensionClassDescriptor = "Lapp/revanced/extension/youtube/patches/ForceOriginalAudioPatch;",
     preferenceScreen = PreferenceScreen.VIDEO,

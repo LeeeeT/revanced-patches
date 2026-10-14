@@ -332,9 +332,6 @@ MicroG-യുടെ ബാറ്ററി ഒപ്റ്റിമൈസേഷ�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">പൂർണ്ണ സ്ക്രീൻ വലിയ സീക്ക്ബാർ പ്രവർത്തനക്ഷമമാക്കുക</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">പൂർണ്ണ സ്ക്രീൻ സീക്ക്ബാർ വലിയ വലുപ്പമാണ്</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">പൂർണ്ണ സ്ക്രീൻ സീക്ക്ബാർ സാധാരണ വലുപ്പമാണ്</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">ചാനൽ പേജിൽ Shorts മറയ്ക്കുക</string>
@@ -399,7 +396,6 @@ YouTube ക്രമീകരണങ്ങളിൽ ഓട്ടോപ്ലേ �
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

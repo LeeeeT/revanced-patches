@@ -704,9 +704,6 @@ Ekranın sağ tərəfində düzünə sürüşdürərək səs səviyyəsini tənz
             <string name="revanced_swipe_overlay_style_entry_5">Dairəvi örtük (ən kiçik)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Şaquli örtük</string>
             <string name="revanced_swipe_overlay_style_entry_7">Şaquli örtük (ən kiçik)</string>
-            <string name="revanced_swipe_change_video_title">Videoları ötürmək üçün sürüşdürməni aktiv et</string>
-            <string name="revanced_swipe_change_video_summary_on">Tam ekran rejimində sürüşdürmə növbəti/əvvəlki videoya ötürəcək</string>
-            <string name="revanced_swipe_change_video_summary_off">Tam ekran rejimində sürüşdürmə növbəti/əvvəlki videoya ötürməyəcək</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Avtomatik titrləri qapat</string>
@@ -956,9 +953,6 @@ Səs treki menyusunu göstərmək üçün \"Video yayımları saxtalaşdır\"-ı
             <string name="revanced_hide_seekbar_thumbnail_title">Video miniatür irəliləyiş cizgisin gizlət</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Video miniatür irəliləyiş cizgisi gizlidir</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Video miniatür irəliləyiş cizgisi görünür</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Tam ekran böyük irəliləyiş çubuğunu aktivləşdir</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Tam ekran irəliləyiş çubuğu böyük ölçüdədir</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Tam ekran irəliləyiş çubuğu normal ölçüdədir</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts oynadıcı</string>
@@ -1458,11 +1452,6 @@ Sonradan qapadılarsa, UI səhvlərin önləmək üçün tətbiq məlumatların 
 Məhdudiyyət: Alətlər cizgisindəki geri düyməsin istifadə işləməyə bilər"</string>
             <string name="revanced_change_start_page_always_summary_off">Başlatma səhifəsi yalnız tətbiq işə salındıqda dəyişdirilir</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Shorts oynadıcı başladıcını qapat</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Tətbiq açılanda Shorts oynadıcı davam etməyəcək</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Tətbiq açılanda Shorts oynadıcı davam edəcək</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shorts-u bununla aç</string>
             <string name="revanced_shorts_player_type_shorts">Shorts oynadıcı</string>
@@ -1489,37 +1478,12 @@ Məhdudiyyət: Alətlər cizgisindəki geri düyməsin istifadə işləməyə bi
             <string name="revanced_miniplayer_type_entry_5">Müasir 2</string>
             <string name="revanced_miniplayer_type_entry_6">Müasir 3</string>
             <string name="revanced_miniplayer_type_entry_7">Müasir 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Dəyirmi küncləri qapat</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Künclər kvadratdır</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Künclər dairəvidir</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Ölçüsünü dəyişmək üçün cüt toxunmanı və çimdikləməni aktiv et</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Ölçüsün dəyişmək üçün cüt kliklə və çimdiklə
-
-• Kiçik oynadıcı ölçüsün artırmaq üçün cüt toxun
-• Orijinal ölçünü bərpa etmək üçün təkrar cüt toxun"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Ölçüsünü dəyişdirmək üçün cüt toxunma fəaliyyəti və çimdikləmə yoxdur</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Sürüklə və burax-ı qapat</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">\"Sürüklə və burax\" aktiv deyil</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Sürüklə və burax aktivdir
-
-Kiçik oynadıcı ekranın istənilən küncünə sürüklənə bilər"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Üfüqi sürükləmə jestini qapat</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Üfüqi sürükləmə jesti qapatıldı</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Üfüqi sürükləmə jesti aktivdir
-
-Kiçik oynadıcı ekrandan sola və ya sağa sürüklənə bilər"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Örtük düymələrini gizlət</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Örtük düymələri gizlidir</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Örtük düymələri görünür</string>
             <string name="revanced_miniplayer_hide_subtext_title">Alt mətnləri gizlət</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Alt mətnlər gizlədilir</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Alt mətnlər göstərilir</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">İrəli və geri ötür düymələrini gizlət</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">İrəli və geri ötürücülər gizlidir</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">İrəli və geri ötürücülər göstərilir</string>
-            <string name="revanced_miniplayer_width_dip_title">İlkin ölçü</string>
-            <string name="revanced_miniplayer_width_dip_summary">Piksel olaraq ekranda ilkin ölçü</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Piksel ölçüsü, %1$s - %2$s arası olmalıdır</string>
             <string name="revanced_miniplayer_opacity_title">Örtük qeyri-şəffaflığı</string>
             <string name="revanced_miniplayer_opacity_summary">0-100 arası qeyri-şəffaflıq dəyəri, 0 şəffafdır</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Kiçik Oynadıcı örtük qeyri-şəffaflığı 0-100 arası olmalıdır</string>

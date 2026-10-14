@@ -27,21 +27,6 @@ import com.google.common.io.ByteArrayDataOutput
 internal const val CLIENT_INFO_CLASS_DESCRIPTOR =
     $$"Lcom/google/protos/youtube/api/innertube/InnertubeContext$ClientInfo;"
 
-internal val BytecodePatchContext.authenticationChangeListenerMethod by gettingFirstMethodDeclaratively(
-    "Authentication changed while request was being made"
-) {
-    accessFlags(AccessFlags.PRIVATE, AccessFlags.FINAL)
-    returnType("V")
-    custom { indexOfMessageLiteBuilderReference(this) >= 0 }
-}
-
-internal fun indexOfMessageLiteBuilderReference(method: Method, type: String = "L") =
-    method.indexOfFirstInstruction {
-        val reference = methodReference
-        opcode == Opcode.INVOKE_VIRTUAL &&
-                reference?.parameterTypes?.isEmpty() == true && reference.returnType.startsWith(type)
-    }
-
 internal val BytecodePatchContext.buildClientContextBodyConstructorMethod by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
     returnType("V")

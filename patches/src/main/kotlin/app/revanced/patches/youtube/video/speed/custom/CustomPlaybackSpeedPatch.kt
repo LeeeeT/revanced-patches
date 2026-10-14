@@ -1,5 +1,7 @@
 package app.revanced.patches.youtube.video.speed.custom
 
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.com.android.tools.smali.dexlib2.mutable.MutableField.Companion.toMutable
 import app.revanced.patcher.classDef
 import app.revanced.patcher.extensions.addInstruction
@@ -19,9 +21,6 @@ import app.revanced.patches.shared.misc.settings.preference.TextPreference
 import app.revanced.patches.shared.misc.litho.filter.addLithoFilter
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.litho.filter.lithoFilterPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_47_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.recyclerviewtree.hook.addRecyclerViewTreeHook
 import app.revanced.patches.youtube.misc.recyclerviewtree.hook.recyclerViewTreeHookPatch
 import app.revanced.patches.youtube.misc.settings.settingsPatch
@@ -43,10 +42,10 @@ internal val customPlaybackSpeedPatch = bytecodePatch(
 ) {
     dependsOn(
         sharedExtensionPatch,
+        booleanFeatureFlagHookPatch,
         settingsPatch,
         addResourcesPatch,
         lithoFilterPatch,
-        versionCheckPatch,
         recyclerViewTreeHookPatch,
         resourceMappingPatch,
     )
@@ -65,14 +64,12 @@ internal val customPlaybackSpeedPatch = bytecodePatch(
             ),
         )
 
-        if (is_19_47_or_greater) {
-            settingsMenuVideoSpeedGroup.add(
-                TextPreference("revanced_speed_tap_and_hold", inputType = InputType.NUMBER_DECIMAL),
-            )
-        }
+        settingsMenuVideoSpeedGroup.add(
+            TextPreference("revanced_speed_tap_and_hold", inputType = InputType.NUMBER_DECIMAL),
+        )
 
         // Override the min/max speeds that can be used.
-        (if (is_20_34_or_greater) speedLimiterMethod else speedLimiterLegacyMethod).apply {
+        speedLimiterMethod.apply {
             val limitMinIndex = indexOfFirstLiteralInstructionOrThrow(0.25f)
             // Older unsupported targets use 2.0f and not 4.0f
             val limitMaxIndex = indexOfFirstLiteralInstructionOrThrow(4.0f)
@@ -84,9 +81,7 @@ internal val customPlaybackSpeedPatch = bytecodePatch(
         }
 
         // Turn off client side flag that use server provided min/max speeds.
-        if (is_20_34_or_greater) {
-            serverSideMaxSpeedFeatureFlagMethod.returnEarly(false)
-        }
+        overrideBooleanFeatureFlag(SERVER_SIDE_MAX_SPEED_FEATURE_FLAG, false)
 
         // region Force old video quality menu.
 
@@ -171,22 +166,20 @@ internal val customPlaybackSpeedPatch = bytecodePatch(
 
         // region Custom tap and hold 2x speed.
 
-        if (is_19_47_or_greater) {
-            // Function, because it can be the same method as getTapAndHoldHapticsMethodMatch.
-            getTapAndHoldSpeedMethodMatch().let {
-                it.method.apply {
-                    val speedIndex = it[-1]
-                    val speedRegister =
-                        getInstruction<OneRegisterInstruction>(speedIndex).registerA
+        // Function, because it can be the same method as getTapAndHoldHapticsMethodMatch.
+        getTapAndHoldSpeedMethodMatch().let {
+            it.method.apply {
+                val speedIndex = it[-1]
+                val speedRegister =
+                    getInstruction<OneRegisterInstruction>(speedIndex).registerA
 
-                    addInstructions(
-                        speedIndex + 1,
-                        """
-                            invoke-static { }, ${EXTENSION_CLASS_DESCRIPTOR}->getTapAndHoldSpeed()F
-                            move-result v$speedRegister
-                        """
-                    )
-                }
+                addInstructions(
+                    speedIndex + 1,
+                    """
+                        invoke-static { }, ${EXTENSION_CLASS_DESCRIPTOR}->getTapAndHoldSpeed()F
+                        move-result v$speedRegister
+                    """
+                )
             }
         }
 

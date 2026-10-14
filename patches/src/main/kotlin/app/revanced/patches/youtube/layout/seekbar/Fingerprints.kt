@@ -7,15 +7,6 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
 
-internal val BytecodePatchContext.fullscreenSeekbarThumbnailsMethod by gettingFirstMethodDeclaratively {
-    returnType("Z")
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    parameterTypes()
-    instructions(
-        45398577L(),
-    )
-}
-
 internal val BytecodePatchContext.playerSeekbarColorMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
     instructions(
@@ -50,15 +41,6 @@ internal val BytecodePatchContext.playerSeekbarHandle1ColorMethodMatch by compos
     )
 }
 
-internal val BytecodePatchContext.playerSeekbarHandle2ColorMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    parameterTypes("Landroid/content/Context;")
-    instructions(
-        ResourceType.ATTR("ytTextSecondary"),
-        ResourceType.ATTR("ytStaticBrandRed"),
-    )
-}
-
 internal val BytecodePatchContext.watchHistoryMenuUseProgressDrawableMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("V")
@@ -87,19 +69,6 @@ internal val BytecodePatchContext.playerLinearGradientMethodMatch by composingFi
         ResourceType.COLOR("yt_youtube_magenta"),
 
         afterAtMost(5, Opcode.FILLED_NEW_ARRAY()),
-        after(Opcode.MOVE_RESULT_OBJECT()),
-    )
-}
-
-/**
- * 19.25 - 19.47
- */
-internal val BytecodePatchContext.playerLinearGradientLegacyMethodMatch by composingFirstMethod {
-    returnType("V")
-    instructions(
-        ResourceType.COLOR("yt_youtube_magenta"),
-
-        Opcode.FILLED_NEW_ARRAY(),
         after(Opcode.MOVE_RESULT_OBJECT()),
     )
 }

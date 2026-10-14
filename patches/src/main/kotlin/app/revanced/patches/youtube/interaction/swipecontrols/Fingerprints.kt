@@ -16,9 +16,3 @@ internal val BytecodePatchContext.swipeControlsHostActivityMethod by gettingFirs
     parameterTypes()
 }
 
-internal val BytecodePatchContext.swipeChangeVideoMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    instructions(
-        45631116L(), // Swipe to change fullscreen video feature flag.
-    )
-}

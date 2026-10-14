@@ -705,9 +705,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Кръгово наслагване (минимално)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Вертикално наслагване</string>
             <string name="revanced_swipe_overlay_style_entry_7">Вертикално наслагване (минимално)</string>
-            <string name="revanced_swipe_change_video_title">Включване на превключване на видеото чрез плъзване</string>
-            <string name="revanced_swipe_change_video_summary_on">Плъзването в режим на цял екран ще превключи към следващото/предишно видео</string>
-            <string name="revanced_swipe_change_video_summary_off">Плъзването в режим на цял екран няма да превключи към следващото/предишно видео</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Автоматични Субтитри</string>
@@ -957,9 +954,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">Скриване на лентата за търсене на миниатюри на видеоклипове</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Лентата за търсене на миниатюри на видеоклипове е скрита</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Лентата за търсене на миниатюри на видеоклипове е показана</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Активиране на голяма лента за търсене на цял екран</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Лентата за търсене на цял екран е с голям размер</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Лентата за търсене на цял екран е с нормален размер</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Играч на Shorts</string>
@@ -1460,11 +1454,6 @@ Second \"item\" text"</string>
 Ограничение: Използването на бутона за връщане назад в лентата с инструменти може да не работи"</string>
             <string name="revanced_change_start_page_always_summary_off">Началната страница се променя само при стартиране на приложението</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Скриване на Shorts плейъра при стартиране</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts плейъра при стартиране на приложението е скрит</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts плейъра при стартиране на приложението се показва</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Отворете Shorts с</string>
             <string name="revanced_shorts_player_type_shorts">Играч на Shorts</string>
@@ -1491,37 +1480,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">Модерен 2</string>
             <string name="revanced_miniplayer_type_entry_6">Модерен 3</string>
             <string name="revanced_miniplayer_type_entry_7">Модерен 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Деактивиране на заоблени ъгли</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Ъглите са нормални</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Ъглите са заоблени</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Активирайте двойното докосване и щипване за преоразмеряване</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Активирано е двойно докосване и щипка за преоразмеряване
-
-• Двойно докосване за увеличаване на размера на мини плейъра
-• Двойно докосване отново, за да възстановите оригиналния размер"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Двойно докосване и щипване за преоразмеряване е деактивирано</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Деактивиране на плъзгане и пускане</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Плъзгането и преместването е деактивирано</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Включено е плъзгане и пускане
-
-Мини плейърът може да бъде плъзган до всеки ъгъл на екрана"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Деактивиране на хоризонтален жест за плъзгане</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Жестът за хоризонтално плъзгане е деактивиран</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Активиран е хоризонтален жест за плъзгане
-
-Мини плейърът може да бъде плъзган извън екрана наляво или надясно"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Скриване на бутоните за наслагване</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Бутоните за наслагване са скрити</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Бутоните за наслагване са показани</string>
             <string name="revanced_miniplayer_hide_subtext_title">Екранни текстове, етикети</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Скрити</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Показват се</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Бутони за напред и назад</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Бутони за напред и назад са скрити</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Бутони за напред и назад са показани</string>
-            <string name="revanced_miniplayer_width_dip_title">Първоначален размер</string>
-            <string name="revanced_miniplayer_width_dip_summary">Първоначален размер на екрана, в пиксели</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Размерът на пиксела трябва да бъде между %1$s и %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Прозрачност на менютата</string>
             <string name="revanced_miniplayer_opacity_summary">Стойност на прозрачност между 0-100, където 0 е прозрачно</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Прозрачността на менюто трябва да бъде между 0-100</string>

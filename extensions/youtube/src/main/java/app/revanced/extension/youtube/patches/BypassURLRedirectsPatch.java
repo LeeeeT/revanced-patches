@@ -10,22 +10,28 @@ public class BypassURLRedirectsPatch {
     private static final String YOUTUBE_REDIRECT_PATH = "/redirect";
 
     /**
-     * Convert the YouTube redirect URI string to the redirect query URI.
+     * Injection point.
+     * <p>
+     * Convert the YouTube redirect URI to the redirect query URI.
      *
-     * @param uri The YouTube redirect URI string.
-     * @return The redirect query URI.
+     * @param uri The YouTube redirect URI.
+     * @return The redirect query URI, or the original URI if it's not a redirect.
      */
-    public static Uri parseRedirectUri(String uri) {
-        final var parsed = Uri.parse(uri);
-
-        if (Settings.BYPASS_URL_REDIRECTS.get() && parsed.getPath().equals(YOUTUBE_REDIRECT_PATH)) {
-            var query = Uri.parse(Uri.decode(parsed.getQueryParameter("q")));
-
-            Logger.printDebug(() -> "Bypassing YouTube redirect URI: " + query);
-
-            return query;
+    public static Uri parseRedirectUri(Uri uri) {
+        try {
+            if (Settings.BYPASS_URL_REDIRECTS.get() && uri != null
+                    && YOUTUBE_REDIRECT_PATH.equals(uri.getPath())) {
+                String query = uri.getQueryParameter("q");
+                if (query != null) {
+                    Uri redirect = Uri.parse(query);
+                    Logger.printDebug(() -> "Bypassing YouTube redirect URI: " + redirect);
+                    return redirect;
+                }
+            }
+        } catch (Exception ex) {
+            Logger.printException(() -> "parseRedirectUri failure", ex);
         }
 
-        return parsed;
+        return uri;
     }
 }

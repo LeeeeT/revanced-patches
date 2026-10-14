@@ -30,16 +30,12 @@ internal val BytecodePatchContext.buildInitPlaybackRequestMethodMatch by composi
     )
 }
 
-internal val BytecodePatchContext.buildPlayerRequestURIMethodMatch by composingFirstMethod("key", "asig") {
-    returnType("Ljava/lang/String;")
-    opcodes(
-        Opcode.INVOKE_VIRTUAL, // Register holds player request URI.
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.IPUT_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.MONITOR_EXIT,
-        Opcode.RETURN_OBJECT,
-    )
+/**
+ * Method that builds the player request URI.
+ * The URI may be converted to a string by other methods of the same class.
+ */
+internal val BytecodePatchContext.buildPlayerRequestURIMethod by gettingFirstImmutableMethodDeclaratively("key", "asig") {
+    custom { returnType == "Ljava/lang/String;" || returnType == "Landroid/net/Uri\$Builder;" }
 }
 
 internal val BytecodePatchContext.buildRequestMethodMatch by composingFirstMethod {
@@ -114,20 +110,20 @@ internal val BytecodePatchContext.createStreamingDataMethodMatch by composingFir
     }
 }
 
+/**
+ * Constructor of the media data source, with parameters:
+ * Uri, position, (custom http method,) http method, post body, headers, ..., custom data.
+ */
 internal val BytecodePatchContext.buildMediaDataSourceMethod by gettingFirstMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    parameterTypes(
-        "Landroid/net/Uri;",
-        "J",
-        "I",
-        "[B",
-        "Ljava/util/Map;",
-        "J",
-        "J",
-        "Ljava/lang/String;",
-        "I",
-        "Ljava/lang/Object;",
-    )
+    custom {
+        val parameterTypes = parameterTypes.map { it.toString() }
+        parameterTypes.size >= 10 &&
+            parameterTypes.first() == "Landroid/net/Uri;" &&
+            parameterTypes.last() == "Ljava/lang/Object;" &&
+            parameterTypes.count { it == "[B" } == 1 &&
+            parameterTypes.count { it == "Ljava/util/Map;" } == 1
+    }
 }
 
 internal val BytecodePatchContext.hlsCurrentTimeMethodMatch by composingFirstMethod {

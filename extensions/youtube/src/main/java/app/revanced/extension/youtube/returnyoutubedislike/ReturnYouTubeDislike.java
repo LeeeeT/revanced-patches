@@ -484,6 +484,86 @@ public class ReturnYouTubeDislike {
     }
 
     /**
+     * Called when the subtitle of the regular video watch page is created.
+     * The subtitle starts with the likes, such as "20M likes  443M views  21y ago  more".
+     *
+     * @return The subtitle with the dislikes added after the likes,
+     *         or the original subtitle if the likes are not shown or RYD is not available.
+     */
+    @NonNull
+    public Spanned getVideoSubtitleSpanForRegularVideo(@NonNull Spanned original) {
+        try {
+            String originalText = original.toString();
+            String dislikesText = null;
+            synchronized (this) {
+                if (isShort) return original;
+            }
+
+            RYDVoteData votingData = getFetchData(MAX_MILLISECONDS_TO_BLOCK_UI_WAITING_FOR_FETCH);
+            if (votingData == null) {
+                Logger.printDebug(() -> "Cannot add dislikes to subtitle (RYD data not available)");
+                return original;
+            }
+
+            dislikesText = str("revanced_ryd_video_subtitle_dislikes",
+                    Settings.RYD_DISLIKE_PERCENTAGE.get()
+                            ? formatDislikePercentage(votingData.getDislikePercentage())
+                            : formatDislikeCount(votingData.getDislikeCount()));
+            if (originalText.contains(dislikesText)) {
+                return original; // Already added.
+            }
+
+            // Segments are separated by two whitespace characters,
+            // and the segment with the likes can be preceded by the channel handle.
+            // Likes are not shown if the likes are hidden.
+            String formattedLikes = formatDislikeCount(votingData.getLikeCount());
+            int likesEndIndex = -1;
+            int segmentStart = 0;
+            final int length = originalText.length();
+            for (int i = 0; i <= length; i++) {
+                final boolean segmentEnd = i == length
+                        || (i + 1 < length && Character.isWhitespace(originalText.charAt(i))
+                        && Character.isWhitespace(originalText.charAt(i + 1)));
+                if (!segmentEnd) continue;
+
+                if (originalText.substring(segmentStart, i).contains(formattedLikes)) {
+                    likesEndIndex = i;
+                    break;
+                }
+                // Skip the separator.
+                while (i < length && Character.isWhitespace(originalText.charAt(i))) i++;
+                segmentStart = i;
+            }
+            if (likesEndIndex <= 0) {
+                Logger.printDebug(() -> "Subtitle does not contain the likes: " + originalText
+                        + " expected: " + formattedLikes);
+                return original;
+            }
+
+            SpannableStringBuilder builder = new SpannableStringBuilder(original);
+            // Use the same separator as the other segments.
+            String insertedText = (likesEndIndex + 2 <= length
+                    ? originalText.substring(likesEndIndex, likesEndIndex + 2)
+                    : "  ") + dislikesText;
+            builder.insert(likesEndIndex, insertedText);
+
+            // Use the styling of the likes for the dislikes.
+            int insertedEndIndex = likesEndIndex + insertedText.length();
+            for (Object span : original.getSpans(likesEndIndex - 1, likesEndIndex, Object.class)) {
+                builder.setSpan(span, builder.getSpanStart(span), Math.max(builder.getSpanEnd(span), insertedEndIndex),
+                        original.getSpanFlags(span));
+            }
+
+            String finalDislikesText = dislikesText;
+            Logger.printDebug(() -> "Added dislikes to subtitle: " + finalDislikesText);
+            return builder;
+        } catch (Exception ex) {
+            Logger.printException(() -> "getVideoSubtitleSpanForRegularVideo failure", ex);
+            return original;
+        }
+    }
+
+    /**
      * Called when a Shorts like Spannable is created.
      */
     @NonNull

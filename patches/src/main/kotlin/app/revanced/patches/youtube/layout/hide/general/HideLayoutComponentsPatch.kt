@@ -15,14 +15,14 @@ import app.revanced.patches.shared.misc.settings.preference.PreferenceScreenPref
 import app.revanced.patches.youtube.misc.engagement.engagementPanelHookPatch
 import app.revanced.patches.youtube.misc.litho.filter.lithoFilterPatch
 import app.revanced.patches.youtube.misc.navigation.navigationBarHookPatch
-import app.revanced.patches.youtube.misc.playservice.is_20_21_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.util.findFreeRegister
 import app.revanced.util.findInstructionIndicesReversedOrThrow
 import app.revanced.util.getReference
+import app.revanced.util.indexOfFirstInstructionOrThrow
 import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.revanced.util.addInstructionsAtControlFlowLabel
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -34,6 +34,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
+import com.android.tools.smali.dexlib2.util.MethodUtil
 
 internal var albumCardId = -1L
     private set
@@ -80,7 +81,6 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
     additionalDependencies = setOf(
         hideLayoutComponentsResourcePatch,
         navigationBarHookPatch,
-        versionCheckPatch,
         engagementPanelHookPatch,
         resourceMappingPatch,
     ),
@@ -93,12 +93,7 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
     ),
     compatibleWithPackages = arrayOf(
         "com.google.android.youtube" to setOf(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     ),
 ) {
@@ -263,11 +258,9 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
         SwitchPreference("revanced_hide_doodles"),
     )
 
-    if (is_20_21_or_greater) {
-        PreferenceScreen.FEED.addPreferences(
-            SwitchPreference("revanced_hide_you_may_like_section")
-        )
-    }
+    PreferenceScreen.FEED.addPreferences(
+        SwitchPreference("revanced_hide_you_may_like_section")
+    )
 
     // region Hide mix playlists
 
@@ -372,15 +365,10 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
 
     // endregion
 
-
     // region Hide Subscribed channels bar
 
     // Tablet
-    val methodMatch = if (is_20_21_or_greater)
-        hideSubscribedChannelsBarConstructorMethodMatch
-    else hideSubscribedChannelsBarConstructorLegacyMethodMatch
-
-    methodMatch.let {
+    hideSubscribedChannelsBarConstructorMethodMatch.let {
         it.method.apply {
             val index = it[1]
             val register = getInstruction<OneRegisterInstruction>(index).registerA
@@ -394,7 +382,7 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
     }
 
     // Phone (landscape mode)
-    methodMatch.immutableClassDef.hideSubscribedChannelsBarLandscapeMethodMatch.let {
+    hideSubscribedChannelsBarConstructorMethodMatch.immutableClassDef.hideSubscribedChannelsBarLandscapeMethodMatch.let {
         it.method.apply {
             val index = it[-1]
             val register = getInstruction<OneRegisterInstruction>(index).registerA
@@ -448,18 +436,22 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
 
     // region Hide Floating microphone
 
-    showFloatingMicrophoneButtonMethodMatch.let {
-        it.method.apply {
-            val index = it[-1]
-            val register = getInstruction<TwoRegisterInstruction>(index).registerA
+    // Override the "already initialized" field so the button is never set up.
+    classDefs.filter { classDef ->
+        classDef.methods.any { it.isShowFloatingMicrophoneButtonMethod() }
+    }.forEach { classDef ->
+        classDefs.getOrReplaceMutable(classDef).methods.filter { it.isShowFloatingMicrophoneButtonMethod() }.forEach {
+            it.apply {
+                val register = getInstruction<TwoRegisterInstruction>(0).registerA
 
-            addInstructions(
-                index + 1,
-                """
+                addInstructions(
+                    1,
+                    """
                         invoke-static { v$register }, $LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR->hideFloatingMicrophoneButton(Z)Z
                         move-result v$register
                     """,
-            )
+                )
+            }
         }
     }
 
@@ -521,12 +513,10 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
         }
 
         // A float value is passed which is used to determine subtitle text size.
-        val floatDimensionRegister = getInstruction<OneRegisterInstruction>(
-            applyDimensionIndex + 1,
-        ).registerA
+        val floatDimensionRegister = getInstruction<FiveRegisterInstruction>(applyDimensionIndex).registerD
 
-        addInstructions(
-            applyDimensionIndex - 1,
+        addInstructionsAtControlFlowLabel(
+            applyDimensionIndex,
             """
                 invoke-static { v$returnStringRegister, v$floatDimensionRegister }, $LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR->modifyFeedSubtitleSpan(Landroid/text/SpannableString;F)Landroid/text/SpannableString;
                 move-result-object v$returnStringRegister
@@ -581,97 +571,95 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
 
     // region Hide You may like section
 
-    if (is_20_21_or_greater) {
-        val searchSuggestionEndpointField =
-            searchSuggestionEndpointConstructorMethod.immutableClassDef
-                .searchSuggestionEndpointMethodMatch.let {
-                    it.method.getInstruction(it[0]).fieldReference!!
-                }
-        val searchSuggestionEndpointClass = searchSuggestionEndpointField.definingClass
-
-        searchBoxTypingStringMethodMatch.let {
-            it.method.apply {
-                // A collection of search suggestions.
-                // This includes trending search (also known as 'You may like' section)
-                // and your search history.
-
-                val searchSuggestionCollectionField = getInstruction(it[0]).fieldReference!!
-                val typedStringField = getInstruction(it[2]).fieldReference!!
-
-                val helperMethod = ImmutableMethod(
-                    definingClass,
-                    "patch_setSearchSuggestions",
-                    listOf(
-                        ImmutableMethodParameter(
-                            parameterTypes.first().toString(),
-                            null,
-                            null
-                        )
-                    ),
-                    "V",
-                    AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
-                    annotations,
-                    null,
-                    MutableMethodImplementation(7),
-                ).toMutable().apply {
-                    addInstructionsWithLabels(
-                        0,
-                        """
-                                move-object/from16 v0, p1
-                                iget-object v1, v0, $typedStringField
-                                
-                                # Check if the setting is enabled and if the typed string is empty.
-                                invoke-static { v1 }, ${LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR}->hideYouMayLikeSection(Ljava/lang/String;)Z
-                                move-result v1
-                                
-                                # If the setting is disabled or the typed string is not empty, do nothing.
-                                if-eqz v1, :ignore
-
-                                ## Get a collection of search suggestions.
-                                iget-object v1, v0, $searchSuggestionCollectionField
-                                
-                                # Iterate through the collection and check if the search suggestion is the search history.
-                                invoke-interface { v1 }, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
-                                move-result-object v2
-                                
-                                :loop
-                                invoke-interface { v2 }, Ljava/util/Iterator;->hasNext()Z
-                                move-result v3
-                                if-eqz v3, :exit
-                                invoke-interface { v2 }, Ljava/util/Iterator;->next()Ljava/lang/Object;
-                                move-result-object v3
-                                instance-of v4, v3, $searchSuggestionEndpointClass
-                                if-eqz v4, :loop
-                                check-cast v3, $searchSuggestionEndpointClass
-
-                                # Each search suggestion has a command endpoint.
-                                # If the search suggestion is the search history, the command includes the keyword '/delete'.
-                                iget-object v4, v3, $searchSuggestionEndpointField
-                                invoke-static { v3, v4 }, ${LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR}->isSearchHistory(Ljava/lang/Object;Ljava/lang/String;)Z
-                                move-result v3
-                                
-                                # If this search suggestion is the search history, do nothing.
-                                if-nez v3, :loop
-                                
-                                # If this search suggestion is not the search history, remove it from the search suggestions collection.
-                                invoke-interface { v2 }, Ljava/util/Iterator;->remove()V
-                                goto :loop
-
-                                # Save the updated collection to a field.
-                                :exit
-                                iput-object v1, v0, $searchSuggestionCollectionField
-
-                                :ignore
-                                return-void
-                            """
-                    )
-                }.also(it.classDef.methods::add)
-
-                addInstruction(
-                    0,
-                    "invoke-direct/range { p0 .. p1 }, $helperMethod"
-                )
+    val searchSuggestionEndpointField =
+        searchSuggestionEndpointConstructorMethod.immutableClassDef
+            .searchSuggestionEndpointMethodMatch.let {
+                it.method.getInstruction(it[0]).fieldReference!!
             }
+    val searchSuggestionEndpointClass = searchSuggestionEndpointField.definingClass
+
+    searchBoxTypingStringMethodMatch.let {
+        it.method.apply {
+            // A collection of search suggestions.
+            // This includes trending search (also known as 'You may like' section)
+            // and your search history.
+
+            val searchSuggestionCollectionField = getInstruction(it[0]).fieldReference!!
+            val typedStringField = getInstruction(it[2]).fieldReference!!
+
+            val helperMethod = ImmutableMethod(
+                definingClass,
+                "patch_setSearchSuggestions",
+                listOf(
+                    ImmutableMethodParameter(
+                        parameterTypes.first().toString(),
+                        null,
+                        null
+                    )
+                ),
+                "V",
+                AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
+                annotations,
+                null,
+                MutableMethodImplementation(7),
+            ).toMutable().apply {
+                addInstructionsWithLabels(
+                    0,
+                    """
+                            move-object/from16 v0, p1
+                            iget-object v1, v0, $typedStringField
+                            
+                            # Check if the setting is enabled and if the typed string is empty.
+                            invoke-static { v1 }, ${LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR}->hideYouMayLikeSection(Ljava/lang/String;)Z
+                            move-result v1
+                            
+                            # If the setting is disabled or the typed string is not empty, do nothing.
+                            if-eqz v1, :ignore
+
+                            ## Get a collection of search suggestions.
+                            iget-object v1, v0, $searchSuggestionCollectionField
+                            
+                            # Iterate through the collection and check if the search suggestion is the search history.
+                            invoke-interface { v1 }, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+                            move-result-object v2
+                            
+                            :loop
+                            invoke-interface { v2 }, Ljava/util/Iterator;->hasNext()Z
+                            move-result v3
+                            if-eqz v3, :exit
+                            invoke-interface { v2 }, Ljava/util/Iterator;->next()Ljava/lang/Object;
+                            move-result-object v3
+                            instance-of v4, v3, $searchSuggestionEndpointClass
+                            if-eqz v4, :loop
+                            check-cast v3, $searchSuggestionEndpointClass
+
+                            # Each search suggestion has a command endpoint.
+                            # If the search suggestion is the search history, the command includes the keyword '/delete'.
+                            iget-object v4, v3, $searchSuggestionEndpointField
+                            invoke-static { v3, v4 }, ${LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR}->isSearchHistory(Ljava/lang/Object;Ljava/lang/String;)Z
+                            move-result v3
+                            
+                            # If this search suggestion is the search history, do nothing.
+                            if-nez v3, :loop
+                            
+                            # If this search suggestion is not the search history, remove it from the search suggestions collection.
+                            invoke-interface { v2 }, Ljava/util/Iterator;->remove()V
+                            goto :loop
+
+                            # Save the updated collection to a field.
+                            :exit
+                            iput-object v1, v0, $searchSuggestionCollectionField
+
+                            :ignore
+                            return-void
+                        """
+                )
+            }.also(it.classDef.methods::add)
+
+            addInstruction(
+                0,
+                "invoke-direct/range { p0 .. p1 }, $helperMethod"
+            )
         }
     }
 
@@ -711,39 +699,63 @@ val hideLayoutComponentsPatch = hideLayoutComponentsPatch(
 
     // region Hide channel tab
 
+    // The tab renderer method iterates the tabs and calls a method that creates each tab.
     channelTabRendererMethod.apply {
-        val iteratorIndex = indexOfFirstInstructionReversedOrThrow {
-            methodReference?.name == "hasNext"
+        val iteratorIndex = indexOfFirstInstructionOrThrow {
+            methodReference?.toString() == "Ljava/util/Iterator;->hasNext()Z"
         }
-
         val iteratorRegister = getInstruction<FiveRegisterInstruction>(iteratorIndex).registerC
-        val targetIndex = indexOfFirstInstructionReversedOrThrow {
-            val reference = methodReference
 
-            opcode == Opcode.INVOKE_INTERFACE &&
+        val tabIndex = indexOfFirstInstructionOrThrow(iteratorIndex, Opcode.CHECK_CAST)
+        val tabRegister = getInstruction<OneRegisterInstruction>(tabIndex).registerA
+        val tabType = getInstruction<ReferenceInstruction>(tabIndex).typeReference!!.type
+
+        val tabRendererField = getInstruction<ReferenceInstruction>(
+            indexOfFirstInstructionOrThrow(tabIndex, Opcode.IGET_OBJECT),
+        ).fieldReference!!
+
+        val createTabIndex = indexOfFirstInstructionOrThrow(tabIndex) {
+            opcode == Opcode.INVOKE_VIRTUAL && methodReference?.parameterTypes?.firstOrNull() == tabType
+        }
+        val createTabMethodReference = getInstruction<ReferenceInstruction>(createTabIndex).methodReference!!
+
+        // The tab title is passed to the tab builder.
+        val tabTitleField = classDef.methods.single { MethodUtil.methodSignaturesMatch(it, createTabMethodReference) }.let {
+            val builderIndex = it.indexOfFirstInstructionOrThrow {
+                val reference = methodReference
+
+                (opcode == Opcode.INVOKE_INTERFACE || opcode == Opcode.INVOKE_INTERFACE_RANGE) &&
                     reference?.returnType == channelTabBuilderMethod.returnType &&
-                    reference.parameterTypes == channelTabBuilderMethod.parameterTypes
+                    reference.parameterTypes.map { type -> type.toString() } ==
+                    channelTabBuilderMethod.parameterTypes.map { type -> type.toString() }
+            }
+
+            it.getInstruction<ReferenceInstruction>(
+                it.indexOfFirstInstructionReversedOrThrow(builderIndex) {
+                    val reference = fieldReference
+                    opcode == Opcode.IGET_OBJECT &&
+                        reference?.definingClass == tabRendererField.type &&
+                        reference.type == "Ljava/lang/String;"
+                },
+            ).fieldReference!!
         }
 
-        val objectIndex = indexOfFirstInstructionReversedOrThrow(
-            targetIndex,
-            Opcode.IGET_OBJECT
-        )
-        val objectInstruction = getInstruction<TwoRegisterInstruction>(objectIndex)
-        val objectReference = getInstruction<ReferenceInstruction>(objectIndex).reference
+        val freeRegister = findFreeRegister(createTabIndex, tabRegister, iteratorRegister)
 
-        addInstructionsWithLabels(
-            objectIndex + 1,
+        addInstructionsAtControlFlowLabel(
+            createTabIndex,
             """
-                invoke-static { v${objectInstruction.registerA} }, ${LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR}->hideChannelTab(Ljava/lang/String;)Z
-                move-result v${objectInstruction.registerA}
-                if-eqz v${objectInstruction.registerA}, :ignore
+                iget-object v$freeRegister, v$tabRegister, $tabRendererField
+                iget-object v$freeRegister, v$freeRegister, $tabTitleField
+                invoke-static { v$freeRegister }, $LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR->hideChannelTab(Ljava/lang/String;)Z
+                move-result v$freeRegister
+                if-eqz v$freeRegister, :show
                 invoke-interface { v$iteratorRegister }, Ljava/util/Iterator;->remove()V
                 goto :next_iterator
-                :ignore
-                iget-object v${objectInstruction.registerA}, v${objectInstruction.registerB}, $objectReference
-                """,
-            ExternalLabel("next_iterator", getInstruction(iteratorIndex))
+                :show
+                nop
+            """,
+            ExternalLabel("next_iterator", getInstruction(iteratorIndex)),
         )
     }
 

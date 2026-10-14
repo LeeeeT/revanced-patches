@@ -243,7 +243,7 @@ public class GmsCoreSupport {
                     Logger.printDebug(() -> "Latest GmsCore version on GitHub: " + latestVersion);
 
                     // Compare versions
-                    if (!installedVersion.equals(latestVersion)) {
+                    if (compareVersions(latestVersion, installedVersion) > 0) {
                         Logger.printInfo(() -> "GmsCore update available. Installed: " + finalInstalledVersion
                                 + ", Latest: " + latestVersion);
 
@@ -403,6 +403,25 @@ public class GmsCoreSupport {
         private boolean isAndroidAutomotive(Context context) {
             return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE);
         }
+    }
+
+    /**
+     * Compares dotted version names numerically, such as "0.3.13.3.250932".
+     * Non-numeric characters (such as a leading "v") are ignored.
+     *
+     * @return A positive number if the first version is newer.
+     */
+    private static int compareVersions(String first, String second) {
+        String[] firstParts = first.replaceAll("[^0-9.]", "").split("\\.");
+        String[] secondParts = second.replaceAll("[^0-9.]", "").split("\\.");
+
+        for (int i = 0, length = Math.max(firstParts.length, secondParts.length); i < length; i++) {
+            long firstPart = i < firstParts.length && !firstParts[i].isEmpty() ? Long.parseLong(firstParts[i]) : 0;
+            long secondPart = i < secondParts.length && !secondParts[i].isEmpty() ? Long.parseLong(secondParts[i]) : 0;
+            if (firstPart != secondPart) return Long.compare(firstPart, secondPart);
+        }
+
+        return 0;
     }
 
     @FunctionalInterface

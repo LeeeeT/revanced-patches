@@ -7,50 +7,48 @@ import app.revanced.patches.shared.misc.settings.preference.NonInteractivePrefer
 import app.revanced.patches.shared.misc.settings.preference.PreferenceScreenPreference
 import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.shared.misc.spoof.spoofVideoStreamsPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_03_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_10_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_14_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.mainActivityOnCreateMethod
 
+/**
+ * Feature flag that enables different code for parsing and starting video playback.
+ * If this flag is enabled while stream spoofing then videos never start playback.
+ */
+private const val PLAYBACK_START_DESCRIPTOR_FEATURE_FLAG = 45665455L
+
 val spoofVideoStreamsPatch = spoofVideoStreamsPatch(
     extensionClassDescriptor = "Lapp/revanced/extension/youtube/patches/spoof/SpoofVideoStreamsPatch;",
     getMainActivityOnCreateMethod = BytecodePatchContext::mainActivityOnCreateMethod::get,
-    fixMediaFetchHotConfig = {
-        is_19_34_or_greater
-    },
-    fixMediaFetchHotConfigAlternative = {
-        // In 20.14 the flag was merged with 20.03 start playback flag.
-        is_20_10_or_greater && !is_20_14_or_greater
-    },
-    fixParsePlaybackResponseFeatureFlag = {
-        is_20_03_or_greater
-    },
+    // The media fetch hot config flags are not present in the supported version.
+    fixMediaFetchHotConfig = { false },
+    fixMediaFetchHotConfigAlternative = { false },
+    // The flag accessor is inlined, so the flag is overridden using the feature flag hook instead.
+    fixParsePlaybackResponseFeatureFlag = { false },
 
     block = {
         compatibleWith(
             "com.google.android.youtube"(
-                "20.14.43",
-                "20.21.37",
-                "20.26.46",
-                "20.31.42",
-                "20.37.48",
-                "20.40.45"
+                "21.41.525-SECONDARY",
             ),
         )
 
         dependsOn(
             userAgentClientSpoofPatch,
             settingsPatch,
-            versionCheckPatch,
+            booleanFeatureFlagHookPatch,
         )
     },
 
     executeBlock = {
         addResources("youtube", "misc.fix.playback.spoofVideoStreamsPatch")
+
+        overrideBooleanFeatureFlag(
+            PLAYBACK_START_DESCRIPTOR_FEATURE_FLAG,
+            "Lapp/revanced/extension/shared/spoof/SpoofVideoStreamsPatch;->usePlaybackStartFeatureFlag(Z)Z",
+        )
 
         PreferenceScreen.MISC.addPreferences(
             PreferenceScreenPreference(

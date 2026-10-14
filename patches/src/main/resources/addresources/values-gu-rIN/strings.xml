@@ -324,9 +324,6 @@ Second \"item\" text"</string>
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">પૂર્ણસ્ક્રીન મોટી સીકબાર સક્ષમ કરો</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">પૂર્ણસ્ક્રીન સીકબાર મોટી સાઇઝની છે</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">પૂર્ણસ્ક્રીન સીકબાર સામાન્ય સાઇઝની છે</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">ચેનલ પેજમાં Shorts છુપાવો</string>
@@ -391,7 +388,6 @@ Second \"item\" text"</string>
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

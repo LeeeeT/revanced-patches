@@ -59,15 +59,20 @@ internal val BytecodePatchContext.lithoDialogBuilderMethodMatch by composingFirs
 }
 
 
-internal val BytecodePatchContext.playerOverlayTimelyShelfMethod by gettingFirstMethodDeclaratively {
+/**
+ * Matches a lambda that handles the player overlay timely shelf cue range,
+ * among other unrelated lambda code.
+ */
+internal val BytecodePatchContext.playerOverlayTimelyShelfMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("V")
     parameterTypes("Ljava/lang/Object;")
     instructions(
         "player_overlay_timely_shelf"(),
-        "innertube_cue_range"(),
-        "Null id"(),
-        "Null onExitActions"()
+        after(method { toString() == "Ljava/lang/String;->equals(Ljava/lang/Object;)Z" }),
+        after(Opcode.MOVE_RESULT()),
+        after(Opcode.IF_EQZ()),
+        after(Opcode.IGET_BOOLEAN()), // Start of the timely shelf code.
     )
 }
 

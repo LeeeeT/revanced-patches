@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.resourcePatch
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.misc.playservice.*
 import app.revanced.patches.youtube.shared.mainActivityOnBackPressedMethod
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
@@ -46,7 +45,6 @@ lateinit var hookNavigationButtonCreated: (String) -> Unit
 val navigationBarHookPatch = bytecodePatch(description = "Hooks the active navigation or search bar.") {
     dependsOn(
         sharedExtensionPatch,
-        versionCheckPatch,
         playerTypeHookPatch, // Required to detect the search bar in all situations.
         resourceMappingPatch, // Used to find methods
         resourcePatch {
@@ -94,15 +92,6 @@ val navigationBarHookPatch = bytecodePatch(description = "Hooks the active navig
                     getReference<MethodReference>() ?: return@predicate false,
                     drawableTabMethod,
                 )
-            }
-
-            if (is_20_21_or_greater && !is_20_28_or_greater) {
-                addHook(NavigationHook.NAVIGATION_TAB_LOADED) predicate@{
-                    MethodUtil.methodSignaturesMatch(
-                        getReference<MethodReference>() ?: return@predicate false,
-                        pivotBarButtonsCreateResourceIntViewMethod,
-                    )
-                }
             }
 
             addHook(NavigationHook.NAVIGATION_IMAGE_RESOURCE_TAB_LOADED) predicate@{
@@ -205,25 +194,23 @@ val navigationBarHookPatch = bytecodePatch(description = "Hooks the active navig
         }
 
         // Fix YT bug of notification tab missing the filled icon.
-        if (is_19_35_or_greater) {
-            val cairoNotificationEnumReference =
-                imageEnumConstructorMethodMatch.method.getInstruction(imageEnumConstructorMethodMatch[-1]).reference
+        val cairoNotificationEnumReference =
+            imageEnumConstructorMethodMatch.method.getInstruction(imageEnumConstructorMethodMatch[-1]).reference
 
-            setEnumMapMethodMatch.apply {
-                val setEnumIntegerIndex = setEnumMapMethodMatch[-1]
-                method.apply {
-                    val enumMapRegister = getInstruction<FiveRegisterInstruction>(setEnumIntegerIndex).registerC
-                    val insertIndex = setEnumIntegerIndex + 1
-                    val freeRegister = findFreeRegister(insertIndex, enumMapRegister)
+        setEnumMapMethodMatch.apply {
+            val setEnumIntegerIndex = setEnumMapMethodMatch[-1]
+            method.apply {
+                val enumMapRegister = getInstruction<FiveRegisterInstruction>(setEnumIntegerIndex).registerC
+                val insertIndex = setEnumIntegerIndex + 1
+                val freeRegister = findFreeRegister(insertIndex, enumMapRegister)
 
-                    addInstructions(
-                        insertIndex,
-                        """
-                            sget-object v$freeRegister, $cairoNotificationEnumReference
-                            invoke-static { v$enumMapRegister, v$freeRegister }, $EXTENSION_CLASS_DESCRIPTOR->setCairoNotificationFilledIcon(Ljava/util/EnumMap;Ljava/lang/Enum;)V
-                        """,
-                    )
-                }
+                addInstructions(
+                    insertIndex,
+                    """
+                        sget-object v$freeRegister, $cairoNotificationEnumReference
+                        invoke-static { v$enumMapRegister, v$freeRegister }, $EXTENSION_CLASS_DESCRIPTOR->setCairoNotificationFilledIcon(Ljava/util/EnumMap;Ljava/lang/Enum;)V
+                    """,
+                )
             }
         }
     }

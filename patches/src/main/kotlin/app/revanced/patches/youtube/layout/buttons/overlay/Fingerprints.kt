@@ -12,16 +12,6 @@ internal val BytecodePatchContext.mediaRouteButtonMethod by gettingFirstMethodDe
     parameterTypes("I")
 }
 
-internal val BytecodePatchContext.castButtonPlayerFeatureFlagMethodMatch by composingFirstMethod {
-    returnType("Z")
-    instructions(45690091L())
-}
-
-internal val BytecodePatchContext.castButtonActionFeatureFlagMethodMatch by composingFirstMethod {
-    returnType("Z")
-    instructions(45690090L())
-}
-
 internal val BytecodePatchContext.inflateControlsGroupLayoutStubMethodMatch by composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     parameterTypes()
@@ -29,6 +19,7 @@ internal val BytecodePatchContext.inflateControlsGroupLayoutStubMethodMatch by c
     instructions(
         ResourceType.ID("youtube_controls_button_group_layout_stub"),
         method("inflate"),
+        after(Opcode.MOVE_RESULT_OBJECT()), // Inflated layout.
     )
 }
 
@@ -52,3 +43,8 @@ internal val BytecodePatchContext.titleAnchorMethodMatch by composingFirstMethod
         Opcode.MOVE_RESULT_OBJECT()
     )
 }
+
+internal const val CAST_BUTTON_PLAYER_FEATURE_FLAG = 45690091L
+
+// Cast button in the feed.
+internal const val CAST_BUTTON_ACTION_FEATURE_FLAG = 45690090L

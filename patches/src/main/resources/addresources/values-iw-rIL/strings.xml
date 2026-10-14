@@ -705,9 +705,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">שכבת-על מעגלית (מזערית)</string>
             <string name="revanced_swipe_overlay_style_entry_6">שכבת-על אנכית</string>
             <string name="revanced_swipe_overlay_style_entry_7">שכבת-על אנכית (מזערית)</string>
-            <string name="revanced_swipe_change_video_title">הפעל החלקה כדי לשנות סרטונים</string>
-            <string name="revanced_swipe_change_video_summary_on">החלקה במצב מסך מלא תשנה לסרטון הבא/הקודם</string>
-            <string name="revanced_swipe_change_video_summary_off">החלקה במצב מסך מלא לא תשנה לסרטון הבא/הקודם</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">השבת כתוביות אוטומטיות</string>
@@ -957,9 +954,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">הסתר סרגל דילוג עם תמונות ממוזערות של סרטון</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">סרגל דילוג עם תמונות ממוזערות של סרטון מוסתר</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">סרגל דילוג עם תמונות ממוזערות של סרטון מוצג</string>
-            <string name="revanced_fullscreen_large_seekbar_title">הפעל סרגל חיפוש גדול במסך מלא</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">סרגל חיפוש במסך מלא הוא בגודל גדול</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">סרגל חיפוש במסך מלא הוא בגודל רגיל</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">נגן Shorts</string>
@@ -1459,11 +1453,6 @@ Second \"item\" text"</string>
 מגבלה: ייתכן שלחצן החזרה בסרגל הכלים לא יפעל"</string>
             <string name="revanced_change_start_page_always_summary_off">דף הפתיחה משתנה רק בעת הפעלת האפליקציה</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">השבת חידוש נגן Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">נגן Shorts לא יתחדש בעת הפעלת היישום</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">נגן Shorts יתחדש בעת הפעלת היישום</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">פתח Shorts עם</string>
             <string name="revanced_shorts_player_type_shorts">נגן Shorts</string>
@@ -1490,37 +1479,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">מודרני 2</string>
             <string name="revanced_miniplayer_type_entry_6">מודרני 3</string>
             <string name="revanced_miniplayer_type_entry_7">מודרני 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">בטל פינות מעוגלות</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">הפינות מרובעות</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">הפינות מעוגלות</string>
-            <string name="revanced_miniplayer_double_tap_action_title">הפעל הקשה כפולה וצביטה לשינוי גודל</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"פעולת הקשה כפולה וצביטה לשינוי גודל מופעלת
-
-• הקש פעמיים כדי להגדיל את גודל המיני-נגן
-• הקש פעמיים שוב כדי לשחזר את הגודל המקורי"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">פעולת הקשה כפולה וצביטה לשינוי גודל מושבתת</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">בטל גרירה ושחרור</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">גרירה ושחרור מושבת</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"גרירה ושחרור מופעלים
-
-מיני-נגן ניתן לגרירה לעבר כל פינה של המסך"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">בטל מחוות גרירה אופקית</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">מחוות גרירה אופקית מושבתת</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"מחוות גרירה אופקית מופעלת
-
-מיני-נגן ניתן לגרירה מחוץ למסך לשמאל או לימין"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">הסתר לחצני שכבת-על</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">לחצני שכבת-על מוסתרים</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">לחצני שכבת-על מוצגים</string>
             <string name="revanced_miniplayer_hide_subtext_title">הסתר תת-טקסטים</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">תת-טקסטים מוסתרים</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">תת-טקסטים מוצגים</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">הסתר לחצני דילוג קדימה ואחורה</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">דילוג קדימה או אחורה מוסתרים</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">דילוג קדימה או אחורה מוצגים</string>
-            <string name="revanced_miniplayer_width_dip_title">גודל ראשוני</string>
-            <string name="revanced_miniplayer_width_dip_summary">גודל על המסך ראשוני, בפיקסלים</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">גודל פיקסל חייב להיות בין %1$s ו-%2$s</string>
             <string name="revanced_miniplayer_opacity_title">אטימות שכבת-על</string>
             <string name="revanced_miniplayer_opacity_summary">ערך אטימות בין 0 ל-100, כאשר 0 שקוף</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">אטימות שכבת-על של מיני-נגן חייבת להיות בין 0 ל-100</string>

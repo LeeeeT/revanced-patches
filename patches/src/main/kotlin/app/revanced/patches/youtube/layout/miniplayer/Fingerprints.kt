@@ -10,38 +10,6 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
 
-internal const val MINIPLAYER_MODERN_FEATURE_KEY = 45622882L
-
-internal const val MINIPLAYER_MODERN_TYPE_1_FEATURE_KEY = 45623000L
-internal const val MINIPLAYER_MODERN_TYPE_2_FEATURE_KEY = 45623273L
-internal const val MINIPLAYER_MODERN_TYPE_3_FEATURE_KEY = 45623076L
-internal const val MINIPLAYER_MODERN_TYPE_4_FEATURE_KEY = 45674402L
-internal const val MINIPLAYER_DOUBLE_TAP_FEATURE_KEY = 45628823L
-internal const val MINIPLAYER_DRAG_DROP_FEATURE_KEY = 45628752L
-internal const val MINIPLAYER_HORIZONTAL_DRAG_FEATURE_KEY = 45658112L
-internal const val MINIPLAYER_ROUNDED_CORNERS_FEATURE_KEY = 45652224L
-internal const val MINIPLAYER_INITIAL_SIZE_FEATURE_KEY = 45640023L
-internal const val MINIPLAYER_DISABLED_FEATURE_KEY = 45657015L
-internal const val MINIPLAYER_ANIMATED_EXPAND_FEATURE_KEY = 45644360L
-// In later targets this feature flag does nothing and is dead code.
-internal const val MINIPLAYER_MODERN_FEATURE_LEGACY_KEY = 45630429L
-
-internal val BytecodePatchContext.miniplayerModernConstructorMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    instructions(
-        MINIPLAYER_MODERN_TYPE_1_FEATURE_KEY(),
-    )
-}
-
-internal val BytecodePatchContext.miniplayerDimensionsCalculatorParentMethod by gettingFirstImmutableMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    parameterTypes("L")
-    instructions(
-        ResourceType.DIMEN("floaty_bar_button_top_margin"),
-    )
-}
-
 internal val BytecodePatchContext.miniplayerModernViewParentMethod by gettingFirstImmutableMethodDeclaratively {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("Ljava/lang/String;")
@@ -90,19 +58,6 @@ internal val ClassDef.miniplayerModernExpandButtonMethodMatch by ClassDefComposi
 /**
  * Matches using the class found in [miniplayerModernViewParentMethod].
  */
-context(_: BytecodePatchContext)
-internal fun ClassDef.getMiniplayerModernExpandCloseDrawablesMethod() = firstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    parameterTypes("L")
-    instructions(
-        ytOutlinePictureInPictureWhite24(),
-    )
-}
-
-/**
- * Matches using the class found in [miniplayerModernViewParentMethod].
- */
 internal val ClassDef.miniplayerModernForwardButtonMethodMatch by ClassDefComposing.composingFirstMethod {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
     returnType("L")
@@ -113,12 +68,16 @@ internal val ClassDef.miniplayerModernForwardButtonMethodMatch by ClassDefCompos
     )
 }
 
+/**
+ * Matches using the class found in [miniplayerModernViewParentMethod].
+ */
 internal val ClassDef.miniplayerModernOverlayViewMethodMatch by ClassDefComposing.composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
+    returnType("V")
     parameterTypes()
     instructions(
-        ResourceType.ID("scrim_overlay"),
-        afterAtMost(5, Opcode.MOVE_RESULT_OBJECT()),
+        ResourceType.LAYOUT("modern_miniplayer_controls_overlay"),
+        afterAtMost(3, method { name == "inflate" }),
+        after(Opcode.MOVE_RESULT_OBJECT()), // Inflated overlay.
     )
 }
 
@@ -148,79 +107,3 @@ internal val ClassDef.miniplayerModernActionButtonMethodMatch by ClassDefComposi
     )
 }
 
-internal val BytecodePatchContext.miniplayerMinimumSizeMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    instructions(
-        ResourceType.DIMEN("miniplayer_max_size"),
-        anyOf( // Default miniplayer width constant.
-            192L(),
-            192.0f.toRawBits().toLong()(), // 21.03+
-        ),
-        anyOf( // Default miniplayer height constant.
-            128L(),
-            128.0f.toRawBits().toLong()(), // 21.03+
-        )
-    )
-}
-
-internal val BytecodePatchContext.miniplayerOverrideMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("L")
-    instructions(
-        "appName"(),
-        afterAtMost(
-            10,
-            method { parameterTypes.count() == 1 && parameterTypes.first() == "Landroid/content/Context;" && returnType == "Z" },
-        ),
-    )
-}
-
-context(_: BytecodePatchContext)
-internal fun ClassDef.getMiniplayerOverrideNoContextMethod() = firstMethodDeclaratively {
-    accessFlags(AccessFlags.PRIVATE, AccessFlags.FINAL)
-    returnType("Z")
-    opcodes(
-        Opcode.IGET_BOOLEAN, // Anchor to insert the instruction.
-    )
-}
-
-/**
- * 20.36 and lower. Codes appears to be removed in 20.37+
- */
-internal val BytecodePatchContext.miniplayerResponseModelSizeCheckMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("L")
-    parameterTypes("Ljava/lang/Object;", "Ljava/lang/Object;")
-    opcodes(
-        Opcode.RETURN_OBJECT,
-        Opcode.CHECK_CAST,
-        Opcode.CHECK_CAST,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT,
-        Opcode.IF_NEZ,
-    )
-}
-
-internal val BytecodePatchContext.miniplayerOnCloseHandlerMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    instructions(
-        MINIPLAYER_DISABLED_FEATURE_KEY(),
-    )
-}
-
-internal const val YOUTUBE_PLAYER_OVERLAYS_LAYOUT_CLASS_NAME =
-    "Lcom/google/android/apps/youtube/app/common/player/overlay/YouTubePlayerOverlaysLayout;"
-
-internal val BytecodePatchContext.playerOverlaysLayoutMethod by gettingFirstImmutableMethodDeclaratively {
-    definingClass(YOUTUBE_PLAYER_OVERLAYS_LAYOUT_CLASS_NAME)
-}
-
-internal val BytecodePatchContext.miniplayerSetIconsMethod by gettingFirstMethodDeclaratively {
-    returnType("V")
-    parameterTypes("I", "Ljava/lang/Runnable;")
-    instructions(
-        ResourceType.DRAWABLE("yt_fill_pause_white_36"),
-        ResourceType.DRAWABLE("yt_fill_pause_black_36"),
-    )
-}

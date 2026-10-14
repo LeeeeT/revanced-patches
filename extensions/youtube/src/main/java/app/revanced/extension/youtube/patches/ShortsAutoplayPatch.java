@@ -12,31 +12,24 @@ import app.revanced.extension.youtube.settings.Settings;
 public class ShortsAutoplayPatch {
 
     private enum ShortsLoopBehavior {
-        UNKNOWN,
         /**
          * Repeat the same Short forever!
          */
         REPEAT,
         /**
-         * Play once, then advanced to the next Short.
+         * Play once, then advance to the next Short.
          */
-        SINGLE_PLAY,
-        /**
-         * Pause playback after 1 play.
-         */
-        END_SCREEN;
+        AUTO_ADVANCE;
 
         static void setYTEnumValue(Enum<?> ytBehavior) {
             for (ShortsLoopBehavior rvBehavior : values()) {
-                if (ytBehavior.name().endsWith(rvBehavior.name())) {
+                if (ytBehavior.name().endsWith("_" + rvBehavior.name())) {
                     rvBehavior.ytEnumValue = ytBehavior;
 
                     Logger.printDebug(() -> rvBehavior + " set to YT enum: " + ytBehavior.name());
                     return;
                 }
             }
-
-            Logger.printException(() -> "Unknown Shorts loop behavior: " + ytBehavior.name());
         }
 
         /**
@@ -47,7 +40,9 @@ public class ShortsAutoplayPatch {
 
     private static WeakReference<Activity> mainActivityRef = new WeakReference<>(null);
 
-
+    /**
+     * Injection point.
+     */
     public static void setMainActivity(Activity activity) {
         mainActivityRef = new WeakReference<>(activity);
     }
@@ -58,6 +53,12 @@ public class ShortsAutoplayPatch {
     private static boolean isAppInBackgroundPiPMode() {
         Activity activity = mainActivityRef.get();
         return activity != null && activity.isInPictureInPictureMode();
+    }
+
+    private static boolean isAutoplayEnabled() {
+        return isAppInBackgroundPiPMode()
+                ? Settings.SHORTS_AUTOPLAY_BACKGROUND.get()
+                : Settings.SHORTS_AUTOPLAY.get();
     }
 
     /**
@@ -78,45 +79,20 @@ public class ShortsAutoplayPatch {
      */
     public static Enum<?> changeShortsRepeatBehavior(Enum<?> original) {
         try {
-            final boolean autoplay;
-
-            if (isAppInBackgroundPiPMode()) {
-                if (!VersionCheckPatch.IS_19_34_OR_GREATER) {
-                    // 19.34+ is required to set background play behavior.
-                    Logger.printDebug(() -> "PiP Shorts not supported, using original repeat behavior");
-
-                    return original;
-                }
-
-                autoplay = Settings.SHORTS_AUTOPLAY_BACKGROUND.get();
-            } else {
-                autoplay = Settings.SHORTS_AUTOPLAY.get();
-            }
-
-            Enum<?> overrideBehavior = (autoplay
-                    ? ShortsLoopBehavior.SINGLE_PLAY
+            Enum<?> overrideBehavior = (isAutoplayEnabled()
+                    ? ShortsLoopBehavior.AUTO_ADVANCE
                     : ShortsLoopBehavior.REPEAT).ytEnumValue;
 
             if (overrideBehavior != null) {
-                Logger.printDebug(() -> {
-                    String name = (original == null ? "unknown (null)" : original.name());
-                    return overrideBehavior == original
-                            ? "Behavior setting is same as original. Using original: " + name
-                            : "Changing Shorts repeat behavior from: " + name + " to: " + overrideBehavior.name();
-                });
+                if (overrideBehavior != original) {
+                    Logger.printDebug(() -> "Changing Shorts repeat behavior from: "
+                            + (original == null ? "null" : original.name()) + " to: " + overrideBehavior.name());
+                }
 
                 return overrideBehavior;
             }
-
-            if (original == null) {
-                // Cannot return null, as null is used to indicate the Short was autoplayed.
-                // Unpatched app replaces null with unknown enum type (appears to fix for bad api data).
-                Enum<?> unknown = ShortsLoopBehavior.UNKNOWN.ytEnumValue;
-                Logger.printDebug(() -> "Original is null, returning: " + unknown.name());
-                return unknown;
-            }
         } catch (Exception ex) {
-            Logger.printException(() -> "changeShortsRepeatState failure", ex);
+            Logger.printException(() -> "changeShortsRepeatBehavior failure", ex);
         }
 
         return original;
@@ -125,7 +101,7 @@ public class ShortsAutoplayPatch {
     /**
      * Injection point.
      */
-    public static boolean isAutoPlay(Enum<?> original) {
-        return ShortsLoopBehavior.SINGLE_PLAY.ytEnumValue == original;
+    public static boolean useAutoAdvance(boolean original) {
+        return Settings.SHORTS_AUTOPLAY.get() || Settings.SHORTS_AUTOPLAY_BACKGROUND.get();
     }
 }

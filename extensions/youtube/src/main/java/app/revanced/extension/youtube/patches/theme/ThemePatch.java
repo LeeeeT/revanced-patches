@@ -79,8 +79,8 @@ public class ThemePatch extends BaseThemePatch {
     /**
      * Injection point.
      */
-    public static boolean showSplashScreen(boolean original) {
-        return Settings.SPLASH_SCREEN_ANIMATION_STYLE.get() != SplashScreenAnimationStyle.DISABLED && original;
+    public static int showSplashScreen(int original) {
+        return Settings.SPLASH_SCREEN_ANIMATION_STYLE.get() == SplashScreenAnimationStyle.DISABLED ? 0 : original;
     }
 
     /**

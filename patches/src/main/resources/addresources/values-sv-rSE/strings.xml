@@ -701,9 +701,6 @@ Justera volymen genom att svepa vertikalt till höger på skärmen"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Cirkulärt överlägg (minimalt)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Vertikalt överlägg</string>
             <string name="revanced_swipe_overlay_style_entry_7">Vertikalt överlägg (minimalt)</string>
-            <string name="revanced_swipe_change_video_title">Aktivera svep för att byta videor</string>
-            <string name="revanced_swipe_change_video_summary_on">Svep i helskärmsläge byter till nästa/föregående video</string>
-            <string name="revanced_swipe_change_video_summary_off">Svep i helskärmsläge byter inte till nästa/föregående video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Inaktivera automatisk textning</string>
@@ -953,9 +950,6 @@ Om du vill att menyn Ljudspår ska visas ändrar du \"Förfalska videoströmmar\
             <string name="revanced_hide_seekbar_thumbnail_title">Dölj sökreglaget i videominiatyrer</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Sökreglaget i videominiatyrer är dolt</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Sökreglaget i videominiatyrer visas</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Aktivera stor sökfält i helskärm</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Sökfältet i helskärm är stort</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Sökfältet i helskärm är normalstorlek</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts-spelare</string>
@@ -1450,11 +1444,6 @@ Om du senare inaktiverar det rekommenderar vi att rensa appens data för att fö
 Begränsning: Bakåtknappen i verktygsfältet kanske inte fungerar"</string>
             <string name="revanced_change_start_page_always_summary_off">Startsidan byts endast vid appstart</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Inaktivera att Shorts-spelaren återupptas</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts-spelaren återupptas inte vid appstart</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts-spelaren återupptas vid appstart</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Öppna Shorts-videor med</string>
             <string name="revanced_shorts_player_type_shorts">Shorts-spelare</string>
@@ -1476,37 +1465,12 @@ Begränsning: Bakåtknappen i verktygsfältet kanske inte fungerar"</string>
             <string name="revanced_miniplayer_type_entry_0">Inaktiverad</string>
             <string name="revanced_miniplayer_type_entry_1">Standard</string>
             <string name="revanced_miniplayer_type_entry_3">Surfplatta</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Inaktivera rundade hörn</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Hörnen är fyrkantiga</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Hörnen är rundade</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Aktivera dubbeltryck och nyp för att ändra storlek</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Dubbeltrycksåtgärd och nyp för att ändra storlek är aktiverat
-
-• Tryck snabbt två gånger för att öka minispelarens storlek
-• Tryck snabbt två gånger igen för att återställa den ursprungliga storleken"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Dubbeltrycksåtgärd och nyp för att ändra storlek är inaktiverat</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Inaktivera dra och släpp</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Dra och släpp är inaktiverat</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Dra och släpp är aktiverat
-
-Minispelaren kan dras till valfritt hörn av skärmen"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Inaktivera horisontell draggest</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Horisontell draggest är inaktiverad</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Horisontell draggest är aktiverad
-
-Minispelaren kan dras utanför skärmen till vänster eller höger"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Dölj överläggsknappar</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Överläggsknapparna är dolda</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Överläggsknapparna visas</string>
             <string name="revanced_miniplayer_hide_subtext_title">Dölj undertexter</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Undertexter är dolda</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Undertexter visas</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Dölj knapparna för att hoppa framåt och bakåt</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Hoppa framåt och bakåt är dolda</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Hoppa framåt och bakåt visas</string>
-            <string name="revanced_miniplayer_width_dip_title">Ursprunglig storlek</string>
-            <string name="revanced_miniplayer_width_dip_summary">Ursprunglig storlek på skärmen, i pixlar</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Pixelstorlek måste vara mellan %1$s och %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Överläggets opacitet</string>
             <string name="revanced_miniplayer_opacity_summary">Opacitetsvärde mellan 0 och 100, där 0 är genomskinligt</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Minispelaröverläggets opacitet måste vara mellan 0 och 100</string>

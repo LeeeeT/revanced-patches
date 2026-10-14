@@ -14,20 +14,14 @@ internal val BytecodePatchContext.lithoOnBoundsChangeMethodMatch by composingFir
     var methodDefiningClass = ""
     custom {
         methodDefiningClass = definingClass
-        true
+        // Rounded rectangle drawable.
+        immutableClassDef.anyField { type == "Landroid/graphics/Path;" }
     }
 
     instructions(
         allOf(
-            Opcode.IPUT_OBJECT(),
-            field { type == "Landroid/graphics/Path;" && definingClass == methodDefiningClass },
-        ),
-        afterAtMost(
-            10,
-            allOf(
-                Opcode.IGET_OBJECT(),
-                field { type == "Landroid/graphics/Paint;" && definingClass == methodDefiningClass },
-            ),
+            Opcode.IGET_OBJECT(),
+            field { type == "Landroid/graphics/Paint;" && definingClass == methodDefiningClass },
         ),
         after(
             method { toString() == "Landroid/graphics/Paint;->setColor(I)V" },

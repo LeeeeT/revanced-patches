@@ -711,9 +711,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Круговий індикатор (мінімальний)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Вертикальний індикатор</string>
             <string name="revanced_swipe_overlay_style_entry_7">Вертикальний індикатор (мінімальний)</string>
-            <string name="revanced_swipe_change_video_title">Увімкнути зміну відео проведенням</string>
-            <string name="revanced_swipe_change_video_summary_on">Проведення пальцем у повноекранному режимі перейде до наступного/попереднього відео</string>
-            <string name="revanced_swipe_change_video_summary_off">Проведення пальцем у повноекранному режимі не перейде до наступного/попереднього відео</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Вимкнути автоматичні субтитри</string>
@@ -963,9 +960,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">Приховати панель прогресу прев\'ю відео</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Панель прогресу у прев\'ю відео приховано</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Панель прогресу у прев\'ю відео показується</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Увімкнути велику смугу прокрутки в повноекранному режимі</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Повноекранна смуга прокрутки великого розміру</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Повноекранна смуга прокрутки нормального розміру</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Плеєр Shorts</string>
@@ -1470,11 +1464,6 @@ Second \"item\" text"</string>
 Обмеження: Використання кнопки \"Назад\" на панелі інструментів може не працювати"</string>
             <string name="revanced_change_start_page_always_summary_off">Початкова сторінка змінюється лише під час запуску програми</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Вимкнути відновлення плеєра Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Плеєр Shorts не відновиться після запуску застосунку</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Плеєр Shorts відновиться після запуску застосунку</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Відкривати Shorts через</string>
             <string name="revanced_shorts_player_type_shorts">Плеєр Shorts</string>
@@ -1501,42 +1490,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">Новітній 2</string>
             <string name="revanced_miniplayer_type_entry_6">Новітній 3</string>
             <string name="revanced_miniplayer_type_entry_7">Новітній 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Вимкнути закруглені кути</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Кути квадратні</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Кути закруглені</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Подвійне натискання та зміна розміру щипком</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Подвійне натискання та зміну розміру щипком увімкнено
-
-• Двічі торкніться, щоб збільшити розмір мініплеєра
-• Двічі торкніться ще раз, щоб відновити початковий розмір"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Подвійне натискання та зміну розміру щипком вимкнено</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Вимкнути перетягування</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Перетягування вимкнено</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Перетягування увімкнено
-
-Мініплеєр можна перетягнути в будь-який кут екрану"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Вимкнути жест горизонтального перетягування</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Жест горизонтального перетягування вимкнено</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Жест горизонтального перетягування увімкнено
-
-Мініплеєр можна перетягнути за межі екрана вліво або вправо"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Приховати кнопки накладання</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Кнопки накладання приховано</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Кнопки накладання показуються</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Приховати кнопки розгортання та закриття</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Кнопки приховані
-
-Свайпніть, щоб розгорнути або закрити"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Кнопки розгортання та закриття показані</string>
             <string name="revanced_miniplayer_hide_subtext_title">Приховати підтексти</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Підтексти в мініплеєрі приховано</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Підтексти в мініплеєрі показуються</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Приховати кнопки перемотування</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Кнопки перемотування вперед та назад в мініплеєрі приховано</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Кнопки перемотування вперед та назад в мініплеєрі показуються</string>
-            <string name="revanced_miniplayer_width_dip_title">Початковий розмір</string>
-            <string name="revanced_miniplayer_width_dip_summary">Початковий розмір мініплеєра на екрані, в пікселях</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Розмір у пікселях повинен бути від %1$s до %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Затемнення мініплеєра</string>
             <string name="revanced_miniplayer_opacity_summary">Значення затемнення при натисканні на мініплеєр в межах від 0 до 100, де 0 це прозоро</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Значення затемнення мініплеєра має бути від 0 до 100</string>

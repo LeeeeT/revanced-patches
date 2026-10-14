@@ -711,9 +711,6 @@ Réglez le volume en balayant verticalement sur le côté droit de l'écran"</st
             <string name="revanced_swipe_overlay_style_entry_5">Overlay circulaire (minimal)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Overlay vertical</string>
             <string name="revanced_swipe_overlay_style_entry_7">Overlay vertical (minimal)</string>
-            <string name="revanced_swipe_change_video_title">Activer Balayer pour changer de vidéo</string>
-            <string name="revanced_swipe_change_video_summary_on">En mode plein écran, vous passerez à la vidéo précédente/suivante en balayant l\'écran</string>
-            <string name="revanced_swipe_change_video_summary_off">En mode plein écran, vous ne changerez pas de vidéo en balayant l\'écran</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Désactiver les sous-titres automatiques</string>
@@ -963,9 +960,6 @@ Pour afficher le menu Piste audio, définissez \"Falsifier les flux vidéo\" sur
             <string name="revanced_hide_seekbar_thumbnail_title">Masquer la barre de progression dans la miniature des vidéos</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">La barre de progression dans la miniature des vidéos est masquée</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">La barre de progression dans la miniature des vidéos est affichée</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Activer la grande barre de progression en plein écran</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">La barre de progression en plein écran est de grande taille</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">La barre de progression en plein écran est de taille normale</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Lecteur Shorts</string>
@@ -1470,11 +1464,6 @@ Si désactivé ultérieurement, il est recommandé d'effacer les données de l'a
 Limitation : Il se peut que le bouton Retour dans la barre d'outils ne fonctionne pas"</string>
             <string name="revanced_change_start_page_always_summary_off">La page de démarrage est modifiée uniquement au démarrage de l\'application</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Désactiver la reprise du lecteur Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Le lecteur Shorts ne se relancera pas au démarrage de l\'application</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Le lecteur Shorts reprendra au démarrage de l\'application</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Ouvrir les Shorts avec</string>
             <string name="revanced_shorts_player_type_shorts">Lecteur Shorts</string>
@@ -1501,42 +1490,12 @@ Limitation : Il se peut que le bouton Retour dans la barre d'outils ne fonction
             <string name="revanced_miniplayer_type_entry_5">Moderne 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderne 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderne 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Désactiver les coins arrondis</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Les coins sont carrés</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Les coins sont arrondis</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Activer le double appui et Pincer pour redimensionner</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"L'action de double appui et Pincer pour redimensionner sont activés
-
-• Appuyez deux fois pour augmenter la taille du lecteur réduit
-• Appuyez deux fois à nouveau pour rétablir la taille d'origine"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Action de double appui et Pincer pour redimensionner sont désactivés</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Désactiver le glisser-déposer</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Le glisser-déposer est désactivé</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Le glisser-déposer est activé
-
-Le lecteur réduit peut être déplacé vers n'importe quel coin de l'écran"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Désactiver le geste de glissement horizontal</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Geste de glissement horizontal désactivé</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Geste de glissement horizontal activé
-
-Le lecteur réduit peut être glissé hors de l'écran, à gauche comme à droite"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Masquer les boutons en superposition</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Les boutons en superposition sont masqués</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Les boutons en superposition sont affichés</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Masquer les boutons Développer et Fermer</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Les boutons sont masqués
-
-Balayez pour développer ou fermer"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Les boutons Développer et Fermer sont affichés</string>
             <string name="revanced_miniplayer_hide_subtext_title">Masquer les sous-textes</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Les sous-textes sont masqués</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Les sous-textes sont affichés</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Masquer les boutons Avancer et Reculer</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Les boutons Avancer et Reculer sont masqués</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Les boutons Avancer et Reculer sont affichés</string>
-            <string name="revanced_miniplayer_width_dip_title">Taille initiale</string>
-            <string name="revanced_miniplayer_width_dip_summary">Taille occupée initialement sur l\'écran, en pixels</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">La taille en pixels doit être comprise entre %1$s et %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Opacité de l\'overlay</string>
             <string name="revanced_miniplayer_opacity_summary">Valeur d\'opacité comprise entre 0 et 100, 0 est transparent</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">L\'opacité de l\'overlay doit être comprise entre 0 et 100</string>

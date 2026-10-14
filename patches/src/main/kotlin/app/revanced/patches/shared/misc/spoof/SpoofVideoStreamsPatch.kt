@@ -2,8 +2,10 @@ package app.revanced.patches.shared.misc.spoof
 
 import app.revanced.com.android.tools.smali.dexlib2.mutable.MutableMethod
 import app.revanced.com.android.tools.smali.dexlib2.mutable.MutableMethod.Companion.toMutable
+import app.revanced.patcher.classDef
 import app.revanced.patcher.custom
 import app.revanced.patcher.extensions.*
+import app.revanced.patcher.firstClassDef
 import app.revanced.patcher.firstMethodDeclaratively
 import app.revanced.patcher.opcodes
 import app.revanced.patcher.patch.BytecodePatchBuilder
@@ -21,6 +23,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
@@ -81,17 +84,21 @@ internal fun spoofVideoStreamsPatch(
 
         // region Block /get_watch requests to fall back to /player requests.
 
-        buildPlayerRequestURIMethodMatch.method.apply {
-            val invokeToStringIndex = buildPlayerRequestURIMethodMatch[0]
-            val uriRegister = getInstruction<FiveRegisterInstruction>(invokeToStringIndex).registerC
+        firstClassDef(buildPlayerRequestURIMethod.definingClass).methods.forEach { method ->
+            method.findInstructionIndicesReversed {
+                opcode == Opcode.INVOKE_VIRTUAL &&
+                    getReference<MethodReference>()?.toString() == "Landroid/net/Uri;->toString()Ljava/lang/String;"
+            }.forEach { invokeToStringIndex ->
+                val uriRegister = method.getInstruction<FiveRegisterInstruction>(invokeToStringIndex).registerC
 
-            addInstructions(
-                invokeToStringIndex,
-                """
-                    invoke-static { v$uriRegister }, $EXTENSION_CLASS_DESCRIPTOR->blockGetWatchRequest(Landroid/net/Uri;)Landroid/net/Uri;
-                    move-result-object v$uriRegister
-                """,
-            )
+                method.addInstructions(
+                    invokeToStringIndex,
+                    """
+                        invoke-static { v$uriRegister }, $EXTENSION_CLASS_DESCRIPTOR->blockGetWatchRequest(Landroid/net/Uri;)Landroid/net/Uri;
+                        move-result-object v$uriRegister
+                    """,
+                )
+            }
         }
 
         // endregion
@@ -220,19 +227,21 @@ internal fun spoofVideoStreamsPatch(
             // where p0 is overwritten by new-instance IllegalArgumentException.
             val targetIndex = indexOfFirstInstructionOrThrow(Opcode.RETURN_VOID)
 
+            val fields = classDef.fields.filter { !AccessFlags.STATIC.isSet(it.accessFlags) }
+            val uriField = fields.single { it.type == "Landroid/net/Uri;" }
+            val httpMethodField = fields.first { it.type == "I" }
+            val postBodyField = fields.single { it.type == "[B" }
+
             addInstructions(
                 targetIndex,
                 """
-                        # Field a: Stream uri.
-                        # Field c: Http method.
-                        # Field d: Post data.
                         move-object v0, p0  # method has over 15 registers and must copy p0 to a lower register.
-                        iget-object v1, v0, $definingClass->a:Landroid/net/Uri;
-                        iget v2, v0, $definingClass->c:I
-                        iget-object v3, v0, $definingClass->d:[B
+                        iget-object v1, v0, $uriField
+                        iget v2, v0, $httpMethodField
+                        iget-object v3, v0, $postBodyField
                         invoke-static { v1, v2, v3 }, $EXTENSION_CLASS_DESCRIPTOR->removeVideoPlaybackPostBody(Landroid/net/Uri;I[B)[B
                         move-result-object v1
-                        iput-object v1, v0, $definingClass->d:[B
+                        iput-object v1, v0, $postBodyField
                     """,
             )
         }

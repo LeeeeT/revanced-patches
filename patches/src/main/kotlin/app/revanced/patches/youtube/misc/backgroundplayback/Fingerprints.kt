@@ -2,6 +2,7 @@ package app.revanced.patches.youtube.misc.backgroundplayback
 
 import app.revanced.patcher.*
 import app.revanced.patcher.patch.BytecodePatchContext
+import app.revanced.patches.shared.misc.mapping.ResourceType
 import app.revanced.util.literal
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -39,20 +40,20 @@ internal val BytecodePatchContext.backgroundPlaybackManagerMethod by gettingFirs
     )
 }
 
-internal val BytecodePatchContext.backgroundPlaybackSettingsMethod by gettingFirstImmutableMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Ljava/lang/String;")
-    parameterTypes()
-    opcodes(
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
-        Opcode.IF_EQZ,
-        Opcode.IF_NEZ,
-        Opcode.GOTO,
+/**
+ * Lambda that chooses the title of the background and offline settings category.
+ */
+internal val BytecodePatchContext.backgroundPlaybackSettingsMethodMatch by composingFirstMethod {
+    returnType("Ljava/lang/Object;")
+    parameterTypes("Ljava/lang/Object;")
+    instructions(
+        // Is background playback available.
+        allOf(Opcode.INVOKE_VIRTUAL(), method { returnType == "Z" && parameterTypes.isEmpty() }),
+        after(Opcode.MOVE_RESULT()),
+        // Is offline available.
+        after(method { toString() == "Ljava/lang/Boolean;->booleanValue()Z" }),
+        afterAtMost(10, ResourceType.STRING("pref_background_and_offline_category")),
     )
-    literal { prefBackgroundAndOfflineCategoryId }
 }
 
 internal val BytecodePatchContext.kidsBackgroundPlaybackPolicyControllerMethod by gettingFirstMethodDeclaratively {
@@ -72,21 +73,6 @@ internal val BytecodePatchContext.kidsBackgroundPlaybackPolicyControllerMethod b
     literal { 5 }
 }
 
-internal val BytecodePatchContext.shortsBackgroundPlaybackFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45415425L())
-}
+internal const val SHORTS_BACKGROUND_PLAYBACK_FEATURE_FLAG = 45415425L
 
-// Fix 'E/InputDispatcher: Window handle pip_input_consumer has no registered input channel'
-internal val BytecodePatchContext.pipInputConsumerFeatureFlagMethodMatch by composingFirstMethod {
-    instructions(
-        // PiP input consumer feature flag.
-        45638483L(),
-    )
-}
-
-internal val BytecodePatchContext.newPlayerTypeEnumFeatureFlagMethod by gettingFirstMethodDeclaratively {
-    instructions(45698813L())
-}
+internal const val NEW_PLAYER_TYPE_ENUM_FEATURE_FLAG = 45698813L

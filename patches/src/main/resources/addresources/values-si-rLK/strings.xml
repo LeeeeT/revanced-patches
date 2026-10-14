@@ -332,9 +332,6 @@ MicroG සඳහා බැටරි ප්‍රශස්තකරණය අක�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">සම්පූර්ණ තිරයේ විශාල සෙවීම් තීරුව සක්‍රීය කරන්න</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">සම්පූර්ණ තිරයේ සෙවීම් තීරුව විශාල ප්‍රමාණයේය</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">සම්පූර්ණ තිරයේ සෙවීම් තීරුව සාමාන්‍ය ප්‍රමාණයේය</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">නාලිකා පිටුවේ Shorts සඟවන්න</string>
@@ -399,7 +396,6 @@ YouTube සැකසීම්වලින් ස්වයංක්‍රීය �
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

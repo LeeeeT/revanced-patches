@@ -704,9 +704,6 @@ Upravte hlasitosť posúvaním vertikálne na pravej strane obrazovky"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Kruhové prekrytie (minimálne)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Vertikálne prekrytie</string>
             <string name="revanced_swipe_overlay_style_entry_7">Vertikálne prekrytie (minimálne)</string>
-            <string name="revanced_swipe_change_video_title">Potiahnite prstom a zmeňte videá</string>
-            <string name="revanced_swipe_change_video_summary_on">Potiahnutie prstom v režime celej obrazovky prepne na predchádzajúce/nasledujúce video</string>
-            <string name="revanced_swipe_change_video_summary_off">Potiahnutie prstom v režime celej obrazovky neprepne na predchádzajúce/nasledujúce video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Zakázať automatické titulky</string>
@@ -956,9 +953,6 @@ Ak chcete zobraziť menu zvukových stôp, zmeňte 'Spoof video streams' na 'And
             <string name="revanced_hide_seekbar_thumbnail_title">Skryť posuvník miniatúr videa</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Posuvník miniatúr videa je skrytý</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Posuvník miniatúr videa je zobrazený</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Povoliť veľkú lištu vyhľadávania na celú obrazovku</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Lišta vyhľadávania na celú obrazovku je veľká</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Lišta vyhľadávania na celú obrazovku je normálna</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Prehrávač Shorts</string>
@@ -1455,11 +1449,6 @@ Ak sa neskôr vypne, odporúča sa vymazať údaje aplikácie, aby sa zabránilo
 Obmedzenie: Používanie tlačidla Späť na paneli s nástrojmi nemusí fungovať"</string>
             <string name="revanced_change_start_page_always_summary_off">Úvodná stránka sa zmení iba pri spustení aplikácie</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Zakázať obnovenie prehrávača Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Prehrávač Shorts videí sa pri spustení aplikácie neobnoví</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Prehrávač Shorts videí sa obnoví pri spustení aplikácie</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Otvoriť Shorts s</string>
             <string name="revanced_shorts_player_type_shorts">Prehrávač Shorts</string>
@@ -1485,35 +1474,12 @@ Obmedzenie: Používanie tlačidla Späť na paneli s nástrojmi nemusí fungova
             <string name="revanced_miniplayer_type_entry_5">Moderné 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderné 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderné 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Zakázať zaoblené rohy</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Rohy sú štvorcové</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Rohy sú zaoblené</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Povoliť dvojite klepnutie a štípanie na zmenu veľkosti</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Akcia dvojitého ťuknutia a zmenšenie prstami je povolená
-
-• Dvojité ťuknutie na zväčšenie veľkosti miniprehrávača
-• Dvojité ťuknutie znova na obnovenie pôvodnej veľkosti"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Funkcia dvojklépanie a štípanie na zmenu veľkosti je zakázaná</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Zakázať presúvanie myšou</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Potiahnutie a pustenie je zakázané</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Pretiahnutie a"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Zakázať horizontálne gesto potiahnutia</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Zakázané je horizontálne posunutie</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Gesto horizontálneho potiahnutia je povolené
-
-Miniprehrávač sa dá potiahnuť mimo obrazovky doľava alebo doprava"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Skryť tlačidlá prekrytia</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Tlačidlá prekrytia sú skryté</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Zobrazujú sa tlačidlá prekrytia</string>
             <string name="revanced_miniplayer_hide_subtext_title">Skryť podtexty</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Podtexty sú skryté</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Zobrazia sa podtexty</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Skryť tlačidlá na preskočenie dopredu a dozadu</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Preskočenie dopredu a dozadu je skryté</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Zobrazia sa skoky dopredu a dozadu</string>
-            <string name="revanced_miniplayer_width_dip_title">Počiatočná veľkosť</string>
-            <string name="revanced_miniplayer_width_dip_summary">Počiatočná veľkosť na obrazovke v pixloch</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Veľkosť pixelov musí byť byť medzi %1$s a %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Nepriehľadnosť prekrytia</string>
             <string name="revanced_miniplayer_opacity_summary">Hodnota nepriehľadnosti medzi 0-100, kde 0 je transparentné</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Nepriehľadnosť prekrytia miniprehrávača musí byť medzi 0-100</string>

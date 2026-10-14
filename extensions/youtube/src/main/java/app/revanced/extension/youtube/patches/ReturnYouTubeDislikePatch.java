@@ -144,8 +144,17 @@ public class ReturnYouTubeDislikePatch {
 
             String conversionContextString = conversionContext.toString();
 
-            if (Settings.RYD_ENABLED.get()) { // FIXME: Remove this.
-                Logger.printDebug(() -> "RYD conversion context: " + conversionContext);
+            if (conversionContextString.contains("|video_subtitle.e")
+                    && conversionContextString.contains("video_metadata.e")) {
+                // Regular video watch page. The likes are shown in the subtitle.
+                ReturnYouTubeDislike videoData = currentVideoData;
+                if (videoData == null) {
+                    return original;
+                }
+                if (!(original instanceof Spanned)) {
+                    original = new SpannableString(original);
+                }
+                return videoData.getVideoSubtitleSpanForRegularVideo((Spanned) original);
             }
 
             if (isRollingNumber && !conversionContextString.contains("video_action_bar.e")) {

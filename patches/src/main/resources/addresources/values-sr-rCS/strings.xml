@@ -704,9 +704,6 @@ Podesite jačinu zvuka prevlačenjem vertikalno na desnoj strani ekrana"</string
             <string name="revanced_swipe_overlay_style_entry_5">Kružni preklop (minimalni)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Vertikalni preklop</string>
             <string name="revanced_swipe_overlay_style_entry_7">Vertikalni preklop (minimalni)</string>
-            <string name="revanced_swipe_change_video_title">Omogući prevlačenje za promenu videa</string>
-            <string name="revanced_swipe_change_video_summary_on">Prevlačenje u režimu celog ekrana će promeniti na sledeći/prethodni video</string>
-            <string name="revanced_swipe_change_video_summary_off">Prevlačenje u režimu celog ekrana neće promeniti na sledeći/prethodni video</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Onemogući automatski titl</string>
@@ -956,9 +953,6 @@ Da biste prikazali meni „Audio snimak”, promenite opciju „Lažirani video 
             <string name="revanced_hide_seekbar_thumbnail_title">Sakrij traku za premotavanje na sličicama videa</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Traka za premotavanje na sličicama videa je skrivena</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Traka za premotavanje na sličicama videa je prikazana</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Omogući veliku traku za premotavanje preko celog ekrana</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Traka za premotavanje preko celog ekrana je velike veličine</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Traka za premotavanje preko celog ekrana je normalne veličine</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts plejer</string>
@@ -1457,11 +1451,6 @@ Ako se kasnije isključi, preporučuje se da izbrišete podatke aplikacije da bi
 Ograničenje: Korišćenje dugmeta „Nazad” na traci sa alatkama možda neće raditi"</string>
             <string name="revanced_change_start_page_always_summary_off">Polazna stranica se menja samo pri pokretanju aplikacije</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Onemogući nastavak reprodukcije Shorts plejera</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts plejer neće nastaviti reprodukciju pri pokretanju aplikacije</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts plejer će nastaviti reprodukciju pri pokretanju aplikacije</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Otvorite Shorts pomoću</string>
             <string name="revanced_shorts_player_type_shorts">Shorts plejera</string>
@@ -1487,37 +1476,12 @@ Ograničenje: Korišćenje dugmeta „Nazad” na traci sa alatkama možda neće
             <string name="revanced_miniplayer_type_entry_5">Moderan 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderan 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderan 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Onemogući zaobljene uglove</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Uglovi su kvadratni</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Uglovi su zaobljeni</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Omogući dvostruki dodir i štipanje za promenu veličine</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Radnja dvostrukog dodira i štipanja za promenu veličine je omogućena
-
-• Dvaput dodirnite da biste povećali veličinu mini-plejera
-• Dvaput dodirnite ponovo da biste vratili originalnu veličinu"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Radnja dvostrukog dodira i štipanja za promenu veličine je onemogućena</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Onemogući prevlačenje i otpuštanje</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Prevlačenje i otpuštanje je onemogućeno</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Povlačenje i otpuštanje je omogućeno
-
-Mini-plejer se može prevući u bilo koji ugao ekrana"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Onemogući pokret horizontalnog prevlačenja</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Pokret horizontalnog prevlačenja je onemogućen</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Pokret horizontalnog prevlačenja je omogućen
-
-Mini-plejer se može prevući sa ekrana ulevo ili udesno"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Sakrij dugmad preklopa</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Dugmad preklopa su skrivena</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Dugmad preklopa su prikazana</string>
             <string name="revanced_miniplayer_hide_subtext_title">Sakrij podtekstove</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Podtekstovi su skriveni</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Podtekstovi su prikazani</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Sakrij dugmad za premotavanje unapred i unazad</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Dugmad za premotavanje unapred i unazad su skrivena</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Dugmad za premotavanje unapred i unazad su prikazana</string>
-            <string name="revanced_miniplayer_width_dip_title">Polazna veličina</string>
-            <string name="revanced_miniplayer_width_dip_summary">Polazna veličina ekrana, u pikselima</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Veličina piksela mora biti između %1$s i %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Neprozirnost preklopa</string>
             <string name="revanced_miniplayer_opacity_summary">Vrednost neprozirnosti između 0 i 100, gde je 0 prozirno</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Neprozirnost preklopa mini-plejera mora biti između 0 i 100</string>

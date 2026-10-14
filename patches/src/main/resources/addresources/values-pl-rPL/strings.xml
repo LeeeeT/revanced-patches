@@ -707,9 +707,6 @@ Dostosuj głośność, przesuwając pionowo po prawej stronie ekranu"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Nakładka okrągła (minimalna)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Nakładka pionowa</string>
             <string name="revanced_swipe_overlay_style_entry_7">Nakładka pionowa (minimalna)</string>
-            <string name="revanced_swipe_change_video_title">Włącz przesuwanie palcem, aby zmienić filmy</string>
-            <string name="revanced_swipe_change_video_summary_on">Przesunięcie palcem w trybie pełnoekranowym spowoduje przejście do następnego lub poprzedniego filmu</string>
-            <string name="revanced_swipe_change_video_summary_off">Przesunięcie palcem w trybie pełnoekranowym nie spowoduje przejścia do następnego lub poprzedniego filmu</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Automatyczne napisy</string>
@@ -959,9 +956,6 @@ Aby wyświetlić menu ścieżek audio, zmień „Fałszowanie strumieni wideo”
             <string name="revanced_hide_seekbar_thumbnail_title">Ukryj pasek przewijania miniatur wideo</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Pasek przewijania miniatur wideo jest ukryty</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Pasek przewijania miniatur wideo jest pokazany</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Włącz duży pasek przewijania na pełnym ekranie</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Pasek przewijania na pełnym ekranie jest duży</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Pasek przewijania na pełnym ekranie ma normalny rozmiar</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Odtwarzacz Shortsów</string>
@@ -1467,11 +1461,6 @@ Jeśli później zostanie wyłączony, zaleca się wyczyszczenie danych aplikacj
 Ograniczenie: użycie przycisku wstecz na pasku narzędzi może nie działać"</string>
             <string name="revanced_change_start_page_always_summary_off">Strona startowa jest zmieniana tylko przy uruchomieniu aplikacji</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Wznawianie odtwarzacza Shortsów</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Odtwarzacz Shortsów nie będzie wznawiany przy starcie aplikacji</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Odtwarzacz Shortsów zostanie wznowiony przy starcie aplikacji</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Otwórz Shorts z</string>
             <string name="revanced_shorts_player_type_shorts">Odtwarzacz Shortsów</string>
@@ -1498,42 +1487,12 @@ Ograniczenie: użycie przycisku wstecz na pasku narzędzi może nie działać"</
             <string name="revanced_miniplayer_type_entry_5">Nowoczesny 2</string>
             <string name="revanced_miniplayer_type_entry_6">Nowoczesny 3</string>
             <string name="revanced_miniplayer_type_entry_7">Nowoczesny 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Wyłącz zaokrąglone rogi</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Narożniki są kwadratowe</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Narożniki są zaokrąglone</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Podwójne stuknięcie i uszczypnięcie, aby zmienić rozmiar</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Akcja dwukrotnego dotknięcia i gest szczypania w celu zmiany rozmiaru są włączone
-
-• Dwukrotnie naciśnij, aby powiększyć rozmiar odtwarzacza
-• Ponownie dotknij dwukrotnie, aby przywrócić oryginalny rozmiar"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Wyłączone</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Wyłącz przeciąganie i upuszczanie</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Gest przeciągnięcia i upuszczenia wyłączony</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Przeciąganie i upuszczanie jest włączone
-
-Odtwarzacz można przeciągnąć do dowolnego rogu ekranu"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Wyłącz gest przeciągania w poziomie</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Gest przeciągania w poziomie jest wyłączony</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Włączony gest przeciągania w poziomie
-
-Odtwarzacz można przeciągnąć poza ekran w lewo lub w prawo"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Ukryj przyciski nakładki</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Przyciski nakładki są ukryte</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Przyciski nakładki są widoczne</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Ukryj przyciski rozwijania i zamykania</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Przyciski są ukryte
-
-Przesuń, aby rozwinąć lub zamknąć"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Przyciski rozwijania i zamykania są widoczne</string>
             <string name="revanced_miniplayer_hide_subtext_title">Podteksty</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Podteksty są ukryte</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Podteksty są widoczne</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Przyciski przewijania do przodu i do tyłu</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Przyciski przewijania do przodu i do tyłu są ukryte</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Przyciski przewijania do przodu i do tyłu są widoczne</string>
-            <string name="revanced_miniplayer_width_dip_title">Rozmiar początkowy</string>
-            <string name="revanced_miniplayer_width_dip_summary">Początkowy rozmiar ekranu, w pikselach</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Rozmiar piksela musi być pomiędzy %1$s i %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Przezroczystość nakładki</string>
             <string name="revanced_miniplayer_opacity_summary">Wartość przezroczystości, gdzie 0 to pełna przezroczystość</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Przezroczystość nakładki musi być od 0 do 100</string>

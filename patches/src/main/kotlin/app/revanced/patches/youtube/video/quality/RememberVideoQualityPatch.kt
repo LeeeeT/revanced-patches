@@ -10,7 +10,6 @@ import app.revanced.patches.shared.misc.settings.preference.ListPreference
 import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.videoQualityChangedMethodMatch
 import app.revanced.patches.youtube.video.information.onCreateHook
@@ -27,7 +26,6 @@ val rememberVideoQualityPatch = bytecodePatch {
         playerTypeHookPatch,
         settingsPatch,
         addResourcesPatch,
-        versionCheckPatch,
     )
 
     apply {

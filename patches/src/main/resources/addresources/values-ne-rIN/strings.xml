@@ -335,9 +335,6 @@ MicroG को लागि ब्याट्री अप्टिमाइज�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">पूर्ण स्क्रिन ठूलो सीकबार सक्षम गर्नुहोस्</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">पूर्ण स्क्रिन सीकबार ठूलो आकारको छ</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">पूर्ण स्क्रिन सीकबार सामान्य आकारको छ</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">च्यानल पृष्ठमा Shorts लुकाउनुहोस्</string>
@@ -402,7 +399,6 @@ MicroG को लागि ब्याट्री अप्टिमाइज�
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

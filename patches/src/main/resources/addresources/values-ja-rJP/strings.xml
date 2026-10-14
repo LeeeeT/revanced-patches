@@ -711,9 +711,6 @@ YouTube Premium ユーザーの場合、この設定は必要ない可能性が�
             <string name="revanced_swipe_overlay_style_entry_5">円形（シンプル）</string>
             <string name="revanced_swipe_overlay_style_entry_6">縦型</string>
             <string name="revanced_swipe_overlay_style_entry_7">縦型（シンプル）</string>
-            <string name="revanced_swipe_change_video_title">スワイプによる動画の切り替えを有効化</string>
-            <string name="revanced_swipe_change_video_summary_on">全画面表示中に左 / 右にスワイプすると、前 / 次の動画に切り替わります</string>
-            <string name="revanced_swipe_change_video_summary_off">全画面表示中に左 / 右にスワイプしても、前 / 次の動画に切り替わりません</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">自動字幕表示を無効化</string>
@@ -963,9 +960,6 @@ YouTube Premium ユーザーの場合、この設定は必要ない可能性が�
             <string name="revanced_hide_seekbar_thumbnail_title">サムネイルのシークバーを非表示</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">フィードや再生履歴などの動画のサムネイルのシークバーは表示されません</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">フィードや再生履歴などの動画のサムネイルのシークバーは表示されます</string>
-            <string name="revanced_fullscreen_large_seekbar_title">全画面表示のシークバーを拡大</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">全画面表示モードのシークバーを大きいサイズで表示します</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">全画面表示モードのシークバーを通常のサイズで表示します</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">ショート プレーヤー</string>
@@ -1470,11 +1464,6 @@ Automotive レイアウト
 制限事項: ツールバーの [戻る] ボタンが機能しない可能性があります"</string>
             <string name="revanced_change_start_page_always_summary_off">スタート画面の変更はアプリの起動時にのみ適用されます</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">ショート プレーヤーの再開を無効化</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">ショート プレーヤーはアプリ起動時に再開されません</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">ショート プレーヤーはアプリ起動時に再開されます</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">ショートを開くプレーヤー</string>
             <string name="revanced_shorts_player_type_shorts">ショート プレーヤー</string>
@@ -1501,42 +1490,12 @@ Automotive レイアウト
             <string name="revanced_miniplayer_type_entry_5">新タイプ 2</string>
             <string name="revanced_miniplayer_type_entry_6">新タイプ 3</string>
             <string name="revanced_miniplayer_type_entry_7">新タイプ 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">ミニプレーヤーを直角化</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">ミニプレーヤーの角は直角です</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">ミニプレーヤーの角は丸角です</string>
-            <string name="revanced_miniplayer_double_tap_action_title">ダブルタップとピンチによるサイズ変更を有効化</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"ダブルタップとピンチによるサイズ変更は有効です
-
-• ダブルタップするとミニプレーヤーのサイズが大きくなる
-• もう一度ダブルタップすると元のサイズに戻る"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">ダブルタップとピンチによるサイズ変更は無効です</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">ドラッグ＆ドロップを無効化</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">ドラッグ＆ドロップは無効です</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"ドラッグ＆ドロップは有効です
-
-ミニプレーヤーをドラッグして画面の四隅に移動できます"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">横方向ドラッグ ジェスチャーを無効化</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">横方向ドラッグ ジェスチャーは無効です</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"横方向ドラッグ ジェスチャーは有効です
-
-ミニプレーヤーを画面の左端または右端までドラッグして最小化できます"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">オーバーレイ ボタンを非表示</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">オーバーレイ ボタンは表示されません</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">オーバーレイ ボタンは表示されます</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">展開ボタンと閉じるボタンを非表示</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"ボタンは表示されません
-
-展開するまたは閉じるには、スワイプしてください"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">展開ボタンと閉じるボタンは表示されます</string>
             <string name="revanced_miniplayer_hide_subtext_title">サブテキストを非表示</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">サブテキストは表示されません</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">サブテキストは表示されます</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">早送りボタンと巻き戻しボタンを非表示</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">早送りボタンと巻き戻しボタンは表示されません</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">早送りボタンと巻き戻しボタンは表示されます</string>
-            <string name="revanced_miniplayer_width_dip_title">デフォルトのサイズ</string>
-            <string name="revanced_miniplayer_width_dip_summary">画面に表示される際の大きさ (ピクセル)</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">ピクセルサイズの範囲は %1$s-%2$s です</string>
             <string name="revanced_miniplayer_opacity_title">オーバーレイの透明度</string>
             <string name="revanced_miniplayer_opacity_summary">透明度の範囲は 0-100 で、0 が透明です</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">ミニプレーヤー: 透明度の範囲は 0-100 です</string>

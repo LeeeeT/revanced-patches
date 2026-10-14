@@ -705,9 +705,6 @@ MicroG-এর জন্য ব্যাটারি অপ্টিমাইজ�
             <string name="revanced_swipe_overlay_style_entry_5">বৃত্তাকার ওভারলে (ন্যূনতম)</string>
             <string name="revanced_swipe_overlay_style_entry_6">উল্লম্ব ওভারলে</string>
             <string name="revanced_swipe_overlay_style_entry_7">উল্লম্ব ওভারলে (ন্যূনতম)</string>
-            <string name="revanced_swipe_change_video_title">ভিডিও পরিবর্তন করতে সোয়াইপ করে সক্ষম করুন</string>
-            <string name="revanced_swipe_change_video_summary_on">ফুলস্ক্রিন মোডে সোয়াইপ করলে পরবর্তী/পূর্ববর্তী ভিডিওতে পরিবর্তন হবে</string>
-            <string name="revanced_swipe_change_video_summary_off">ফুলস্ক্রিন মোডে সোয়াইপ করলে পরবর্তী /পূর্ববর্তী ভিডিওতে পরিবর্তন হবে না</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">স্বয়ংক্রিয় ক্যাপশন বন্ধ করুন</string>
@@ -957,9 +954,6 @@ MicroG-এর জন্য ব্যাটারি অপ্টিমাইজ�
             <string name="revanced_hide_seekbar_thumbnail_title">ভিডিও থাম্বনেইল সিকবার লুকান</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">ভিডিও থাম্বনেইল সিকবার লুকানো আছে</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">ভিডিও থাম্বনেইল সিকবার দেখানো হয়েছে</string>
-            <string name="revanced_fullscreen_large_seekbar_title">পূর্ণস্ক্রিন বড় সিকবার সক্রিয় করুন</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">পূর্ণস্ক্রিন সিকবার বড় আকারের</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">পূর্ণস্ক্রিন সিকবার স্বাভাবিক আকারের</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts প্লেয়ার</string>
@@ -1460,11 +1454,6 @@ YouTube সেটিংসে অটো প্লে পরিবর্তন �
 সীমাবদ্ধতা: টুলবারে পিছনের বোতাম ব্যবহার করলে কাজ নাও করতে পারে"</string>
             <string name="revanced_change_start_page_always_summary_off">অ্যাপ শুরু করার সময় শুধুমাত্র শুরুর পৃষ্ঠা পরিবর্তন করা হয়</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Shorts প্লেয়ার আবার চালানো নিষ্ক্রিয় করুন</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">অ্যাপের শুরুতে Shorts প্লেয়ার আবার চলবে না</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">অ্যাপের শুরুতে Shorts প্লেয়ার আবার চলবে</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shorts সঙ্গে খুলুন</string>
             <string name="revanced_shorts_player_type_shorts">Shorts প্লেয়ার</string>
@@ -1491,37 +1480,12 @@ YouTube সেটিংসে অটো প্লে পরিবর্তন �
             <string name="revanced_miniplayer_type_entry_5">মর্ডান ২</string>
             <string name="revanced_miniplayer_type_entry_6">মর্ডান ৩</string>
             <string name="revanced_miniplayer_type_entry_7">আধুনিক ৪</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">গোলাকার কোণা নিষ্ক্রিয় করুন</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">কোণগুলি বর্গাকার</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">কোণগুলি গোলাকার</string>
-            <string name="revanced_miniplayer_double_tap_action_title">ডাবল-ট্যাপ এবং পিঞ্চ টু রিসাইজ সক্ষম করুন</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"ডাবল-ট্যাপ করার ক্রিয়া এবং আকার পরিবর্তন করার জন্য চিমটি দেওয়া সক্রিয়
-
-• miniplayer আকার বৃদ্ধি করতে ডাবল ট্যাপ করুন
-• মূল আকার পুনরুদ্ধার করতে আবার ডাবল ট্যাপ করুন"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">ডাবল-ট্যাপ অ্যাকশন এবং পিঞ্চ টু রিসাইজ অক্ষম</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">টেনে-ছেড়ে দেওয়া নিষ্ক্রিয় করুন</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">ড্র্যাগ এবং ড্রপ অক্ষম</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"ড্র্যাগ এবং ড্রপ সক্রিয়
-
-Miniplayer স্ক্রিনের যেকোনো কোণে টানা যাবে"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">অনুভূমিক টেনে নেওয়ার ভঙ্গি নিষ্ক্রিয় করুন</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">অনুভূমিক ড্র্যাগ অঙ্গভঙ্গি অক্ষম</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"ক্ষैতিকভাবে টানার ভঙ্গি সক্রিয়
-
-Miniplayer স্ক্রিন থেকে বামে বা ডানে টানা যাবে"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">ওভারলে বোতাম লুকান</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">ওভারলে বোতাম লুকানো আছে</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">ওভারলে বোতাম দেখানো হয়েছে</string>
             <string name="revanced_miniplayer_hide_subtext_title">উপপাঠ লুকান</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">উপপাঠ লুকিয়ে রয়েছে</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">উপপাঠ প্রদর্শিত হয়েছে</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">সামনে বা পেছনে এড়িয়ে যাওয়ার বোতাম লুকান</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">সামনে বা পেছনে এড়িয়ে যাওয়ার বোতাম লুকিয়ে রয়েছে</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">সামনে বা পেছনে এড়িয়ে যাওয়ার বোতাম প্রদর্শিত হয়েছে</string>
-            <string name="revanced_miniplayer_width_dip_title">প্রাথমিক আকার</string>
-            <string name="revanced_miniplayer_width_dip_summary">প্রাথমিক পর্দার আকার, পিক্সেলে</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">পিক্সেল আকার %1$s এবং %2$s এর মধ্যে হতে হবে</string>
             <string name="revanced_miniplayer_opacity_title">ওভারলে অস্বচ্ছতা</string>
             <string name="revanced_miniplayer_opacity_summary">অসচ্ছতা মান ০-১০০ এর মধ্যে, যেখানে ০ হল সম্পূর্ণ স্বচ্ছ</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">মিনিপ্লেয়ার ওভারলে অস্বচ্ছতা অবশ্যই ০-১০০ এর মধ্যে হতে হবে</string>

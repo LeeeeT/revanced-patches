@@ -332,9 +332,6 @@ MicroG үшін батареяны оңтайландыруды өшіру ба�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">Толық экранды үлкен іздеу жолағын қосу</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Толық экранды іздеу жолағы үлкен өлшемді</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Толық экранды іздеу жолағы қалыпты өлшемді</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">Арна бетіндегі Shorts жасыру</string>
@@ -399,7 +396,6 @@ MicroG үшін батареяны оңтайландыруды өшіру ба�
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

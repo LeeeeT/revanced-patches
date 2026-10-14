@@ -35,6 +35,8 @@ internal fun enableDebuggingPatch(
     hookStringFeatureFlag: BytecodePatchBuilder.() -> Boolean,
     hookLongFeatureFlag: BytecodePatchBuilder.() -> Boolean,
     hookDoubleFeatureFlag: BytecodePatchBuilder.() -> Boolean,
+    // Used instead of the default feature flag hooks, if the app has a different flag implementation.
+    hookFeatureFlags: (BytecodePatchContext.() -> Unit)? = null,
     preferenceScreen: BasePreferenceScreen.Screen,
     additionalDebugPreferences: List<BasePreference> = emptyList()
 ) = bytecodePatch(
@@ -105,6 +107,11 @@ internal fun enableDebuggingPatch(
                 preferences = preferences,
             )
         )
+
+        if (hookFeatureFlags != null) {
+            hookFeatureFlags()
+            return@apply
+        }
 
         val experimentalBooleanFeatureFlagMethodMatch =
             experimentalFeatureFlagUtilMethod.immutableClassDef.experimentalBooleanFeatureFlagMethodMatch

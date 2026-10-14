@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.resourcePatch
 import app.revanced.patches.all.misc.packagename.setOrGetFallbackPackageName
 import app.revanced.patches.all.misc.resources.addResources
 import app.revanced.patches.all.misc.resources.addResourcesPatch
-import app.revanced.patches.shared.boldIconsFeatureFlagMethodMatch
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.shared.misc.settings.overrideThemeColors
 import app.revanced.patches.shared.misc.settings.preference.*
@@ -19,11 +18,11 @@ import app.revanced.patches.shared.misc.settings.preference.PreferenceScreenPref
 import app.revanced.patches.shared.misc.settings.settingsPatch
 import app.revanced.patches.youtube.misc.check.checkEnvironmentPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
+import app.revanced.patches.youtube.misc.featureflag.booleanFeatureFlagHookPatch
+import app.revanced.patches.youtube.misc.featureflag.overrideBooleanFeatureFlag
 import app.revanced.patches.youtube.misc.fix.contentprovider.fixContentProviderPatch
+import app.revanced.patches.youtube.misc.fix.onboarding.fixKidsOnboardingPatch
 import app.revanced.patches.youtube.misc.fix.playbackspeed.fixPlaybackSpeedWhilePlayingPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_31_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.util.*
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -164,10 +163,11 @@ val settingsPatch = bytecodePatch(
     dependsOn(
         sharedExtensionPatch,
         settingsResourcePatch,
+        booleanFeatureFlagHookPatch,
         addResourcesPatch,
-        versionCheckPatch,
         fixPlaybackSpeedWhilePlayingPatch,
         fixContentProviderPatch,
+        fixKidsOnboardingPatch,
         // Currently there is no easy way to make a mandatory patch,
         // so for now this is a dependent of this patch.
         checkEnvironmentPatch,
@@ -187,30 +187,24 @@ val settingsPatch = bytecodePatch(
             selectable = true,
         )
 
-        if (is_19_34_or_greater) {
-            PreferenceScreen.GENERAL.addPreferences(
-                SwitchPreference("revanced_restore_old_settings_menus"),
-            )
-        }
+        PreferenceScreen.GENERAL.addPreferences(
+            SwitchPreference("revanced_restore_old_settings_menus"),
+        )
 
         PreferenceScreen.GENERAL.addPreferences(
             SwitchPreference("revanced_settings_search_history"),
         )
 
         PreferenceScreen.GENERAL.addPreferences(
-            if (is_20_31_or_greater) {
-                PreferenceCategory(
-                    titleKey = null,
-                    sorting = Sorting.UNSORTED,
-                    tag = "app.revanced.extension.shared.settings.preference.NoTitlePreferenceCategory",
-                    preferences = setOf(
-                        SwitchPreference("revanced_show_menu_icons"),
-                        SwitchPreference("revanced_settings_disable_bold_icons"),
-                    ),
-                )
-            } else {
-                SwitchPreference("revanced_show_menu_icons")
-            },
+            PreferenceCategory(
+                titleKey = null,
+                sorting = Sorting.UNSORTED,
+                tag = "app.revanced.extension.shared.settings.preference.NoTitlePreferenceCategory",
+                preferences = setOf(
+                    SwitchPreference("revanced_show_menu_icons"),
+                    SwitchPreference("revanced_settings_disable_bold_icons"),
+                ),
+            ),
         )
 
         PreferenceScreen.MISC.addPreferences(
@@ -241,21 +235,15 @@ val settingsPatch = bytecodePatch(
         }
 
         // Add setting to force Cairo settings fragment on/off.
-        cairoFragmentConfigMethodMatch.method.insertLiteralOverride(
-            cairoFragmentConfigMethodMatch[0],
+        overrideBooleanFeatureFlag(
+            CAIRO_SETTINGS_FRAGMENT_FEATURE_FLAG,
             "$YOUTUBE_ACTIVITY_HOOK_CLASS_DESCRIPTOR->useCairoSettingsFragment(Z)Z",
         )
 
-        // Bold icon resources are found starting in 20.23, but many YT icons are not bold.
-        // 20.31 is the first version that seems to have all the bold icons.
-        if (is_20_31_or_greater) {
-            boldIconsFeatureFlagMethodMatch.let {
-                it.method.insertLiteralOverride(
-                    it[0],
-                    "$YOUTUBE_ACTIVITY_HOOK_CLASS_DESCRIPTOR->useBoldIcons(Z)Z",
-                )
-            }
-        }
+        overrideBooleanFeatureFlag(
+            BOLD_ICONS_FEATURE_FLAG,
+            "$YOUTUBE_ACTIVITY_HOOK_CLASS_DESCRIPTOR->useBoldIcons(Z)Z",
+        )
 
         modifyActivityForSettingsInjection(
             licenseActivityOnCreateMethod.classDef,

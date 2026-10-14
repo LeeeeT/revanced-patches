@@ -8,9 +8,14 @@ import app.revanced.patcher.patch.bytecodePatch
 import app.revanced.patches.shared.misc.mapping.ResourceType
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
+import app.revanced.util.forEachInstructionAsSequence
+import app.revanced.util.getReference
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 private const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/revanced/extension/youtube/patches/PlayerTypeHookPatch;"
 
@@ -20,14 +25,31 @@ val playerTypeHookPatch = bytecodePatch(
     dependsOn(sharedExtensionPatch, resourceMappingPatch)
 
     apply {
-        firstMethodDeclaratively {
-            definingClass("/YouTubePlayerOverlaysLayout;")
-            accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-            returnType("V")
-            parameterTypes(playerTypeEnumMethod.immutableClassDef.type)
-        }.addInstruction(
-            0,
-            "invoke-static { p1 }, $EXTENSION_CLASS_DESCRIPTOR->setPlayerType(Ljava/lang/Enum;)V",
+        // The player type is computed reactively and stored in a volatile field of the player type
+        // provider. Hook every write of that field to get notified of all player type changes.
+        val playerType = playerTypeEnumMethod.immutableClassDef.type
+        val playerTypeHolderType = classDefs.single { classDef ->
+            classDef.fields.any { field ->
+                field.type == playerType && AccessFlags.VOLATILE.isSet(field.accessFlags)
+            }
+        }.type
+
+        forEachInstructionAsSequence(
+            match = { _, method, instruction, index ->
+                if (method.name == "<init>" || instruction.opcode != Opcode.IPUT_OBJECT) return@forEachInstructionAsSequence null
+                val field = instruction.getReference<FieldReference>() ?: return@forEachInstructionAsSequence null
+                if (field.definingClass != playerTypeHolderType || field.type != playerType) return@forEachInstructionAsSequence null
+
+                index
+            },
+            transform = { method, index ->
+                val register = method.getInstruction<TwoRegisterInstruction>(index).registerA
+
+                method.addInstruction(
+                    index + 1,
+                    "invoke-static { v$register }, $EXTENSION_CLASS_DESCRIPTOR->setPlayerType(Ljava/lang/Enum;)V",
+                )
+            },
         )
 
         reelWatchPagerMethodMatch.method.apply {

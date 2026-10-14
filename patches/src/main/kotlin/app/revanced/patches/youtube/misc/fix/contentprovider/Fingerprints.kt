@@ -9,8 +9,7 @@ internal val BytecodePatchContext.unstableContentProviderMethodMatch by composin
     returnType("V")
     parameterTypes("Landroid/content/ContentResolver;", "[Ljava/lang/String;")
     instructions(
-        // Early targets use HashMap and later targets use ConcurrentMap.
-        method { name == "putAll" && parameterTypes.count() == 1 && parameterTypes.first() == "Ljava/util/Map;" },
         "ContentProvider query returned null cursor"(),
+        method { name == "putAll" && parameterTypes.count() == 1 && parameterTypes.first() == "Ljava/util/Map;" },
     )
 }

@@ -12,10 +12,6 @@ import app.revanced.patches.shared.misc.settings.preference.SwitchPreference
 import app.revanced.patches.shared.misc.settings.preference.TextPreference
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_43_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_22_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.misc.settings.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.settingsPatch
 import app.revanced.patches.youtube.shared.mainActivityConstructorMethod
@@ -30,7 +26,6 @@ private val swipeControlsResourcePatch = resourcePatch {
     dependsOn(
         settingsPatch,
         addResourcesPatch,
-        versionCheckPatch,
     )
 
     apply {
@@ -39,11 +34,6 @@ private val swipeControlsResourcePatch = resourcePatch {
         // If fullscreen swipe is enabled in newer versions the app can crash.
         // It likely is caused by conflicting experimental flags that are never enabled together.
         // Flag was completely removed in 20.34+
-        if (is_19_43_or_greater && !is_20_22_or_greater) {
-            PreferenceScreen.SWIPE_CONTROLS.addPreferences(
-                SwitchPreference("revanced_swipe_change_video"),
-            )
-        }
 
         PreferenceScreen.SWIPE_CONTROLS.addPreferences(
             SwitchPreference("revanced_swipe_brightness"),
@@ -104,12 +94,7 @@ val swipeControlsPatch = bytecodePatch(
 
     compatibleWith(
         "com.google.android.youtube"(
-            "20.14.43",
-            "20.21.37",
-            "20.26.46",
-            "20.31.42",
-            "20.37.48",
-            "20.40.45"
+            "21.41.525-SECONDARY",
         ),
     )
 
@@ -139,15 +124,6 @@ val swipeControlsPatch = bytecodePatch(
         }
 
         // region patch to enable/disable swipe to change video.
-
-        if (is_19_43_or_greater && !is_20_34_or_greater) {
-            swipeChangeVideoMethodMatch.let {
-                it.method.insertLiteralOverride(
-                    it[-1],
-                    "$EXTENSION_CLASS_DESCRIPTOR->allowSwipeChangeVideo(Z)Z",
-                )
-            }
-        }
 
         // endregion
     }

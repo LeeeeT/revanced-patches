@@ -15,10 +15,18 @@ internal fun ClassDef.getVideoIdMethodMatch() = firstMethodComposite {
     returnType("V")
     parameterTypes("L")
     instructions(
-        allOf(Opcode.INVOKE_INTERFACE(), method { returnType == "Ljava/lang/String;" }),
+        allOf(Opcode.INVOKE_INTERFACE(), method { returnType == "Ljava/lang/String;" && parameterTypes.isEmpty() }),
         after(Opcode.MOVE_RESULT_OBJECT()), // videoId
-        afterAtMost(6, method { toString() == "Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;" }),
-        after(Opcode.RETURN_VOID())
+        after(Opcode.INVOKE_INTERFACE()),
+        after(Opcode.MOVE_RESULT_OBJECT()),
+        // Method that saves the video ID to a map.
+        after(
+            allOf(
+                Opcode.INVOKE_VIRTUAL(),
+                method { returnType == "V" && parameterTypes.firstOrNull() == "Ljava/lang/String;" },
+            ),
+        ),
+        after(Opcode.RETURN_VOID()),
     )
 }
 
@@ -35,10 +43,7 @@ internal val BytecodePatchContext.videoIdBackgroundPlayMethodMatch by composingF
         Opcode.MONITOR_EXIT(),
         Opcode.RETURN_VOID(),
     )
-    custom {
-        immutableClassDef.methods.count() == 17 || // 20.39 and lower.
-                immutableClassDef.methods.count() == 16 // 20.40+
-    }
+    custom { immutableClassDef.methods.count() == 17 }
 }
 
 internal val BytecodePatchContext.videoIdParentMethodMatch by composingFirstMethod {

@@ -11,11 +11,6 @@ import app.revanced.patches.shared.layout.theme.lithoColorHookPatch
 import app.revanced.patches.shared.layout.theme.lithoColorOverrideHook
 import app.revanced.patches.shared.misc.mapping.resourceMappingPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.misc.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_19_49_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_20_34_or_greater
-import app.revanced.patches.youtube.misc.playservice.is_21_02_or_greater
-import app.revanced.patches.youtube.misc.playservice.versionCheckPatch
 import app.revanced.patches.youtube.shared.mainActivityOnCreateMethod
 import app.revanced.util.findInstructionIndicesReversedOrThrow
 import app.revanced.util.getReference
@@ -38,7 +33,6 @@ val seekbarColorPatch = bytecodePatch(
         sharedExtensionPatch,
         lithoColorHookPatch,
         resourceMappingPatch,
-        versionCheckPatch,
     )
 
     apply {
@@ -80,9 +74,6 @@ val seekbarColorPatch = bytecodePatch(
         // 19.25+ changes
 
         var handleBarColorMethodMatches = mutableListOf(playerSeekbarHandle1ColorMethodMatch)
-        if (!is_20_34_or_greater) {
-            handleBarColorMethodMatches += playerSeekbarHandle2ColorMethodMatch
-        }
         handleBarColorMethodMatches.forEach {
             it.method.addColorChangeInstructions(it[-1])
         }
@@ -90,20 +81,18 @@ val seekbarColorPatch = bytecodePatch(
         // If hiding feed seekbar thumbnails, then turn off the cairo gradient
         // of the watch history menu items as they use the same gradient as the
         // player and there is no easy way to distinguish which to use a transparent color.
-        if (is_19_34_or_greater) {
-            watchHistoryMenuUseProgressDrawableMethodMatch.let {
-                it.method.apply {
-                    val index = it[1]
-                    val register = getInstruction<OneRegisterInstruction>(index).registerA
+        watchHistoryMenuUseProgressDrawableMethodMatch.let {
+            it.method.apply {
+                val index = it[1]
+                val register = getInstruction<OneRegisterInstruction>(index).registerA
 
-                    addInstructions(
-                        index + 1,
-                        """
-                            invoke-static { v$register }, $EXTENSION_CLASS_DESCRIPTOR->showWatchHistoryProgressDrawable(Z)Z
-                            move-result v$register            
-                        """,
-                    )
-                }
+                addInstructions(
+                    index + 1,
+                    """
+                        invoke-static { v$register }, $EXTENSION_CLASS_DESCRIPTOR->showWatchHistoryProgressDrawable(Z)Z
+                        move-result v$register            
+                    """,
+                )
             }
         }
 
@@ -117,13 +106,8 @@ val seekbarColorPatch = bytecodePatch(
 
         val playerMatch: CompositeMatch
         val checkGradientCoordinates: Boolean
-        if (is_19_49_or_greater) {
-            playerMatch = playerLinearGradientMethodMatch
-            checkGradientCoordinates = true
-        } else {
-            playerMatch = playerLinearGradientLegacyMethodMatch
-            checkGradientCoordinates = false
-        }
+        playerMatch = playerLinearGradientMethodMatch
+        checkGradientCoordinates = true
 
         playerMatch.let {
             it.method.apply {
@@ -148,10 +132,6 @@ val seekbarColorPatch = bytecodePatch(
         }
 
         // region apply seekbar custom color to splash screen animation.
-
-        if (!is_19_34_or_greater) {
-            return@apply // 19.25 does not have a cairo launch animation.
-        }
 
         // Hook the splash animation to set the seekbar color.
         mainActivityOnCreateMethod.apply {
@@ -211,7 +191,7 @@ val seekbarColorPatch = bytecodePatch(
 
             val lottieAnimationViewSetAnimationStreamMethod = firstImmutableMethodDeclaratively {
                 definingClass(lottieAnimationViewSetAnimationIntMethod.immutableClassDef.type)
-                accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
+                accessFlags(AccessFlags.PRIVATE, AccessFlags.FINAL)
                 parameterTypes(factoryStreamReturnType.toString())
                 returnType("V")
             }
@@ -231,15 +211,13 @@ val seekbarColorPatch = bytecodePatch(
                     null,
                     MutableMethodImplementation(4),
                 ).toMutable().apply {
-                    // 21.02+ method is private. Cannot easily change the access flags to public
+                    // The method is private. Cannot easily change the access flags to public
                     // because that breaks unrelated opcode that uses invoke-direct and not invoke-virtual.
-                    val methodOpcode = if (is_21_02_or_greater) "invoke-direct" else "invoke-virtual"
-
                     addInstructions(
                         """
                         invoke-static { p1, p2 }, $factoryStreamClass->$factoryStreamName(Ljava/io/InputStream;Ljava/lang/String;)$factoryStreamReturnType
                         move-result-object v0
-                        $methodOpcode { p0, v0}, Lcom/airbnb/lottie/LottieAnimationView;->$setAnimationStreamMethodName($factoryStreamReturnType)V
+                        invoke-direct { p0, v0 }, Lcom/airbnb/lottie/LottieAnimationView;->$setAnimationStreamMethodName($factoryStreamReturnType)V
                         return-void
                     """
                     )

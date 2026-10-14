@@ -330,9 +330,6 @@ MicroG အတွက် ဘက်ထရီ အကောင်းဆုံးပ�
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">မျက်နှာပြင်အပြည့် အရွယ်အစားကြီး seekbar ကို ဖွင့်ပါ</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">မျက်နှာပြင်အပြည့် seekbar သည် အရွယ်အစားကြီးဖြစ်သည်</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">မျက်နှာပြင်အပြည့် seekbar သည် ပုံမှန်အရွယ်အစားဖြစ်သည်</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">ချန်နယ်စာမျက်နှာရှိ Shorts ကို ဖျောက်ပါ</string>
@@ -397,7 +394,6 @@ MicroG အတွက် ဘက်ထရီ အကောင်းဆုံးပ�
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

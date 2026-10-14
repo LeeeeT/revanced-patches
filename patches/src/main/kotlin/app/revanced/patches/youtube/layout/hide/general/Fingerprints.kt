@@ -8,7 +8,7 @@ import app.revanced.util.literal
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
-
+import com.android.tools.smali.dexlib2.iface.Method
 
 internal val BytecodePatchContext.hideShowMoreButtonSetViewMethodMatch by composingFirstMethod {
     returnType("V")
@@ -52,7 +52,6 @@ internal fun ClassDef.getHideShowMoreButtonMethod() = firstMethodDeclaratively {
     )
 }
 
-
 /**
  * 20.21+
  */
@@ -67,21 +66,6 @@ internal val BytecodePatchContext.hideSubscribedChannelsBarConstructorMethodMatc
         )
     )
     custom { immutableClassDef.anyField { type == "Landroid/support/v7/widget/RecyclerView;" } }
-}
-
-/**
- * ~ 20.21
- */
-internal val BytecodePatchContext.hideSubscribedChannelsBarConstructorLegacyMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    instructions(
-        ResourceType.ID("parent_container"),
-        afterAtMost(3, Opcode.MOVE_RESULT_OBJECT()),
-        afterAtMost(
-            5,
-            allOf(Opcode.NEW_INSTANCE(), type($$"Landroid/widget/LinearLayout$LayoutParams;"))
-        )
-    )
 }
 
 internal val ClassDef.hideSubscribedChannelsBarLandscapeMethodMatch by ClassDefComposing.composingFirstMethod {
@@ -186,16 +170,18 @@ internal val BytecodePatchContext.searchResultsChipBarMethodMatch by composingFi
     literal { barContainerHeightId }
 }
 
-internal val BytecodePatchContext.showFloatingMicrophoneButtonMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("V")
-    parameterTypes()
-    instructions(
-        ResourceType.ID("fab"),
-        afterAtMost(10, allOf(Opcode.CHECK_CAST(), type { endsWith("/FloatingActionButton;") })),
-        afterAtMost(10, Opcode.IGET_BOOLEAN()),
-    )
-}
+/**
+ * Floating microphone button setup, that is skipped if already initialized.
+ * There are multiple implementations.
+ */
+internal fun Method.isShowFloatingMicrophoneButtonMethod() =
+    returnType == "V" &&
+        parameterTypes.map { it.toString() } == listOf(
+            "Landroid/view/View;",
+            "Lcom/google/android/libraries/quantum/fab/FloatingActionButton;",
+            "Landroid/view/ViewStub;",
+        ) &&
+        implementation?.instructions?.take(2)?.map { it.opcode } == listOf(Opcode.IGET_BOOLEAN, Opcode.IF_EQZ)
 
 internal val BytecodePatchContext.hideViewCountMethodMatch by composingFirstMethod(
     "Has attachmentRuns but drawableRequester is missing.",
@@ -276,7 +262,6 @@ internal val BytecodePatchContext.latestVideosBarMethodMatch by composingFirstMe
     )
 }
 
-
 internal val BytecodePatchContext.bottomSheetMenuItemBuilderMethodMatch by composingFirstMethod {
     returnType("L")
     parameterTypes("L")
@@ -314,7 +299,8 @@ internal val BytecodePatchContext.channelTabBuilderMethod by gettingFirstMethodD
         "Ljava/lang/CharSequence;",
         "Ljava/lang/CharSequence;",
         "Z",
-        "L"
+        "L",
+        "Z",
     )
 }
 

@@ -691,9 +691,6 @@ Reglați volumul glisând vertical pe partea dreaptă a ecranului"</string>
             <string name="revanced_swipe_overlay_style_entry_5">Suprapunere circulară (minimală)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Suprapunere verticală</string>
             <string name="revanced_swipe_overlay_style_entry_7">Suprapunere verticală (minimală)</string>
-            <string name="revanced_swipe_change_video_title">Activați glisarea pentru a schimba videoclipurile</string>
-            <string name="revanced_swipe_change_video_summary_on">Glisarea în modul pe ecran complet va trece la următorul/anteriorul videoclip</string>
-            <string name="revanced_swipe_change_video_summary_off">Glisarea în modul pe ecran complet nu va trece la următorul/anteriorul videoclip</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Dezactivează subtitrările automate</string>
@@ -941,9 +938,6 @@ Pentru a afișa meniul piste audio, schimbați \"Falsificare fluxuri video\" în
             <string name="revanced_hide_seekbar_thumbnail_title">Ascunde bara de derulare a miniaturilor video</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">Bara de derulare a miniaturilor video este ascunsă</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">Bara de derulare a miniaturilor video este afișată</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Activează bara de căutare mare pe ecran complet</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">Bara de căutare pe ecran complet este de dimensiune mare</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">Bara de căutare pe ecran complet este de dimensiune normală</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Player Shorts</string>
@@ -1436,11 +1430,6 @@ Dacă este dezactivat ulterior, se recomandă să ștergeți datele aplicației 
 Limitare: Utilizarea butonului Înapoi de pe bara de instrumente poate să nu funcționeze"</string>
             <string name="revanced_change_start_page_always_summary_off">Pagina de pornire este schimbată doar la pornirea aplicației</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Dezactivează reluarea playerului Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">Playerul Shorts nu va relua la pornirea aplicației</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">Scurtătura va fi reluată la pornirea aplicației</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Deschide Shorts cu</string>
             <string name="revanced_shorts_player_type_shorts">Player Shorts</string>
@@ -1463,37 +1452,12 @@ Limitare: Utilizarea butonului Înapoi de pe bara de instrumente poate să nu fu
             <string name="revanced_miniplayer_type_entry_1">Implicit</string>
             <string name="revanced_miniplayer_type_entry_2">Minimă</string>
             <string name="revanced_miniplayer_type_entry_3">Tabletă</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Dezactivează colțurile rotunjite</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Colţurile sunt pătrate</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Colţurile sunt rotunjite</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Activează dublu-click și prinde pentru a redimensiona</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"Acțiunea de dublu tap și pinch to resize este activată
-
-• Dublu atingeți pentru a mări dimensiunea miniplayer-ului
-• Atingeți din nou de două ori pentru a restabili dimensiunea inițială"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Atingeți de două ori și redimensionarea este dezactivată</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Dezactivează glisarea și plasarea</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Drag and drop este dezactivat</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"Drag and drop este activat
-
-Miniplayerul poate fi tras în orice colț al ecranului"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Dezactivează gestul de glisare orizontală</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Gest de tragere orizontal dezactivat</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"Gestul de glisare orizontală este activat
-
-Miniplayerul poate fi tras pe ecran spre stânga sau spre dreapta"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Ascunde butoanele suprapuse</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Butoanele suprapuse sunt ascunse</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Butoanele suprapuse sunt afișate</string>
             <string name="revanced_miniplayer_hide_subtext_title">Ascunde subtexte</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Subtexte sunt ascunse</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Subtexte sunt afișate</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Ascunde butoanele de omitere înainte şi înapoi</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Sari înainte și înapoi sunt ascunse</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Sari înainte și înapoi sunt afișate</string>
-            <string name="revanced_miniplayer_width_dip_title">Mărimea iniţială</string>
-            <string name="revanced_miniplayer_width_dip_summary">Dimensiunea inițială a ecranului, în pixeli</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">Dimensiunea pixelului trebuie să fie între %1$s și %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Opacitatea suprapunerii</string>
             <string name="revanced_miniplayer_opacity_summary">Valoarea Opacității între 0-100, unde 0 este transparent</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">Opacitatea miniplayer suprapusă trebuie să fie între 0-100</string>

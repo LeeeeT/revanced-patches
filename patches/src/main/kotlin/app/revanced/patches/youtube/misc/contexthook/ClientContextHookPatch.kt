@@ -8,10 +8,13 @@ import app.revanced.patcher.extensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.fieldReference
 import app.revanced.patcher.extensions.getInstruction
 import app.revanced.patcher.extensions.methodReference
+import app.revanced.patcher.firstImmutableClassDef
+import app.revanced.patcher.firstImmutableClassDefOrNull
 import app.revanced.patcher.firstMethodDeclaratively
 import app.revanced.patcher.immutableClassDef
 import app.revanced.patcher.parameterTypes
 import app.revanced.patcher.patch.BytecodePatchContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.bytecodePatch
 import app.revanced.patcher.returnType
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
@@ -21,6 +24,7 @@ import app.revanced.util.findInstructionIndicesReversedOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
+import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -73,12 +77,19 @@ val hookClientContextPatch = bytecodePatch(
             }
         }
 
-        authenticationChangeListenerMethod.apply {
-            val messageLiteBuilderIndex =
-                indexOfMessageLiteBuilderReference(this, messageLiteBuilderField.definingClass)
+        // The endpoint requests share a base class with a method that returns the request context builder.
+        messageLiteBuilderMethod = run {
+            var classDef: ClassDef? = firstImmutableClassDef(browseEndpointParentMethod.definingClass)
+            while (classDef != null) {
+                classDef.methods.firstOrNull { method ->
+                    method.parameterTypes.isEmpty() &&
+                        method.returnType == messageLiteBuilderField.definingClass &&
+                        !AccessFlags.STATIC.isSet(method.accessFlags)
+                }?.let { return@run it }
 
-            messageLiteBuilderMethod =
-                getInstruction<ReferenceInstruction>(messageLiteBuilderIndex).methodReference!!
+                classDef = firstImmutableClassDefOrNull(classDef.superclass)
+            }
+            throw PatchException("Could not find the request context builder method")
         }
 
         buildClientContextBodyConstructorMethod.immutableClassDef.buildClientContextBodyMethodMatch.let {

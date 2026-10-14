@@ -711,9 +711,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">圓形疊加（極簡風格）</string>
             <string name="revanced_swipe_overlay_style_entry_6">垂直疊加</string>
             <string name="revanced_swipe_overlay_style_entry_7">垂直覆蓋（最小）</string>
-            <string name="revanced_swipe_change_video_title">啟用滑動切換影片</string>
-            <string name="revanced_swipe_change_video_summary_on">在全螢幕模式下滑動將切換到下一部/上一部影片</string>
-            <string name="revanced_swipe_change_video_summary_off">在全螢幕模式下滑動將不會切換到下一部/上一部影片</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">停用自動產生的字幕</string>
@@ -963,9 +960,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">隱藏影片縮圖進度條</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">影片縮圖進度條已隱藏</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">影片縮圖進度條已顯示</string>
-            <string name="revanced_fullscreen_large_seekbar_title">啟用全螢幕大跳轉列</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">全螢幕跳轉列為大尺寸</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">全螢幕跳轉列為正常尺寸</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Shorts 播放器</string>
@@ -1471,11 +1465,6 @@ Second \"item\" text"</string>
 限制：工具列上的返回按鈕可能無法運作"</string>
             <string name="revanced_change_start_page_always_summary_off">起始頁面僅在應用程式啟動時變更</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">停用 Shorts 播放器接續播放功能</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">應用程式啟動時，Shorts 播放器將不會接續播放</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">應用程式啟動時，Shorts 播放器將接續播放</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Shorts 開啟方式</string>
             <string name="revanced_shorts_player_type_shorts">Shorts 播放器</string>
@@ -1502,42 +1491,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">現代 2</string>
             <string name="revanced_miniplayer_type_entry_6">現代 3</string>
             <string name="revanced_miniplayer_type_entry_7">現代 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">停用圓角</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">已將角落設為方角</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">已將角落設為圓角</string>
-            <string name="revanced_miniplayer_double_tap_action_title">啟用輕觸兩下動作和雙指撥動調整大小</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"已啟用輕觸兩下動作和雙指撥動調整大小
-
-• 輕觸兩下以放大迷你播放器
-• 再次輕觸兩下以還原原始大小"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">已停用輕觸兩下動作和雙指撥動調整大小</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">停用拖放</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">已停用拖曳功能</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"已啟用拖曳功能
-
-迷你播放器可拖曳至螢幕任一角落"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">停用水平拖曳手勢</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">已停用水平拖曳手勢</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"已啟用水平拖曳手勢
-
-迷你播放器可水平拖曳至螢幕左右兩側之外"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">隱藏暫停時顯示的按鈕</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">已隱藏暫停時顯示的按鈕</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">已顯示暫停時顯示的按鈕</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">隱藏展開和關閉按鈕</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"已隱藏按鈕
-
-滑動即可展開或關閉"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">已顯示展開和關閉按鈕</string>
             <string name="revanced_miniplayer_hide_subtext_title">隱藏字幕</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">已隱藏字幕</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">已顯示字幕</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">隱藏「快轉」和「倒帶」按鈕</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">已隱藏「快轉」和「倒帶」按鈕</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">已顯示「快轉」和「倒帶」按鈕</string>
-            <string name="revanced_miniplayer_width_dip_title">初始大小</string>
-            <string name="revanced_miniplayer_width_dip_summary">螢幕初始大小（像素）</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">像素大小必須介於 %1$s 和 %2$s 之間</string>
             <string name="revanced_miniplayer_opacity_title">覆蓋不透明度</string>
             <string name="revanced_miniplayer_opacity_summary">不透明度值介於 0 到 100 之間，其中 0 為完全透明</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">迷你播放器覆蓋的不透明度必須介於 0 到 100 之間</string>

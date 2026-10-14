@@ -60,10 +60,12 @@
 
 # 🧩 ReVanced Patches
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/ReVanced/revanced-patches/release.yml)
 ![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)
 
 This repository contains a collection of ReVanced Patches.
+
+This fork ports the YouTube patches to YouTube **21.41.525** and drops support for all other YouTube versions.
+Patches for other apps are unchanged.
 
 ## ❓ About
 
@@ -87,6 +89,35 @@ For a complete list of all available patches, visit [revanced.app/patches](https
 
 You can use [ReVanced CLI](https://github.com/ReVanced/revanced-cli) or [ReVanced Manager](https://github.com/ReVanced/revanced-manager) to use ReVanced Patches.
 
+### ReVanced Manager
+
+Add the bundle to ReVanced Manager by URL. Manager tracks this repository's releases and offers updates
+whenever a new release is published.
+
+1. Open ReVanced Manager and go to the **Patches** tab.
+2. Tap the ✏️ button in the bottom-right, then the **+** button.
+3. Choose **Enter URL** and paste:
+
+   ```
+   https://github.com/LeeeeT/revanced-patches/releases/latest/download/revanced-asset.json
+   ```
+
+4. Save. The bundle now appears as a patch source in Manager.
+   Patch YouTube **21.41.525** with it.
+
+On non-root devices, keep the default **GmsCore support** patch enabled and install
+[GmsCore](https://github.com/ReVanced/GmsCore).
+On rooted devices, the patched app can instead be mounted over the stock YouTube 21.41.525
+(disable **GmsCore support** and choose the mount/root install).
+
+### ReVanced CLI
+
+Download `patches.rvp` from the [latest release](https://github.com/LeeeeT/revanced-patches/releases/latest) and run:
+
+```bash
+revanced-cli patch -p patches.rvp -b com.google.android.youtube_21.41.525.apk
+```
+
 ## 📚 Everything else
 
 ### 📙 Contributing
@@ -96,6 +127,32 @@ Thank you for considering contributing to ReVanced Patches. You can find the con
 ### 🛠️ Building
 
 To build ReVanced Patches, you can follow the [ReVanced documentation](https://github.com/ReVanced/revanced-documentation).
+
+#### Nix development environment
+
+The YouTube patches target YouTube `21.41.525` only.
+`flake.nix` provides a development shell with JDK 17, the Android SDK (build tools, platform tools, emulator and an
+x86_64 Google APIs system image), ReVanced CLI, apktool, jadx and scrcpy:
+
+```bash
+nix develop
+
+# Build the patches bundle (GitHub Packages credentials are required, see the ReVanced documentation).
+./gradlew :patches:build -x test
+
+# Patch YouTube with the locally built bundle.
+# Defaults to ../com.google.android.youtube_21.41.525.apk and build/youtube-patched.apk.
+rv-patch [input.apk] [output.apk] [extra revanced-cli patch arguments]
+
+# Create (once) and boot the "revanced" emulator. The AVD is stored in .avd/.
+rv-emulator -no-window
+```
+
+The patched app requires [GmsCore](https://github.com/ReVanced/GmsCore) to sign in and play videos, so install it on
+the emulator before the patched APK.
+The emulator image ships with a preinstalled YouTube that captures `youtube.com` links.
+To remove it, boot with `rv-emulator -writable-system`, run `adb root && adb remount`,
+delete the YouTube app directory from `/product/app` and reboot.
 
 ## 📜 License
 

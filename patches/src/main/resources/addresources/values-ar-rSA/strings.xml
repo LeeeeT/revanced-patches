@@ -703,9 +703,6 @@ Second \"item\" text"</string>
             <string name="revanced_swipe_overlay_style_entry_5">النمط الدائري (الأدنى)</string>
             <string name="revanced_swipe_overlay_style_entry_6">النمط العمودي</string>
             <string name="revanced_swipe_overlay_style_entry_7">النمط العمودي (الأدنى)</string>
-            <string name="revanced_swipe_change_video_title">تمكين إيماءة التمرير لتغيير الفيديوهات</string>
-            <string name="revanced_swipe_change_video_summary_on">سيؤدي التمرير في وضع ملء الشاشة إلى التغيير للفيديو التالي/السابق</string>
-            <string name="revanced_swipe_change_video_summary_off">لن يؤدي التمرير في وضع ملء الشاشة إلى التغيير للفيديو التالي/السابق</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">تعطيل الترجمة التلقائية</string>
@@ -955,9 +952,6 @@ Second \"item\" text"</string>
             <string name="revanced_hide_seekbar_thumbnail_title">إخفاء شريط تقدم مصغرات الفيديو</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">تم إخفاء شريط تقدم مصغرات الفيديو</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">يتم عرض شريط تقدم مصغرات الفيديو</string>
-            <string name="revanced_fullscreen_large_seekbar_title">تمكين شريط التمرير الكبير بملء الشاشة</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">شريط التمرير بملء الشاشة كبير الحجم</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">شريط التمرير بملء الشاشة حجمه طبيعي</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">مشغل Shorts</string>
@@ -1463,11 +1457,6 @@ Second \"item\" text"</string>
 التقييد: قد لا يعمل استخدام زر الرجوع على شريط الأدوات"</string>
             <string name="revanced_change_start_page_always_summary_off">يتم تغيير صفحة البداية فقط عند بدء تشغيل التطبيق</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">تعطيل استئناف مشغل Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">لن يتم استئناف تشغيل مشغل Shorts عند بدء تشغيل التطبيق</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">سيتم استئناف تشغيل مشغل Shorts عند بدء تشغيل التطبيق</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">فتح فيديوهات Shorts باستخدام</string>
             <string name="revanced_shorts_player_type_shorts">مشغل Shorts</string>
@@ -1494,42 +1483,12 @@ Second \"item\" text"</string>
             <string name="revanced_miniplayer_type_entry_5">حديث 2</string>
             <string name="revanced_miniplayer_type_entry_6">حديث 3</string>
             <string name="revanced_miniplayer_type_entry_7">حديث 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">تعطيل الزوايا الدائرية</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">الزوايا مربعة</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">الزوايا مستديرة</string>
-            <string name="revanced_miniplayer_double_tap_action_title">تمكين النقر المزدوج والضغط لتغيير الحجم</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"تم تمكين إجراء الضغط المزدوج والضغط لتغيير الحجم
-
-• النقر المزدوج لزيادة حجم المشغل المصغر
-• النقر المزدوج مرة أخرى لاستعادة الحجم الأصلي"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">إجراء النقر المزدوج والضغط لتغيير الحجم معطل</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">تعطيل السحب والإفلات</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">تم تعطيل السحب والإفلات</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"السحب والإفلات مفعلان
-
-يمكن سحب المشغل المصغر إلى أي زاوية من الشاشة"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">تعطيل إيماءة السحب الأفقي</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">تم تعطيل إيماءة السحب الأفقية</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"تم تمكين إيماءة السحب الأفقية
-
-يمكن سحب المشغل المصغر خارج الشاشة إلى اليسار أو اليمين"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">إخفاء أزرار الواجهة</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">تم إخفاء أزرار الواجهة</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">يتم عرض أزرار الواجهة</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">إخفاء أزرار التوسيع والإغلاق</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"تم إخفاء الأزرار
-
-مرر للتوسيع أو الإغلاق"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">يتم عرض أزرار التوسيع والإغلاق</string>
             <string name="revanced_miniplayer_hide_subtext_title">إخفاء النصوص الفرعية</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">تم إخفاء النصوص الفرعية</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">يتم عرض النصوص الفرعية</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">إخفاء أزرار التخطي للأمام والخلف</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">تم إخفاء تخطي للأمام والخلف</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">يتم عرض تخطي للأمام والخلف</string>
-            <string name="revanced_miniplayer_width_dip_title">تهيئة الحجم</string>
-            <string name="revanced_miniplayer_width_dip_summary">تهيئة الحجم على الشاشة، بالبكسل</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">حجم البكسل يجب أن يكون بين %1$s و %2$s</string>
             <string name="revanced_miniplayer_opacity_title">شفافية الواجهة</string>
             <string name="revanced_miniplayer_opacity_summary">قيمة الشفافية بين 0-100، حيث يكون 0 شفاف</string>
             <string name="revanced_miniplayer_opacity_invalid_toast">شفافية واجهة المشغل المصغر يجب أن تكون بين 0-100</string>

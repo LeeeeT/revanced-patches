@@ -332,9 +332,6 @@ Second \"item\" text"</string>
         <patch id="layout.hide.rollingnumber.disableRollingNumberAnimationPatch"/>
         <patch id="layout.hide.seekbar.hideSeekbarPatch">
             <!-- Seekbar shown inside video thumbnails found the home/feed/search/history.  The seekbar shows the prior watch progress when the video was last open. -->
-            <string name="revanced_fullscreen_large_seekbar_title">បើករបារស្វែងរកធំពេញអេក្រង់</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">របារស្វែងរកពេញអេក្រង់គឺមានទំហំធំ</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">របារស្វែងរកពេញអេក្រង់គឺមានទំហំធម្មតា</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_hide_shorts_channel_title">លាក់ Shorts ក្នុងទំព័រឆានែល</string>
@@ -399,7 +396,6 @@ Second \"item\" text"</string>
         <patch id="layout.formfactor.changeFormFactorPatch"/>
         <patch id="layout.spoofappversion.spoofAppVersionPatch"/>
         <patch id="layout.startpage.changeStartPagePatch"/>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch"/>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch"/>
         <patch id="layout.shortsautoplay.shortsAutoplayPatch"/>
         <patch id="layout.miniplayer.miniplayerPatch"/>

@@ -37,14 +37,6 @@ internal fun ClassDef.getAllowSwipingUpGestureMethod() = firstMethodDeclarativel
     parameterTypes("L")
 }
 
-internal val BytecodePatchContext.disableFastForwardLegacyMethodMatch by composingFirstMethod {
-    returnType("Z")
-    parameterTypes()
-    opcodes(Opcode.MOVE_RESULT)
-    // Intent start flag only used in the subscription activity
-    literal { 45411330 }
-}
-
 internal val BytecodePatchContext.disableFastForwardGestureMethodMatch by composingFirstMethod {
     definingClass("/NextGenWatchLayout;")
     accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
@@ -102,17 +94,10 @@ internal val BytecodePatchContext.slideToSeekMethodMatch by composingFirstMethod
     returnType("V")
     parameterTypes("Landroid/view/View;", "F")
     opcodes(
-        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL, // Slide to seek A/B check.
         Opcode.MOVE_RESULT,
-        Opcode.IF_EQZ,
-        Opcode.GOTO_16,
+        Opcode.IF_NEZ,
     )
     literal { 67108864 }
 }
 
-internal val BytecodePatchContext.fullscreenLargeSeekbarFeatureFlagMethodMatch by composingFirstMethod {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returnType("Z")
-    parameterTypes()
-    instructions(45691569L())
-}

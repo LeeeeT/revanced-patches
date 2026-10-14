@@ -711,9 +711,6 @@ Ajusta el volumen deslizando verticalmente en el lado derecho de la pantalla"</s
             <string name="revanced_swipe_overlay_style_entry_5">Superposición circular (mínima)</string>
             <string name="revanced_swipe_overlay_style_entry_6">Superposición vertical</string>
             <string name="revanced_swipe_overlay_style_entry_7">Superposición vertical (mínima)</string>
-            <string name="revanced_swipe_change_video_title">Habilita el deslizamiento para cambiar videos</string>
-            <string name="revanced_swipe_change_video_summary_on">Deslizar en modo de pantalla completa cambiará al video siguiente/anterior</string>
-            <string name="revanced_swipe_change_video_summary_off">Deslizar en modo de pantalla completa no cambiará al video siguiente/anterior</string>
         </patch>
         <patch id="layout.autocaptions.autoCaptionsPatch">
             <string name="revanced_disable_auto_captions_title">Desactivar auto subtítulos</string>
@@ -963,9 +960,6 @@ Para mostrar el menú de la pista de audio, cambia 'Suplantar transmisiones de v
             <string name="revanced_hide_seekbar_thumbnail_title">Ocultar barra de búsqueda de miniaturas de vídeo</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_on">La barra de búsqueda de miniaturas de vídeo está oculta</string>
             <string name="revanced_hide_seekbar_thumbnail_summary_off">La barra de búsqueda de miniaturas de vídeo es visible</string>
-            <string name="revanced_fullscreen_large_seekbar_title">Activar barra de búsqueda grande a pantalla completa</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_on">La barra de búsqueda a pantalla completa es de tamaño grande</string>
-            <string name="revanced_fullscreen_large_seekbar_summary_off">La barra de búsqueda a pantalla completa es de tamaño normal</string>
         </patch>
         <patch id="layout.hide.shorts.hideShortsComponentsResourcePatch">
             <string name="revanced_shorts_player_screen_title">Reproductor de Shorts</string>
@@ -1461,11 +1455,6 @@ Si se desactiva posteriormente, se recomienda borrar los datos de la aplicación
 Limitación: Es posible que el uso del botón de retroceso en la barra de herramientas no funcione"</string>
             <string name="revanced_change_start_page_always_summary_off">La página de inicio se cambia solo al iniciar la aplicación</string>
         </patch>
-        <patch id="layout.startupshortsreset.disableResumingShortsOnStartupPatch">
-            <string name="revanced_disable_resuming_shorts_player_title">Desactivar reanudación del reproductor de Shorts</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_on">El reproductor de Shorts no se reanudará al iniciar la aplicación</string>
-            <string name="revanced_disable_resuming_shorts_player_summary_off">El reproductor de Shorts se reanudará al iniciar la aplicación</string>
-        </patch>
         <patch id="layout.shortsplayer.shortsPlayerTypePatch">
             <string name="revanced_shorts_player_type_title">Abre Shorts con</string>
             <string name="revanced_shorts_player_type_shorts">Reproductor de Shorts</string>
@@ -1492,42 +1481,12 @@ Limitación: Es posible que el uso del botón de retroceso en la barra de herram
             <string name="revanced_miniplayer_type_entry_5">Moderna 2</string>
             <string name="revanced_miniplayer_type_entry_6">Moderna 3</string>
             <string name="revanced_miniplayer_type_entry_7">Moderno 4</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_title">Desactivar esquinas redondeadas</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_on">Las esquinas son cuadradas</string>
-            <string name="revanced_miniplayer_disable_rounded_corners_summary_off">Las esquinas están redondeadas</string>
-            <string name="revanced_miniplayer_double_tap_action_title">Habilitar doble toque y pellizco para redimensionar</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_on">"La acción de doble toque y el pellizco para cambiar el tamaño están activados
-
-• Toca dos veces para aumentar el tamaño del minireproductor
-• Toca dos veces de nuevo para restaurar el tamaño original"</string>
-            <string name="revanced_miniplayer_double_tap_action_summary_off">Acción de doble toque y pellizco para redimensionar está desactivado</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_title">Desactivar arrastrar y soltar</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_on">Arrastre y suelte está desactivado</string>
-            <string name="revanced_miniplayer_disable_drag_and_drop_summary_off">"La función de arrastrar y soltar está activada
-
-El minireproductor se puede arrastrar a cualquier esquina de la pantalla"</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_title">Desactivar gesto de arrastre horizontal</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_on">Gesto de arrastre horizontal desactivado</string>
-            <string name="revanced_miniplayer_disable_horizontal_drag_summary_off">"El gesto de arrastre horizontal está activado
-
-El minireproductor se puede arrastrar fuera de la pantalla hacia la izquierda o la derecha"</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_title">Ocultar botones de superposición</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_on">Los botones de superposición están ocultos</string>
             <string name="revanced_miniplayer_hide_overlay_buttons_summary_off">Se muestran los botones de superposición</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_title">Ocultar botones de expandir y cerrar</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_on">"Los botones están ocultos
-
-Deslizar para expandir o cerrar"</string>
-            <string name="revanced_miniplayer_hide_overlay_buttons_legacy_summary_off">Se muestran botones de expandir y cerrar</string>
             <string name="revanced_miniplayer_hide_subtext_title">Ocultar subtextos</string>
             <string name="revanced_miniplayer_hide_subtext_summary_on">Los subtextos están ocultos</string>
             <string name="revanced_miniplayer_hide_subtext_summary_off">Los subtextos se muestran</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_title">Ocultar botones de omitir hacia adelante y atrás</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Saltar adelante y atrás están ocultos</string>
-            <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Saltar adelante y atrás se muestran</string>
-            <string name="revanced_miniplayer_width_dip_title">Tamaño inicial</string>
-            <string name="revanced_miniplayer_width_dip_summary">Inicial en tamaño de pantalla, en píxeles</string>
-            <string name="revanced_miniplayer_width_dip_invalid_toast">El tamaño del píxel debe estar entre %1$s y %2$s</string>
             <string name="revanced_miniplayer_opacity_title">Opacidad de la capa superpuesta</string>
             <string name="revanced_miniplayer_opacity_summary">Valor de potencia entre 0-100, donde 0 es transparente</string>
             <string name="revanced_miniplayer_opacity_invalid_toast"> Opacidad de reproductor debe estar en 0 -100</string>
